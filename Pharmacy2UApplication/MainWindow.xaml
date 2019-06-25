@@ -6,11 +6,20 @@
         xmlns:local="clr-namespace:Pharmacy2UApplication"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
-        MinWidth="500" MinHeight="300"
         Title="MainWindow">
-    <Border Background="LightGoldenrodYellow" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="NAV BAR" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        </StackPanel>
+        
         <!-- Initialize -->
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Border Background="LightSlateGray">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <local:OrderStatusControl />
@@ -24,5 +33,10 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-    </Border>
+        
+        <!-- Status Info -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Background="Gray">
+            <TextBlock Text="STATUS BAR HERE" FontSize="12" HorizontalAlignment="Left" Width="Auto"/>
+        </StackPanel>
+    </Grid>
 </Window>
