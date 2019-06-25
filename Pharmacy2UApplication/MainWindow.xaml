@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmacy2UApplication"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        SizeToContent="WidthAndHeight"
+        MinWidth="500" MinHeight="300"
+        Title="MainWindow">
+    <Border Background="LightGoldenrodYellow" >
         <!-- Initialize -->
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <Border Background="LightSlateGray">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <local:OrderStatusControl />
+                    <local:AdminControl />
+                </StackPanel>
+            </Border>
+            <Border Background="LightGoldenrodYellow">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <local:ActiveStatisticsControl />
+                    <local:OrderInformationControl />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Border>
 </Window>
