@@ -11,6 +11,9 @@ namespace Pharmacy2UApplication
         public MainWindow()
         {
             InitializeComponent();
+
+            SQLServerConnect sql = new SQLServerConnect();
+            sql.SQLTestConn();
         }
     }
 }

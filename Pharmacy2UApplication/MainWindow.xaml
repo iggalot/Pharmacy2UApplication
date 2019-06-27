@@ -6,20 +6,25 @@
         xmlns:local="clr-namespace:Pharmacy2UApplication"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
-        Title="MainWindow">
+        Icon="Images/DeaconessLogo.ico"
+        Title="Pharmacy 2U Application">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="194*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
             <TextBlock Text="NAV BAR" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </StackPanel>
-        
+
         <!-- Initialize -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,26,0,0.5" Grid.RowSpan="2">
             <Border Background="LightSlateGray">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <local:OrderStatusControl />
@@ -33,9 +38,9 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        
+
         <!-- Status Info -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Background="Gray">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="Gray" Grid.ColumnSpan="2" Margin="0,191.5,0,0.5" Grid.RowSpan="2">
             <TextBlock Text="STATUS BAR HERE" FontSize="12" HorizontalAlignment="Left" Width="Auto"/>
         </StackPanel>
     </Grid>
