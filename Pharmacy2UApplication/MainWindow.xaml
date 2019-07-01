@@ -8,11 +8,8 @@
         SizeToContent="WidthAndHeight"
         Icon="Images/DeaconessLogo.ico"
         Title="Pharmacy 2U Application">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="194*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -31,17 +28,32 @@
                     <local:AdminControl />
                 </StackPanel>
             </Border>
-            <Border Background="LightGoldenrodYellow">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <local:ActiveStatisticsControl />
-                    <local:OrderInformationControl />
-                </StackPanel>
-            </Border>
+
+            <StackPanel Orientation="Horizontal">
+                <Border Background="LightGoldenrodYellow" Height="Auto">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <local:ActiveStatisticsControl />
+                        <local:OrderInformationControl />
+                    </StackPanel>
+                </Border>
+                <Border>
+                    <!-- Our database activity window -->
+                    <local:DatabaseActivityControl />
+                </Border>
+                
+            </StackPanel>
         </StackPanel>
 
         <!-- Status Info -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="Gray" Grid.ColumnSpan="2" Margin="0,191.5,0,0.5" Grid.RowSpan="2">
+        <StackPanel Grid.Row="1" Orientation="Vertical" Background="Gray" Grid.ColumnSpan="2" Margin="0,191.5,0,0.5" Grid.RowSpan="2">
             <TextBlock Text="STATUS BAR HERE" FontSize="12" HorizontalAlignment="Left" Width="Auto"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Database" FontSize="12"/>
+                <Button Content="Seed" Command="{Binding SQLServerConnection.DBCreateCommand}" Height="20" Width="100"/>
+                <Button Content="Clear" Command="{Binding SQLServerConnection.DBClearCommand}" Height="20" Width="100"/>
+                <Button Content="Display" Command="{Binding SQLServerConnection.DBDisplayCommand}" Height="20" Width="100"/>
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>

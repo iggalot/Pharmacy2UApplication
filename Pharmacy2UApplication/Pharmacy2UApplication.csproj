@@ -67,12 +67,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\OrderStatusModel.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="SQLServer\SQLServerConnect.cs" />
     <Compile Include="Views\ActiveStatisticsControl.xaml.cs">
       <DependentUpon>ActiveStatisticsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminControl.xaml.cs">
       <DependentUpon>AdminControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DatabaseActivityControl.xaml.cs">
+      <DependentUpon>DatabaseActivityControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderInformationControl.xaml.cs">
       <DependentUpon>OrderInformationControl.xaml</DependentUpon>
@@ -97,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DatabaseActivityControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

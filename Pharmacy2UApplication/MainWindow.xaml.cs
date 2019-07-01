@@ -8,12 +8,18 @@ namespace Pharmacy2UApplication
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Our sql connection
+        public SQLServerConnect SQLServerConnection {get; set;}
+
         public MainWindow()
         {
             InitializeComponent();
 
-            SQLServerConnect sql = new SQLServerConnect();
-            sql.SQLTestConn();
+            // Testing of our C# to SQL connectivity
+            SQLServerConnection = new SQLServerConnect();
+
+            // Set the data context for the XAML Bindings in the GUI
+            DataContext = this;
         }
     }
 }
