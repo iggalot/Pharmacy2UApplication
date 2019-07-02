@@ -6,12 +6,29 @@
              xmlns:local="clr-namespace:Pharmacy2UApplication"
              mc:Ignorable="d" >
     <Border>
-        <StackPanel Orientation="Vertical">
+        <Grid Width="400" MaxHeight="200">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <!-- Title -->
-            <TextBlock Text="DataBase Activity" Background="LightBlue"/>
+            <TextBlock Grid.Row="0" Text="DataBase Activity" Background="LightBlue"/>
 
             <!-- Database Activity Status -->
-            <TextBlock x:Name="DBActivity" Text="Activity Messages Here"/>
-        </StackPanel>
+            <ScrollViewer Grid.Row="1" 
+                          VerticalScrollBarVisibility="Visible"
+                          
+                          HorizontalScrollBarVisibility="Visible">
+                <!--<Grid MaxHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}"/>-->
+                    <ItemsControl Name="DBActivity" ItemsSource="{Binding SQLServerConnection.History, Mode=TwoWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                <!--</Grid>-->
+            </ScrollViewer>
+        </Grid>
     </Border>
 </UserControl>
