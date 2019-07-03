@@ -8,12 +8,22 @@ using System.Windows.Input;
 
 namespace Pharmacy2UApplication
 {
+    /// <summary>
+    /// A class that controls the connection to a specified database
+    /// </summary>
     public class SQLServerConnect
     {
+
+
         #region Public Members
 
         // A list of our database command history.
         public static ObservableCollection<string> History { get; set; }
+
+        /// <summary>
+        /// The name of this database
+        /// </summary>
+        public static string dbTitle { get; set; }
 
         #endregion
 
@@ -29,6 +39,9 @@ namespace Pharmacy2UApplication
         // Our command to display the contents of the default database
         public ICommand DBDisplayCommand { get; set; }
 
+        // Our command to add a single record to our test database
+        public ICommand DBAddSingleRecord { get; set; }
+
         #endregion
 
         #region Default Constructor
@@ -36,33 +49,38 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SQLServerConnect()
+        public SQLServerConnect(string title)
         {
+            string cmd = "";
             // Create our database history
             History = new ObservableCollection<string>();
 
+            // Store our database table name
+            dbTitle = title;
 
-            History.Add("Creating connection to database...");
-            Console.WriteLine("Creating connection to database...");
-            //MessageBox.Show("Making new Connection");
-
-
+            // Add messages to History of this server connection
+            cmd = $"Creating connection to database: {dbTitle}.db ";
+            History.Add(cmd);
+            Console.WriteLine(cmd);
 
             // Create commands to create, display and delete the database via XAML controls.
-            Console.WriteLine("-- Creating database commands");
-            History.Add("-- Creating database commands");
+            cmd = $"-- Creating database relay commands";
+            Console.WriteLine(cmd);
+            History.Add(cmd);
 
             DBCreateCommand = new RelayCommand(() => this.CreateDB());
             DBClearCommand = new RelayCommand(() => this.ClearDB());
             DBDisplayCommand = new RelayCommand(() => this.DisplayDB());
+            DBAddSingleRecord = new RelayCommand(() => this.AddSingleRecordToTest());
+
         }
 
         #endregion
 
-        #region Private Methods
+        #region Private Database Utility Methods
 
         /// <summary>
-        /// A command to display the contents of our database.
+        /// A command to display the contents of our test database.
         /// </summary>
         private void DisplayDB()
         {
@@ -103,7 +121,7 @@ namespace Pharmacy2UApplication
                             while (reader.Read())
                             {
                                 // writing out our database results
-                                cmd = $"Username: {reader["Username"]}, FirstName: {reader["FirstName"]}, LastName: {reader["LastName"]}, IsEnabled: {reader["IsEnabled"]}";
+                                cmd = $"Username: {reader["Username"]}, FirstName: {reader["FirstName"]}, LastName: {reader["LastName"]}, IsEnabled: {reader["IsEnabled"]}, CreatedDateUtc: {reader["CreatedDateUtc"]}";
                                 History.Add(cmd);
                                 Console.WriteLine(cmd);
                                 recordCount++;
@@ -121,7 +139,7 @@ namespace Pharmacy2UApplication
                 }
             }
 
-            cmd = $"---- Displaying '{recordCount.ToString()} records";
+            cmd = $"---- Displaying {recordCount.ToString()} records";
             History.Add(cmd);
             Console.WriteLine(cmd);
 
@@ -129,12 +147,10 @@ namespace Pharmacy2UApplication
             {
                 Console.WriteLine($"{i} -- '{History[i]}");
             }
-
-
         }
 
         /// <summary>
-        /// A database command that deletes all of the contents of a specified table.
+        /// A database command that deletes all of the contents of our test table.
         /// </summary>
         private void ClearDB()
         {
@@ -170,9 +186,9 @@ namespace Pharmacy2UApplication
                         // Read the database results that are returned
                         int reader = command.ExecuteNonQuery();
 
-                        cmd = $"---- '{ reader.ToString()} records deleted from database";
+                        cmd = $"---- { reader.ToString()} records deleted from database";
                         History.Add(cmd);
-                        Console.WriteLine($"---- '{ reader.ToString()} records deleted from database");
+                        Console.WriteLine(cmd);
                     }
                 } catch
                 {
@@ -189,7 +205,7 @@ namespace Pharmacy2UApplication
         }
 
         /// <summary>
-        /// Creating data for our test database connectivity
+        /// Creating data for our test database
         /// </summary>
         private void CreateDB()
         {
@@ -220,47 +236,23 @@ namespace Pharmacy2UApplication
 
                     // For Writing a record:  The command to execute on our SQL server
                     cmd = $"INSERT INTO dbo.Users (id, Username, FirstName, LastName, IsEnabled, CreatedDateUtc) VALUES ('{Guid.NewGuid().ToString("N")}', 'Jim', 'Jim', 'Allen', 1, '2/28/19 1:45:00 AM -08:00' )";
-                    using (var command = new SqlCommand(cmd, sqlConnection))
-                    {
-                        History.Add(cmd);
-                        // Read the database results that are returned
-                        var result = command.ExecuteNonQuery();
-                        recordCount++;
-                    }
+                    AddSingleRecordToDB("dbo.Users", cmd, sqlConnection);
+                    recordCount++;
 
                     cmd = $"INSERT INTO dbo.Users (id, Username, FirstName, LastName, IsEnabled, CreatedDateUtc) VALUES ('{Guid.NewGuid().ToString("N")}', 'Kira123', 'Kira', 'Lukilu', 1, '2/28/19 1:45:00 AM -08:00' )";
                     // For Writing a record:  The command to execute on our SQL server
-                    using (var command = new SqlCommand(cmd, sqlConnection))
-                    {
-                        History.Add(cmd);
-                        // Read the database results that are returned
-                        var result = command.ExecuteNonQuery();
-                        recordCount++;
-                    }
+                    AddSingleRecordToDB("dbo.Users", cmd, sqlConnection);
+                    recordCount++;
 
                     // For Writing a record:  The command to execute on our SQL server
                     cmd = $"INSERT INTO dbo.Users (id, Username, FirstName, LastName, IsEnabled, CreatedDateUtc) VALUES ('{Guid.NewGuid().ToString("N")}', 'Olaf123', 'Olaf', 'von Owenson', 1, '2/28/19 1:45:00 AM -08:00' )";
-                    using (var command = new SqlCommand(cmd, sqlConnection))
-                    {
-                        History.Add(cmd);
-                        // Read the database results that are returned
-                        var result = command.ExecuteNonQuery();
-                        recordCount++;
-                    }
+                    AddSingleRecordToDB("dbo.Users", cmd, sqlConnection);
+                    recordCount++;
 
                     // For Writing a record:  The command to execute on our SQL server
                     cmd = $"INSERT INTO dbo.Users (id, Username, FirstName, LastName, IsEnabled, CreatedDateUtc) VALUES ('{Guid.NewGuid().ToString("N")}', 'Leslie123', 'Leslie', 'Retriever', 1, '2/28/19 1:45:00 AM -08:00' )";
-                    using (var command = new SqlCommand(cmd, sqlConnection))
-                    {
-                        History.Add(cmd);
-                        // Read the database results that are returned
-                        var result = command.ExecuteNonQuery();
-                        recordCount++;
-                    }
-
-                    cmd = $"---- '{recordCount.ToString()} records added to the database";
-                    Console.WriteLine(cmd);
-
+                    AddSingleRecordToDB("dbo.Users", cmd, sqlConnection);
+                    recordCount++;
                 }
                 catch
                 {
@@ -277,8 +269,59 @@ namespace Pharmacy2UApplication
 
         }
 
-        #endregion
+        /// <summary>
+        /// Helper function to add a single record to the database.  Updates the History for the database history feature.
+        /// </summary>
+        /// <param name="dbtablename">The name of the database table</param>
+        /// <param name="sqlcommand">The SQL command to pass to the server</param>
+        /// <param name="connection">The SQLConnection to the specific table in the server</param>
+        public void AddSingleRecordToDB(string dbtablename, string sqlcommand, SqlConnection connection)
+        {
+            // For Writing a record:  The command to execute on our SQL server
+            using (var command = new SqlCommand(sqlcommand, connection))
+            {
+                History.Add(sqlcommand);
+                // Read the database results that are returned
+                var result = command.ExecuteNonQuery();
+            }
 
+            string cmd = $"---- 1 record added to the database";
+            History.Add(cmd);
+            Console.WriteLine(cmd);
+        }
+
+        // Adds a single record to the test database
+        public void AddSingleRecordToTest()
+        {
+            using (var sqlConnection = new SqlConnection("Server = .; Database = test; User Id = sa; Password = sqlserver;"))
+            {
+                string cmd = "";
+                try
+                {
+                    // Open the SQL connection
+                    sqlConnection.Open();
+                    // get the current time in UTC format for injecting into our test record.
+                    DateTime nowTimeUTC = DateTime.Now;
+
+                    // For Writing a record:  The command to execute on our SQL server
+                    cmd = $"INSERT INTO dbo.Users (id, Username, FirstName, LastName, IsEnabled, CreatedDateUtc) VALUES ('{Guid.NewGuid().ToString("N")}', 'Leslie123', 'Leslie', 'Retriever', 1, '{nowTimeUTC.ToString()}' )";
+                    AddSingleRecordToDB("dbo.Users", cmd, sqlConnection);
+                }
+                catch
+                {
+                    cmd = "Error Opening database";
+                    History.Add(cmd);
+                    MessageBox.Show(cmd);
+                }
+                finally
+                {
+                    // close the server connection
+                    sqlConnection.Close();
+                }
+            }
+        }
+
+        #endregion
     } 
 }
  

@@ -5,19 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pharmacy2UApplication"
              mc:Ignorable="d" >
-    <Border>
+    <Border Background="White">
         <Grid Width="400" MaxHeight="200">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Title -->
-            <TextBlock Grid.Row="0" Text="DataBase Activity" Background="LightBlue"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBlock Text="DataBase Activity -- " Background="LightBlue"/>
+                <TextBlock Text="{Binding SQLServerConnection.dbTitle}" Width="Auto" Background="LightBlue"/>
+            </StackPanel>
 
             <!-- Database Activity Status -->
             <ScrollViewer Grid.Row="1" 
                           VerticalScrollBarVisibility="Visible"
-                          
                           HorizontalScrollBarVisibility="Visible">
                 <!--<Grid MaxHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}"/>-->
                     <ItemsControl Name="DBActivity" ItemsSource="{Binding SQLServerConnection.History, Mode=TwoWay}">

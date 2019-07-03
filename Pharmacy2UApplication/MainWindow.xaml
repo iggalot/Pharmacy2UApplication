@@ -30,16 +30,21 @@
             </Border>
 
             <StackPanel Orientation="Horizontal">
-                <Border Background="LightGoldenrodYellow" Height="Auto">
+                <Border Background="LightGoldenrodYellow" Height="400" Width="600">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <local:ActiveStatisticsControl />
                         <local:OrderInformationControl />
                     </StackPanel>
                 </Border>
-                <Border>
-                    <!-- Our database activity window -->
-                    <local:DatabaseActivityControl />
-                </Border>
+                <Border Background="LightGreen" Height="400">
+                    <StackPanel>
+                        <!-- Our database activity window -->
+                        <local:DatabaseActivityControl HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DatabaseActivityControl_Loaded" />
+
+                        <!-- Our popup for activity changed -->
+                        <local:DatabaseChangedControl HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                    </StackPanel>
+               </Border>
                 
             </StackPanel>
         </StackPanel>
@@ -52,6 +57,7 @@
                 <Button Content="Seed" Command="{Binding SQLServerConnection.DBCreateCommand}" Height="20" Width="100"/>
                 <Button Content="Clear" Command="{Binding SQLServerConnection.DBClearCommand}" Height="20" Width="100"/>
                 <Button Content="Display" Command="{Binding SQLServerConnection.DBDisplayCommand}" Height="20" Width="100"/>
+                <Button Content="AddSingleRecord" Command="{Binding SQLServerConnection.DBAddSingleRecord}" Height="20" Width="100"/>
             </StackPanel>
 
         </StackPanel>
