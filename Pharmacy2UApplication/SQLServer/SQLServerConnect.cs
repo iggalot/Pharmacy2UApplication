@@ -13,17 +13,15 @@ namespace Pharmacy2UApplication
     /// </summary>
     public class SQLServerConnect
     {
-
-
         #region Public Members
 
-        // A list of our database command history.
+        // A list of our command history for this connection.
         public static ObservableCollection<string> History { get; set; }
 
         /// <summary>
         /// The name of this database
         /// </summary>
-        public static string dbTitle { get; set; }
+        public static string DBTitle { get; set; }
 
         #endregion
 
@@ -56,10 +54,10 @@ namespace Pharmacy2UApplication
             History = new ObservableCollection<string>();
 
             // Store our database table name
-            dbTitle = title;
+            DBTitle = title;
 
             // Add messages to History of this server connection
-            cmd = $"Creating connection to database: {dbTitle}.db ";
+            cmd = $"Creating connection to database: {DBTitle}.db ";
             History.Add(cmd);
             Console.WriteLine(cmd);
 
@@ -72,7 +70,6 @@ namespace Pharmacy2UApplication
             DBClearCommand = new RelayCommand(() => this.ClearDB());
             DBDisplayCommand = new RelayCommand(() => this.DisplayDB());
             DBAddSingleRecord = new RelayCommand(() => this.AddSingleRecordToTest());
-
         }
 
         #endregion

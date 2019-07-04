@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DatabaseMonitor\DBMonitor.cs" />
     <Compile Include="Models\OrderStatusModel.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="SQLServer\SQLServerConnect.cs" />

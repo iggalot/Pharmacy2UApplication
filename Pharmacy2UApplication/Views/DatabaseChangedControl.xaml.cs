@@ -12,5 +12,10 @@ namespace Pharmacy2UApplication
         {
             InitializeComponent();
         }
+
+        private void AcknowledgeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainWindow.DatabaseMonitor.DBHasChanged = false;
+        }
     }
 }

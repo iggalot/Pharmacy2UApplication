@@ -6,13 +6,29 @@
              xmlns:local="clr-namespace:Pharmacy2UApplication"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid 
-        Height="100"
+    <Border  
+        Margin="20"
+        Padding="10"
+        CornerRadius="20"
         Background="Pink"
-        Visibility="{Binding DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
-        <TextBlock 
+        Height="100"
+        Visibility="{Binding DatabaseMonitor.DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="{Binding DatabaseMonitor.DBConnection.DBTitle}"
+            FontSize="22"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center" />
+            <TextBlock 
             VerticalAlignment="Center"
             HorizontalAlignment="Center" 
-            Text="The Database has Changed" FontSize="22" />
-    </Grid>
+            Text="The Database has Changed" FontSize="14" />
+
+            <Button Click="AcknowledgeButton_Click" 
+                    Content="Acknowledge Notification" 
+                    Width="300"
+                    FontSize="18"/>
+        </StackPanel>
+    </Border>
+
 </UserControl>
