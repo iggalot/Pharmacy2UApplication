@@ -39,10 +39,11 @@
                 <Border Background="LightGreen" Height="400">
                     <StackPanel>
                         <!-- Our database activity window -->
-                        <local:DatabaseActivityControl HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="DatabaseActivityControl_Loaded" />
+                        <local:DatabaseActivityControl HorizontalAlignment="Left" VerticalAlignment="Top"  />
 
                         <!-- Our popup for activity changed -->
                         <local:DatabaseChangedControl HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <TextBlock Text="{Binding DBHasChanged}" FontSize="12"/>
                     </StackPanel>
                </Border>
                 

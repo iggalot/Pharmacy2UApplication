@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,9 +11,16 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         #region Private Members
+
+        // stores the state of the database scan
+        private bool dbHasChanged;
+
+        #endregion
+
+        #region Public Accessors
         // Our sql connection view model
         public SQLServerConnect SQLServerConnection {get; set;}
 
@@ -20,12 +28,26 @@ namespace Pharmacy2UApplication
         public Thread monitorThread { get; set; }
 
         // Boolean to signify that the database has changed
-        public bool DBHasChanged { get; set; } = false;
+        public bool DBHasChanged
+        {
+            get { return dbHasChanged; }
+            set
+            {
+                if (dbHasChanged != value)
+                {
+                    // set the value and notify that the property has changed
+                    dbHasChanged = value;
+
+                    // notify that our property has changed
+                    OnPropertyChanged("DBHasChanged");
+                }      
+            }
+        }
 
         // The number of records in the test database, used for monitoring activity;
         public int numRecords { get; set; }
 
-        // A number of records to compare activity against
+        // A number of records to compare activity against for our monitor
         public int lastCount { get; set; } = 3;
 
         #endregion
@@ -46,6 +68,7 @@ namespace Pharmacy2UApplication
 
         }
 
+
         // The action to be used by the thread that monitors the database for changes in activity
         private void MonitorDB()
         {
@@ -53,7 +76,7 @@ namespace Pharmacy2UApplication
             while (true)
             {
                 // wait before scanning the database
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
                 loop++;
                
                 using (var sqlConnection = new SqlConnection("Server = .; Database = test; User Id = sa; Password = sqlserver;"))
@@ -78,6 +101,8 @@ namespace Pharmacy2UApplication
                             {
                                 DBHasChanged = true;
                             }
+
+                            //TODO add functionality to switch the DBHasChanged criteria back
                         }
                     }
                     catch
@@ -92,9 +117,18 @@ namespace Pharmacy2UApplication
             }
         }
 
-        private void DatabaseActivityControl_Loaded(object sender, RoutedEventArgs e)
+        // Defining the function that creates the PropertyChanged Event
+        private void OnPropertyChanged(string property)
         {
-
+            if(PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
         }
+
+        // THe interface implementation of INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
     }
+
+
 }

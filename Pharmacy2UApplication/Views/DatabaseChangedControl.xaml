@@ -9,7 +9,7 @@
     <Grid 
         Height="100"
         Background="Pink"
-        Visibility="{Binding DBHasChanged, Mode=TwoWay, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
+        Visibility="{Binding DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
         <TextBlock 
             VerticalAlignment="Center"
             HorizontalAlignment="Center" 
