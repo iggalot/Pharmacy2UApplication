@@ -8,6 +8,15 @@ namespace Pharmacy2UApplication
     /// </summary>
     public partial class DatabaseChangedControl : UserControl
     {
+        //public string AcknowledgeMessage {
+        //    get
+        //    {
+        //        string str = "";
+        //        str = $"{MainWindow.DatabaseMonitor.DBConnection.DBTitle}";
+        //        return str;
+        //    }
+        //}
+
         public DatabaseChangedControl()
         {
             InitializeComponent();

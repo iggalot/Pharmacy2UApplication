@@ -36,5 +36,7 @@ namespace Pharmacy2UApplication
             // Set the data context for the XAML Bindings in the GUI
             DataContext = this;
         }
+
+
     }
 }

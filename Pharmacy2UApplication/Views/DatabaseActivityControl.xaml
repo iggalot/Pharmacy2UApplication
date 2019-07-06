@@ -14,7 +14,7 @@
             <!-- Title -->
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="DataBase Activity -- " Background="LightBlue"/>
-                <TextBlock Text="{Binding SQLServerConnection.dbTitle}" Width="Auto" Background="LightBlue"/>
+                <TextBlock Text="{Binding SQLServerConnection.DBTitle}" Width="Auto" Background="LightBlue"/>
             </StackPanel>
 
             <!-- Database Activity Status -->

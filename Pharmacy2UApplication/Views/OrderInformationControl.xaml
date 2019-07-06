@@ -12,8 +12,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Title -->
-        <TextBlock Grid.Row="0" Text="Order Information" Background="LightBlue"/>
-
 
         <TextBlock Grid.Row="1" 
             Height="300"

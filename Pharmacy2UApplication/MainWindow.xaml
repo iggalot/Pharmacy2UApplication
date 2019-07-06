@@ -11,9 +11,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="400" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
@@ -21,7 +21,7 @@
         </StackPanel>
 
         <!-- Initialize -->
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,26,0,0.5" Grid.RowSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,26,0,0.5" Grid.Row="1">
             <Border Background="LightSlateGray">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <local:OrderStatusControl />
@@ -30,13 +30,20 @@
             </Border>
 
             <StackPanel Orientation="Horizontal">
-                <Border Background="LightGoldenrodYellow" Height="400" Width="600">
+                <Border Background="LightGoldenrodYellow">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+
                         <local:ActiveStatisticsControl />
-                        <local:OrderInformationControl />
+                        
+                        <!-- The main frame of the application where major information and searches are positioned-->
+                        <Frame x:Name="MainFrame2" 
+                                Content="{Binding ApplicationViewModel.CurrentPage, 
+                                Source={x:Static local:ViewModelLocator.Instance}, 
+                                Converter={local:ApplicationPageValueConverter}}"               
+                       />
                     </StackPanel>
                 </Border>
-                <Border Background="LightGreen" Height="400">
+                <Border Background="LightGreen" >
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
                         <!-- Our database activity window -->
                         <local:DatabaseActivityControl HorizontalAlignment="Left" VerticalAlignment="Top"  />
@@ -50,16 +57,9 @@
         </StackPanel>
 
         <!-- Status Info -->
-        <StackPanel Grid.Row="1" Orientation="Vertical" Background="Gray" Grid.ColumnSpan="2" Margin="0,191.5,0,0.5" Grid.RowSpan="2">
-            <TextBlock Text="STATUS BAR HERE" FontSize="12" HorizontalAlignment="Left" Width="Auto"/>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Database" FontSize="12"/>
-                <Button Content="Seed" Command="{Binding SQLServerConnection.DBCreateCommand}" Height="20" Width="100"/>
-                <Button Content="Clear" Command="{Binding SQLServerConnection.DBClearCommand}" Height="20" Width="100"/>
-                <Button Content="Display" Command="{Binding SQLServerConnection.DBDisplayCommand}" Height="20" Width="100"/>
-                <Button Content="AddSingleRecord" Command="{Binding SQLServerConnection.DBAddSingleRecord}" Height="20" Width="100"/>
-            </StackPanel>
-
+        <StackPanel Grid.Row="2" Orientation="Vertical" Background="Gray" Grid.ColumnSpan="2" Margin="0,191.5,0,0.5">
+            <TextBlock Text="STATUS BAR HERE" FontSize="18" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <local:DebugTestControls />
         </StackPanel>
     </Grid>
 </Window>
