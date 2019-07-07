@@ -69,11 +69,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\NoFrameHistory.cs" />
+    <Compile Include="Controls\PageHost.xaml.cs">
+      <DependentUpon>PageHost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseMonitor\DBMonitor.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="Models\OrderStatusModel.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Pages\ApplicationPage.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -109,6 +115,10 @@
     <Compile Include="Views\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\PageHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -187,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Animations\" />
-    <Folder Include="AttachedProperties\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DeaconessLogo.ico" />

@@ -7,15 +7,15 @@
              mc:Ignorable="d" 
             >
     <StackPanel Orientation="Horizontal" >
-        <StackPanel Orientation="Vertical" Background="LightGreen" VerticalAlignment="Center">
+        <StackPanel Margin ="5" Orientation="Vertical" Background="LightGreen" VerticalAlignment="Center">
             <TextBlock Text="Active #"/>
             <TextBlock Text="Average Time"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Background="LightPink" VerticalAlignment="Center">
+        <StackPanel Margin ="5" Orientation="Vertical" Background="LightPink" VerticalAlignment="Center">
             <TextBlock Text="Inactive #"/>
             <TextBlock Text="Average Time"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Background="LightBlue" VerticalAlignment="Center">
+        <StackPanel Margin ="5" Orientation="Vertical" Background="LightBlue" VerticalAlignment="Center">
             <TextBlock Text="Average Total Time"/>
         </StackPanel>
 

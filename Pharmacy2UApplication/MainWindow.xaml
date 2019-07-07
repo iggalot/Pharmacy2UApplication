@@ -22,28 +22,29 @@
 
         <!-- Initialize -->
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,26,0,0.5" Grid.Row="1">
-            <Border Background="LightSlateGray">
+            <Border Background="LightSlateGray" Padding="10">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <local:OrderStatusControl />
-                    <local:AdminControl />
+                    <local:AdminControl Padding="0 20 0 0 " />
                 </StackPanel>
             </Border>
 
             <StackPanel Orientation="Horizontal">
-                <Border Background="LightGoldenrodYellow">
+                <Border Background="LightGoldenrodYellow" Padding="10">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-                        <local:ActiveStatisticsControl />
-                        
+                        <local:ActiveStatisticsControl Padding="10" HorizontalAlignment="Center"/>
+
                         <!-- The main frame of the application where major information and searches are positioned-->
                         <Frame x:Name="MainFrame2" 
+                                local:NoFrameHistory.Value="True"
                                 Content="{Binding ApplicationViewModel.CurrentPage, 
                                 Source={x:Static local:ViewModelLocator.Instance}, 
                                 Converter={local:ApplicationPageValueConverter}}"               
                        />
                     </StackPanel>
                 </Border>
-                <Border Background="LightGreen" >
+                <Border Background="LightGreen" Padding="10">
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
                         <!-- Our database activity window -->
                         <local:DatabaseActivityControl HorizontalAlignment="Left" VerticalAlignment="Top"  />

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Pharmacy2UApplication.OrderInformationPage"
+﻿<local:BasePage x:Class="Pharmacy2UApplication.OrderInformationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,4 +21,4 @@
         <!-- The results of our order information -->
         <local:OrderInformationControl Grid.Row="1"/>
     </Grid>
-</Page>
+</local:BasePage>
