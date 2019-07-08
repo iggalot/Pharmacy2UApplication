@@ -1,5 +1,7 @@
 ﻿
+using System;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Pharmacy2UApplication
 {
@@ -9,6 +11,17 @@ namespace Pharmacy2UApplication
     /// </summary>
     public class BasePage : Page
     {
+        #region Default Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public BasePage()
+        {
+            
+        }
+
+        #endregion
 
     }
 }

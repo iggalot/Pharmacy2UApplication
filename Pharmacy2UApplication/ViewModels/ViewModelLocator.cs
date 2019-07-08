@@ -11,7 +11,6 @@ namespace Pharmacy2UApplication
         // Singleton instance of the locator
         public static ViewModelLocator Instance { get; private set; } = new ViewModelLocator();
 
-
         /// <summary>
         /// The application view model
         /// </summary>

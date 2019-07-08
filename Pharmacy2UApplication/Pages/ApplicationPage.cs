@@ -29,7 +29,43 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// The order information page
         /// </summary>
-        OrderInformationPage = 4
+        OrderInformationPage = 4,
+
+        /// <summary>
+        /// For displaying the information about NewOrders
+        /// </summary>
+        NewOrdersPage = 5,
+
+        /// <summary>
+        /// For displaying the information about Ready for Payment Orders
+        /// </summary>
+        ReadyForPaymentOrdersPage = 6,
+
+        /// <summary>
+        /// For displaying the information about Ready for Packaging Orders
+        /// </summary>
+        ReadyForPackagingOrdersPage = 7,
+
+        /// <summary>
+        /// For displaying the information about Ready for Delivery Orders
+        /// </summary>
+        ReadyForDeliveryOrdersPage = 8,
+
+        /// <summary>
+        /// For displaying the information about Out for Delivery Orders
+        /// </summary>
+        OutForDeliveryOrdersPage = 9,
+
+        /// <summary>
+        /// For displaying the information about Returned Orders
+        /// </summary>
+        ReturnedOrdersPage = 10,
+
+        /// <summary>
+        /// For displaying the information about Completed Orders
+        /// </summary>
+        CompletedOrdersPage = 11,
+
 
     }
 }

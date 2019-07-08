@@ -8,15 +8,6 @@ namespace Pharmacy2UApplication
     /// </summary>
     public partial class DatabaseChangedControl : UserControl
     {
-        //public string AcknowledgeMessage {
-        //    get
-        //    {
-        //        string str = "";
-        //        str = $"{MainWindow.DatabaseMonitor.DBConnection.DBTitle}";
-        //        return str;
-        //    }
-        //}
-
         public DatabaseChangedControl()
         {
             InitializeComponent();
@@ -25,6 +16,10 @@ namespace Pharmacy2UApplication
         private void AcknowledgeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             MainWindow.DatabaseMonitor.DBHasChanged = false;
+
+            // Change the page to the New Orders Page
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.OrderInformationPage);
+
         }
     }
 }

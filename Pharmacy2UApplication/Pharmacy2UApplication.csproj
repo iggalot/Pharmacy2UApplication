@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
+    <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
@@ -83,6 +84,27 @@
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml.cs">
+      <DependentUpon>CompletedOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\ReturnedOrdersPage.xaml.cs">
+      <DependentUpon>ReturnedOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\OutForDeliveryOrdersPage.xaml.cs">
+      <DependentUpon>OutForDeliveryOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\ReadyForDeliveryOrdersPage.xaml.cs">
+      <DependentUpon>ReadyForDeliveryOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\ReadyForPaymentOrdersPage.xaml.cs">
+      <DependentUpon>ReadyForPaymentOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\ReadyForPackagingOrdersPage.xaml.cs">
+      <DependentUpon>ReadyForPackagingOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControl\NewOrdersPage.xaml.cs">
+      <DependentUpon>NewOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderInformationPage.xaml.cs">
       <DependentUpon>OrderInformationPage.xaml</DependentUpon>
     </Compile>
@@ -94,25 +116,25 @@
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\ActiveStatisticsControl.xaml.cs">
+    <Compile Include="Controls\ActiveStatisticsControl.xaml.cs">
       <DependentUpon>ActiveStatisticsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AdminControl.xaml.cs">
+    <Compile Include="Controls\AdminControl.xaml.cs">
       <DependentUpon>AdminControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatabaseActivityControl.xaml.cs">
+    <Compile Include="Controls\DatabaseActivityControl.xaml.cs">
       <DependentUpon>DatabaseActivityControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DatabaseChangedControl.xaml.cs">
+    <Compile Include="Controls\DatabaseChangedControl.xaml.cs">
       <DependentUpon>DatabaseChangedControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DebugTestControls.xaml.cs">
+    <Compile Include="Controls\Debug\DebugTestControls.xaml.cs">
       <DependentUpon>DebugTestControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderInformationControl.xaml.cs">
+    <Compile Include="Controls\OrderInformationControl.xaml.cs">
       <DependentUpon>OrderInformationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OrderStatusControl.xaml.cs">
+    <Compile Include="Controls\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\PageHost.xaml">
@@ -135,35 +157,63 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\ReturnedOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\OutForDeliveryOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\ReadyForDeliveryOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\ReadyForPaymentOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\ReadyForPackagingOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\NewOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\OrderInformationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ActiveStatisticsControl.xaml">
+    <Page Include="Controls\ActiveStatisticsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AdminControl.xaml">
+    <Page Include="Controls\AdminControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DatabaseActivityControl.xaml">
+    <Page Include="Controls\DatabaseActivityControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DatabaseChangedControl.xaml">
+    <Page Include="Controls\DatabaseChangedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DebugTestControls.xaml">
+    <Page Include="Controls\Debug\DebugTestControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OrderInformationControl.xaml">
+    <Page Include="Controls\OrderInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OrderStatusControl.xaml">
+    <Page Include="Controls\OrderStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Animations\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DeaconessLogo.ico" />

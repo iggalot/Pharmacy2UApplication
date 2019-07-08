@@ -21,6 +21,27 @@ namespace Pharmacy2UApplication
                 case ApplicationPage.OrderInformationPage:
                     return new OrderInformationPage();
 
+                case ApplicationPage.NewOrdersPage:
+                    return new NewOrdersPage();
+
+                case ApplicationPage.ReadyForPaymentOrdersPage:
+                    return new ReadyForPaymentOrdersPage();
+
+                case ApplicationPage.ReadyForPackagingOrdersPage:
+                    return new ReadyForPackagingOrdersPage();
+
+                case ApplicationPage.ReadyForDeliveryOrdersPage:
+                    return new ReadyForDeliveryOrdersPage();
+
+                case ApplicationPage.OutForDeliveryOrdersPage:
+                    return new OutForDeliveryOrdersPage();
+
+                case ApplicationPage.ReturnedOrdersPage:
+                    return new ReturnedOrdersPage();
+
+                case ApplicationPage.CompletedOrdersPage:
+                    return new CompletedOrdersPage();
+
                 default:
                     Debugger.Break();
                     return null;

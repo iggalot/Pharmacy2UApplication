@@ -1,0 +1,27 @@
+﻿<local:BaseControl x:Class="Pharmacy2UApplication.OrderStatusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharmacy2UApplication"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d" 
+             >
+    <Border>
+        <StackPanel Orientation="Vertical">
+            <!-- Title -->
+            <TextBlock Text="ORDER STATUS" Background="LightBlue"/>
+
+            <!-- Order Status -->
+            <Button Content="New Orders" Command="{Binding Path=NewOrdersCommand}" Width="150" Height="20"/>
+            <Button Content="Ready For Payment" Command="{Binding Path=ReadyForPaymentCommand}" Width="150" Height="20"/>
+            <Button Content="Ready for Packaging" Command="{Binding Path=ReadyForPackagingCommand}" Width="150" Height="20"/>
+            <Button Content="Ready for Delivery" Command="{Binding Path=ReadyForDeliveryCommand}" Width="150" Height="20"/>
+            <Button Content="Out for Delivery" Command="{Binding Path=OutForDeliveryCommand}" Width="150" Height="20"/>
+            <Button Content="Returns- Not Delivered" Command="{Binding Path=ReturnedOrdersCommand}" Width="150" Height="20"/>
+            <Button Content="Completed" Command="{Binding Path=CompletedOrdersCommand}" Width="150" Height="20"/>
+        </StackPanel>
+
+        
+    </Border>
+</local:BaseControl>

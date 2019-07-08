@@ -24,7 +24,6 @@ namespace Pharmacy2UApplication
         // The SQL Server connection that the monitor utilizes
         public SQLServerConnect DBConnection { get; set; }
 
-
         // Boolean to signify that the database has changed
         public bool DBHasChanged
         {
@@ -57,13 +56,13 @@ namespace Pharmacy2UApplication
             // Save our connection
             DBConnection = connection;
 
+            // Signify nothing has changed from initial startup
             DBHasChanged = false;
 
             //// Spin off a thread to handle the monitoring of the database
             MonitorThread = new Thread(MonitorDB);
             MonitorThread.Start();
         }
-
 
         #endregion
 

@@ -1,14 +1,15 @@
 ﻿
 using System.Windows.Controls;
 
+
 namespace Pharmacy2UApplication
 {
     /// <summary>
-    /// Interaction logic for OrderStatusControl.xaml
+    /// Interaction logic for <see cref="ReturnedOrdersPage"/>.xaml
     /// </summary>
-    public partial class OrderStatusControl : UserControl
+    public partial class ReturnedOrdersPage : BasePage
     {
-        public OrderStatusControl()
+        public ReturnedOrdersPage()
         {
             InitializeComponent();
         }
