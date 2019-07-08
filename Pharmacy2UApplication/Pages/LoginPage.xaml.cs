@@ -17,5 +17,11 @@ namespace Pharmacy2UApplication
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.AnimateOut();
+
+        }
     }
 }

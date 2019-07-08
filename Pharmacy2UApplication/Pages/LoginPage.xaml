@@ -11,6 +11,10 @@
       Title="LoginPage">
 
     <Grid Background="BurlyWood">
-        <TextBlock Text="Temporary Login Page" FontSize="24"/>
-    </Grid>
+        <StackPanel>
+            <TextBlock Text="Temporary Login Page" FontSize="24"/>
+            <Button Content="Click to Fade Out" Click="Button_Click"/>
+        </StackPanel>
+   </Grid>
+    
 </local:BasePage>
