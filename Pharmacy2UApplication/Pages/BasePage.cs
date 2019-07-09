@@ -78,6 +78,9 @@ namespace Pharmacy2UApplication
                 case PageAnimation.SlideAndFadeInFromRight:
                     // Start the animation
                     await this.SlideAndFadeInFromRight(this.SlideSeconds);
+                    //await this.SlideInFromLeft(this.SlideSeconds);
+                    //await this.SlideInFromTop(this.SlideSeconds);
+                    //await this.SlideInFromBottom(this.SlideSeconds);
 
                     break;
             }
@@ -98,6 +101,9 @@ namespace Pharmacy2UApplication
                 case PageAnimation.SlideAndFadeOutToLeft:
                     // Start the animation
                     await this.SlideAndFadeOutToLeft(this.SlideSeconds);
+                    //await this.SlideOutToRight(this.SlideSeconds);
+                    //await this.SlideOutToTop(this.SlideSeconds);
+                    //await this.SlideOutToBottom(this.SlideSeconds);
 
                     break;
             }
