@@ -29,7 +29,13 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// The time any slide animation takes to complete
         /// </summary>
-        public float SlideSeconds { get; set; } = 0.8f;
+        public float SlideSeconds { get; set; } = 0.6f;
+
+        /// <summary>
+        /// A flag to indicate if this page should animate out on load
+        /// Useful for when we are moving a page to another frame
+        /// </summary>
+        public bool ShouldAnimateOut { get; set; }
 
         #endregion
 
@@ -45,11 +51,10 @@ namespace Pharmacy2UApplication
                 this.Visibility = Visibility.Collapsed;
 
             // Listen out for the page loading
-            this.Loaded += BasePage_Loaded;
+            this.Loaded += BasePage_LoadedAsync;
         }
 
         #endregion
-
 
         #region Animation Load / Unload
         /// <summary>
@@ -57,17 +62,23 @@ namespace Pharmacy2UApplication
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void BasePage_Loaded(object sender, RoutedEventArgs e)
+        private async void BasePage_LoadedAsync(object sender, RoutedEventArgs e)
         {
-            // Animate the page in
-            await AnimateIn();
+            // if we are setup to animate out on load
+            if (ShouldAnimateOut)
+                // Animate out the page
+                await AnimateOutAsync();
+            // Otherwise...
+            else
+                // Animate the page in
+                await AnimateInAsync();
         }
 
         /// <summary>
         /// Animates in this page
         /// </summary>
         /// <returns></returns>
-        public async Task AnimateIn()
+        public async Task AnimateInAsync()
         {
             // Make sure we have something to do
             if (this.PageLoadAnimation == PageAnimation.None)
@@ -90,7 +101,7 @@ namespace Pharmacy2UApplication
         /// Animates the page out
         /// </summary>
         /// <returns></returns>
-        public async Task AnimateOut()
+        public async Task AnimateOutAsync()
         {
             // Make sure we have something to do
             if (this.PageUnloadAnimation == PageAnimation.None)

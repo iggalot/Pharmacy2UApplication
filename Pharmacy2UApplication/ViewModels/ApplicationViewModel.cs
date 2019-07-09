@@ -13,6 +13,11 @@ namespace Pharmacy2UApplication
         public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.Login;
 
         /// <summary>
+        /// A bool variable to indicate whether database logging should be visibile in the main window
+        /// </summary>
+        public bool ShouldDisplayDatabaseLogging { get; set; } = true;
+
+        /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
         /// NOTE: This is not a live up-to-date view model of the current page
         ///       it is simply used to set the view model of the current page 

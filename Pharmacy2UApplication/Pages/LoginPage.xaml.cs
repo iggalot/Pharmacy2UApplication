@@ -20,7 +20,7 @@ namespace Pharmacy2UApplication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.AnimateOut();
+            this.AnimateOutAsync();
 
         }
     }

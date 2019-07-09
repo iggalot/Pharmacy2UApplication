@@ -4,18 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pharmacy2UApplication"
-             mc:Ignorable="d" >
-    <Border Background="White">
-        <Grid Width="400" MaxHeight="200">
+             mc:Ignorable="d" 
+             Height="100"
+             Width="400"
+             >
+
+    <Border Background="White" >
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <!-- Title -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock Text="DataBase Activity -- " Background="LightBlue"/>
-                <TextBlock Text="{Binding SQLServerConnection.DBTitle}" Width="Auto" Background="LightBlue"/>
-            </StackPanel>
+            <Border Background="LightBlue" Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="DataBase Activity -- " />
+                    <TextBlock Text="{Binding SQLServerConnection.DBTitle}" />
+                </StackPanel>
+            </Border>
 
             <!-- Database Activity Status -->
             <ScrollViewer Grid.Row="1" 
