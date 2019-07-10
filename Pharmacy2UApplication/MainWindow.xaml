@@ -5,14 +5,136 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmacy2UApplication"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
-        Icon="Images/DeaconessLogo.ico"
-        Title="Pharmacy 2U Application"    
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        x:Name="AppWindow"
+        Icon="Images/Logo/DeaconessLogo.ico"
+        Title="Pharmacy 2U Application"
+        MinWidth="{Binding WindowMinimumWidth}"
+        MinHeight="{Binding WindowMinimumHeight}"
+        Width="900"
+        Height="600"
         >
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <!-- Outer border with the drop shadow margin -->
+                        <Border Padding="{Binding OuterMarginSizeThickness, FallbackValue=0}"
+                                BorderBrush="{StaticResource ForegroundVeryDarkBrush}">
+                            
+                            <!-- Main window outline -->
+                            <Grid>
+                                <!-- Opacity mask for corners -->
+                                <Border x:Name="Container"
+                                        Background="{StaticResource BackgroundLightBrush}"
+                                        CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
+
+                                <!-- Main window border and dropshadow-->
+                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        Background="{StaticResource ForegroundLightBrush}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0.5" Opacity="0.2"/>
+                                    </Border.Effect>
+                                </Border>
+
+                                <!-- The main window content -->
+                                <Grid>
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+
+                                    <Grid.RowDefinitions>
+                                        <!-- Title Bar -->
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=42}"/>
+
+                                        <!-- Drop Shadow -->
+                                        <RowDefinition Height="Auto"/>
+
+                                        <!-- Window Content -->
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Title Bar -->
+                                    <Grid Grid.Column="0" Panel.ZIndex="1">
+                                        <Grid.ColumnDefinitions>
+                                            <!-- Icon -->
+                                            <ColumnDefinition Width="Auto"/>
+
+                                            <!-- Title -->
+                                            <ColumnDefinition Width="*"/>
+
+                                            <!-- Window Buttons -->
+                                            <ColumnDefinition Width="Auto"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Icon -->
+                                        <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
+                                            <Image Source="/Images/Logo/DeaconessLogo.png"/>
+                                        </Button>
+
+                                        <!-- Title Text -->
+                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+                                            <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Welcome Friend'}"/>
+                                        </Viewbox>
+
+                                        <!-- Window Buttons -->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
+                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
+                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!-- Drop shadow -->
+                                    <Border Grid.Row="1"  Height="6" BorderThickness="0 0.2 0 0">
+                                        <!-- Underline -->
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 0">
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.5"/>
+                                                <GradientStop Color="{StaticResource ForegroundLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+
+                                        <!-- Drop shadow -->
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
+                                                <GradientStop Color="{StaticResource ForegroundMain}" Offset="0.0"/>
+                                                <GradientStop Color="{StaticResource BackgroundVeryLight}" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <!-- Page Content -->
+                                    <Border Grid.Row="2" Padding="{Binding InnerContentPadding}" ClipToBounds="True">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="{Binding ResizeBorder}"
+            CaptionHeight="{Binding TitleHeight}"
+            GlassFrameThickness="0"
+            />
+    </WindowChrome.WindowChrome>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -21,8 +143,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
-            <TextBlock Text="NAV BAR" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="0" Orientation="Vertical" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
+            <TextBlock Text="NAV BAR" FontSize="20" HorizontalAlignment="Left"/>
         </StackPanel>
 
         <!-- Initialize -->
@@ -73,11 +195,9 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                     
                     <!-- Our database activity window -->
-                    <local:DatabaseActivityControl  Grid.Column="0"
-                                                    Grid.ColumnSpan="2"
+                    <local:DatabaseActivityControl                                                   
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top"
-                        Visibility="{Binding ApplicationViewModel.ShouldDisplayDatabaseLogging}"
                         />
 
                     

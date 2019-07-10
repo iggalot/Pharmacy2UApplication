@@ -14,27 +14,13 @@ namespace Pharmacy2UApplication
     public partial class MainWindow : Window
     {
 
-        #region Public Accessors
-        // Our sql connection view model
-        public static SQLServerConnect SQLServerConnection { get; set; }
-
-        // Our database monitor apparatus
-        public static DBMonitor DatabaseMonitor { get; set; }
-
-        #endregion
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Testing of our C# to SQL connectivity
-            SQLServerConnection = new SQLServerConnect("test");
-
-            // Our DatabaseMonitor System for tracking when a database has changed
-            DatabaseMonitor = new DBMonitor(SQLServerConnection);
-
             // Set the data context for the XAML Bindings in the GUI
-            DataContext = this;
+            DataContext = new WindowViewModel(this);
         }
 
 

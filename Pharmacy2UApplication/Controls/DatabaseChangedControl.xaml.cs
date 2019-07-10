@@ -15,10 +15,11 @@ namespace Pharmacy2UApplication
 
         private void AcknowledgeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MainWindow.DatabaseMonitor.DBHasChanged = false;
+            //TODO:  Fix the DBHasChanged flag functionality in XAML
+            //MainWindowVieWModel.DatabaseMonitor.DBHasChanged = false;
 
-            // Change the page to the New Orders Page
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.OrderInformationPage);
+            //// Change the page to the New Orders Page
+            //IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.OrderInformationPage);
 
         }
     }
