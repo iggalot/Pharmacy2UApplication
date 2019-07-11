@@ -20,7 +20,7 @@
             <Border Background="LightBlue" Grid.Row="0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="DataBase Activity -- " />
-                    <TextBlock Text="{Binding SQLServerConnection.DBTitle}" />
+                    <TextBlock Text="{Binding DBConnection.DBTitle}" />
                 </StackPanel>
             </Border>
 
@@ -29,7 +29,7 @@
                           VerticalScrollBarVisibility="Visible"
                           HorizontalScrollBarVisibility="Visible">
                 <!--<Grid MaxHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}"/>-->
-                    <ItemsControl Name="DBActivity" ItemsSource="{Binding SQLServerConnection.History, Mode=TwoWay}">
+                    <ItemsControl Name="DBActivity" ItemsSource="{Binding DBConnection.History, Mode=TwoWay}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}"/>

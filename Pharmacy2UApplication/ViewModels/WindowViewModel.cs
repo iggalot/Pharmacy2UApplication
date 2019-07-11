@@ -30,14 +30,14 @@ namespace Pharmacy2UApplication
 
         #endregion
 
-        #region Public Accessors
-        // Our sql connection view model
-        public static SQLServerConnect SQLServerConnection { get; set; }
+        //#region Public Accessors
+        //// Our sql connection view model
+        //public static SQLServerConnect SQLServerConnection { get; set; }
 
-        // Our database monitor apparatus
-        public static DBMonitor DatabaseMonitor { get; set; }
+        //// Our database monitor apparatus
+        //public static DBMonitor DatabaseMonitor { get; set; }
 
-        #endregion
+        //#endregion
 
         #region Public Properties
 
@@ -142,11 +142,11 @@ namespace Pharmacy2UApplication
         /// <param name="window"></param>
         public WindowViewModel(Window window)
         {
-            // Testing of our C# to SQL connectivity
-            SQLServerConnection = new SQLServerConnect("test");
+            //// Testing of our C# to SQL connectivity
+            //SQLServerConnection = new SQLServerConnect("test");
 
-            // Our DatabaseMonitor System for tracking when a database has changed
-            DatabaseMonitor = new DBMonitor(SQLServerConnection);
+            //// Our DatabaseMonitor System for tracking when a database has changed
+            //DatabaseMonitor = new DBMonitor(SQLServerConnection);
 
             mWindow = window;
 

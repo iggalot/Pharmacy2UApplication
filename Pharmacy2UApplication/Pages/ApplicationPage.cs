@@ -7,14 +7,14 @@ namespace Pharmacy2UApplication
     public enum ApplicationPage
     {
         /// <summary>
-        /// The initial login page
+        /// For no page to be displayed
         /// </summary>
-        Login = 0,
+        None = 0,
 
         /// <summary>
-        /// The main chat page
+        /// The initial login page
         /// </summary>
-        Chat = 1,
+        Login = 1,
 
         /// <summary>
         /// The register page
@@ -66,6 +66,10 @@ namespace Pharmacy2UApplication
         /// </summary>
         CompletedOrdersPage = 11,
 
+        /// <summary>
+        /// For displaying the information about ALL Orders
+        /// </summary>
+        AllOrdersPage = 12,
 
     }
 }

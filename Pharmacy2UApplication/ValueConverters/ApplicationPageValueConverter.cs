@@ -42,6 +42,8 @@ namespace Pharmacy2UApplication
                 case ApplicationPage.CompletedOrdersPage:
                     return new CompletedOrdersPage();
 
+                case ApplicationPage.AllOrdersPage:
+                    return new AllOrdersPage();
                 default:
                     Debugger.Break();
                     return null;

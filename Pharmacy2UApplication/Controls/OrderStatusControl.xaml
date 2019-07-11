@@ -13,6 +13,7 @@
             <TextBlock Text="ORDER STATUS" Background="LightBlue"/>
 
             <!-- Order Status -->
+            <Button Content="ALL ORDERS" Command="{Binding Path=AllOrdersCommand}" Width="150" Height="20"/>
             <Button Content="New Orders" Command="{Binding Path=NewOrdersCommand}" Width="150" Height="20"/>
             <Button Content="Ready For Payment" Command="{Binding Path=ReadyForPaymentCommand}" Width="150" Height="20"/>
             <Button Content="Ready for Packaging" Command="{Binding Path=ReadyForPackagingCommand}" Width="150" Height="20"/>

@@ -132,6 +132,8 @@
             />
     </WindowChrome.WindowChrome>
 
+    
+    <!-- Begin the content of the application -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -143,8 +145,29 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Vertical" Grid.ColumnSpan="2" Margin="0,0,0,0.5">
-            <TextBlock Text="NAV BAR" FontSize="20" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Background="LightGray">
+            <TextBlock Text="MENU BAR" FontSize="20" HorizontalAlignment="Left"/>
+            <Menu x:Name="MainMenu" Height="Auto" Width="Auto" VerticalAlignment="Center" Margin="50 0 0 0">
+                <MenuItem Header="Database">
+                    <MenuItem x:Name="DatabaseLogging" 
+                              Click="DatabaseLogging_Click"
+                              Header="Show Database Logs" IsCheckable="True"  IsChecked="True">
+                        <MenuItem.ToolTip>
+                            <ToolTip>Toggle database logging control visibility</ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Debug Tools">
+                    <MenuItem x:Name="DebugTools" 
+                              Click="DebugTools_Click"
+                              Header="Show Debug Tools Control" IsCheckable="True"  IsChecked="True">
+                        <MenuItem.ToolTip>
+                            <ToolTip>Toggle debug tools visibility</ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+
+            </Menu>
         </StackPanel>
 
         <!-- Initialize -->
@@ -191,24 +214,39 @@
 
         <!-- Status Info -->
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2"   Orientation="Vertical" Background="Gray" >
-            <Border Background="LightGreen" Padding="10" >
+            <Border Background="LightGreen" Padding="10"
+                    Visibility="{Binding ApplicationViewModel.ShouldHideDatabaseLogging, Source={x:Static local:ViewModelLocator.Instance},
+                            Converter={local:BooleanToVisibilityConverter}}"
+                    >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                     
                     <!-- Our database activity window -->
-                    <local:DatabaseActivityControl                                                   
+                    <local:DatabaseActivityControl
+                        DataContext="{Binding ApplicationViewModel.DatabaseMonitor,
+                                        Source={x:Static local:ViewModelLocator.Instance}}"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top"
                         />
-
-                    
+                   
                 </StackPanel>
             </Border>
             <TextBlock Text="STATUS BAR HERE" FontSize="18" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <local:DebugTestControls />
+            <Border
+                Visibility="{Binding ApplicationViewModel.ShouldHideDebugTools, Source={x:Static local:ViewModelLocator.Instance},
+                            Converter={local:BooleanToVisibilityConverter}}"
+                >
+                <local:DebugTestControls                         
+                DataContext="{Binding ApplicationViewModel.SQLServerConnection,
+                                Source={x:Static local:ViewModelLocator.Instance}}"/>
+            </Border>
+
         </StackPanel>
         
         <!-- Our popup for activity changed -->
-        <local:DatabaseChangedControl Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <local:DatabaseChangedControl 
+            DataContext="{Binding ApplicationViewModel.DatabaseMonitor,
+                                Source={x:Static local:ViewModelLocator.Instance}}"
+            Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" />
 
     </Grid>
 </Window>

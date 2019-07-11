@@ -12,10 +12,11 @@
         CornerRadius="20"
         Background="Pink"
         Height="100"
-        Visibility="{Binding DatabaseMonitor.DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
+        Visibility="{Binding DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
 
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="{Binding DatabaseMonitor.DBConnection.DBTitle}"
+            <TextBlock 
+                Text="{Binding DBConnection.DBTitle, FallbackValue='--Binding Error in DBTitle--'}"
             FontSize="22"
             VerticalAlignment="Center"
             HorizontalAlignment="Center" />

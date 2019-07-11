@@ -93,6 +93,9 @@
     <Compile Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml.cs">
       <DependentUpon>CompletedOrdersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderStatusControl\AllOrdersPage.xaml.cs">
+      <DependentUpon>AllOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderStatusControl\ReturnedOrdersPage.xaml.cs">
       <DependentUpon>ReturnedOrdersPage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControl\AllOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

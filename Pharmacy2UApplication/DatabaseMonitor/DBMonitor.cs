@@ -36,7 +36,7 @@ namespace Pharmacy2UApplication
                     dbHasChanged = value;
 
                     // notify that our property has changed
-                    OnPropertyChanged("DBHasChanged");
+                    OnPropertyChanged(nameof(DBHasChanged));
                 }
             }
         }

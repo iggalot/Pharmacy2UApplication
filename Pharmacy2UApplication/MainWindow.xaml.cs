@@ -23,6 +23,33 @@ namespace Pharmacy2UApplication
             DataContext = new WindowViewModel(this);
         }
 
+        #region Menu Events
+
+        /// <summary>
+        /// Menu command to show the database logging window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DatabaseLogging_Click(object sender, RoutedEventArgs e)
+        {
+            // Toggle the display setting
+            IoC.Get<ApplicationViewModel>().ShouldHideDatabaseLogging = !IoC.Get<ApplicationViewModel>().ShouldHideDatabaseLogging;
+
+        }
+
+        /// <summary>
+        /// Menu command to show the database logging window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DebugTools_Click(object sender, RoutedEventArgs e)
+        {
+            // Toggle the display setting
+            IoC.Get<ApplicationViewModel>().ShouldHideDebugTools = !IoC.Get<ApplicationViewModel>().ShouldHideDebugTools;
+
+        }
+
+        #endregion
 
     }
 }

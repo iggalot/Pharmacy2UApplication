@@ -14,6 +14,11 @@ namespace Pharmacy2UApplication
         #region Public Members
 
         /// <summary>
+        /// The command to execute when the All Orders button is clicked
+        /// </summary>
+        public ICommand AllOrdersCommand { get; set; }
+
+        /// <summary>
         /// The command to execute when the New Orders button is clicked.
         /// </summary>
         public ICommand NewOrdersCommand { get; set; }
@@ -58,6 +63,7 @@ namespace Pharmacy2UApplication
         public BaseControl()
         {
             // The relayed commands to be used by the order status control of the UI
+            AllOrdersCommand = new RelayCommand(() => this.GetAllOrders());
             NewOrdersCommand = new RelayCommand(() => this.GetNewOrders());
             ReadyForPaymentCommand = new RelayCommand(() => this.GetReadyForPaymentOrders());
             ReadyForPackagingCommand = new RelayCommand(() => this.GetReadyForPackagingOrders());
@@ -70,6 +76,14 @@ namespace Pharmacy2UApplication
         #endregion
 
         #region Commands 
+        /// <summary>
+        /// The functionality for when the user clicks the New Order button on the OrderStatusControl
+        /// </summary>
+        public void GetAllOrders()
+        {
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.AllOrdersPage);
+        }
+
         /// <summary>
         /// The functionality for when the user clicks the New Order button on the OrderStatusControl
         /// </summary>

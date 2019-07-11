@@ -7,6 +7,21 @@ namespace Pharmacy2UApplication
     /// </summary>
     public class ApplicationViewModel : BaseViewModel
     {
+        #region Private members
+
+        /// <summary>
+        /// Should the database logging control be visibile?
+        /// </summary>
+        private bool shouldHideDatabaseLogging;
+
+        /// <summary>
+        /// Should the debug tools control be visibile?
+        /// </summary>
+        private bool shouldHideDebugTools;
+
+        #endregion
+
+        #region Public Properties
         /// <summary>
         /// The current page of the application
         /// </summary>
@@ -15,7 +30,41 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// A bool variable to indicate whether database logging should be visibile in the main window
         /// </summary>
-        public bool ShouldDisplayDatabaseLogging { get; set; } = true;
+        public bool ShouldHideDatabaseLogging
+        {
+            get => shouldHideDatabaseLogging;
+            set
+            {
+                if (shouldHideDatabaseLogging != value)
+                {
+                    // set the value and notify that the property has changed
+                    shouldHideDatabaseLogging = value;
+
+                    // notify that our property has changed
+                    OnPropertyChanged(nameof(ShouldHideDatabaseLogging));
+                }
+            }
+        }
+
+        /// <summary>
+        /// A bool variable to indicate whether debug tools should be visibile in the main window.
+        /// Used for debugging and development purposes
+        /// </summary>
+        public bool ShouldHideDebugTools
+        {
+            get => shouldHideDebugTools;
+            set
+            {
+                if (shouldHideDebugTools != value)
+                {
+                    // set the value and notify that the property has changed
+                    shouldHideDebugTools = value;
+
+                    // notify that our property has changed
+                    OnPropertyChanged(nameof(ShouldHideDebugTools));
+                }
+            }
+        }
 
         /// <summary>
         /// The view model to use for the current page when the CurrentPage changes
@@ -25,6 +74,33 @@ namespace Pharmacy2UApplication
         /// </summary>
         public BaseViewModel CurrentPageViewModel { get; set; }
 
+        /// <summary>
+        /// Our sql connection view model
+        /// </summary>
+        public SQLServerConnect SQLServerConnection { get; set; }
+
+        /// <summary>
+        /// Our database monitor apparatus
+        /// </summary>
+        public DBMonitor DatabaseMonitor { get; set; }
+
+        #endregion
+
+        #region Constructor
+
+        public ApplicationViewModel()
+        {
+            // Testing of our C# to SQL connectivity
+            SQLServerConnection = new SQLServerConnect("test");
+
+            // Our DatabaseMonitor System for tracking when a database has changed
+            DatabaseMonitor = new DBMonitor(SQLServerConnection);
+
+            ShouldHideDatabaseLogging = false;
+            ShouldHideDebugTools = false;
+        }
+
+        #endregion
 
         #region Public Helper Methods
 
@@ -55,5 +131,6 @@ namespace Pharmacy2UApplication
         }
 
         #endregion
+        
     }
 }
