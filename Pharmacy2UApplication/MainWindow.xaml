@@ -151,7 +151,7 @@
                 <MenuItem Header="Database">
                     <MenuItem x:Name="DatabaseLogging" 
                               Click="DatabaseLogging_Click"
-                              Header="Show Database Logs" IsCheckable="True"  IsChecked="True">
+                              Header="Show Database Logs" IsCheckable="True"  IsChecked="False">
                         <MenuItem.ToolTip>
                             <ToolTip>Toggle database logging control visibility</ToolTip>
                         </MenuItem.ToolTip>
@@ -160,7 +160,7 @@
                 <MenuItem Header="Debug Tools">
                     <MenuItem x:Name="DebugTools" 
                               Click="DebugTools_Click"
-                              Header="Show Debug Tools Control" IsCheckable="True"  IsChecked="True">
+                              Header="Show Debug Tools Control" IsCheckable="True"  IsChecked="False">
                         <MenuItem.ToolTip>
                             <ToolTip>Toggle debug tools visibility</ToolTip>
                         </MenuItem.ToolTip>
@@ -181,8 +181,15 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"
                 Orientation="Vertical" >
+                <!-- The Order status query buttons-->
                 <local:OrderStatusControl />
+                
+                <!-- The Admin control buttons -->
                 <local:AdminControl Padding="0 20 0 0 " />
+                
+                <!-- The active statistics control -->
+                <local:ActiveStatisticsControl Padding="0 20 0 0"/>
+
             </StackPanel>
         </Border>
 
@@ -193,7 +200,6 @@
             Padding="10">
 
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <local:ActiveStatisticsControl />
 
                 <!-- The main frame of the application where major information and searches are positioned-->
                 <!--<Frame x:Name="MainFrame2" 

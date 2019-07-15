@@ -1,9 +1,6 @@
 ﻿
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-
+using EntityFrameworkDatabase;
+using System.Collections.Generic;
 
 namespace Pharmacy2UApplication
 {
@@ -18,6 +15,7 @@ namespace Pharmacy2UApplication
         public OrderStatusControl()
         {
             InitializeComponent();
+
         } 
         #endregion
 

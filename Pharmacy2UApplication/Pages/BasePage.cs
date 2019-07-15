@@ -1,10 +1,7 @@
 ﻿
-using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
 
 namespace Pharmacy2UApplication
 {
@@ -46,6 +43,13 @@ namespace Pharmacy2UApplication
         /// </summary>
         public BasePage()
         {
+            // Set our base page dimensions
+            // TODO:  Move these defaults into a style that affects every Base Page automatically
+            this.Width = 600;
+            this.Height = 600;
+            this.MinWidth = 400;
+            this.MinHeight = 500;
+
             // if we are animating in, hide to begin with
             if (this.PageLoadAnimation != PageAnimation.None)
                 this.Visibility = Visibility.Collapsed;

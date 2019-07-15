@@ -96,8 +96,11 @@ namespace Pharmacy2UApplication
             // Our DatabaseMonitor System for tracking when a database has changed
             DatabaseMonitor = new DBMonitor(SQLServerConnection);
 
-            ShouldHideDatabaseLogging = false;
-            ShouldHideDebugTools = false;
+            // Should the database logging window be hidden?
+            ShouldHideDatabaseLogging = true;
+
+            // Should the debugging tools window and buttons be hidden?
+            ShouldHideDebugTools = true;
         }
 
         #endregion

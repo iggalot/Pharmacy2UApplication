@@ -78,6 +78,9 @@
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
     <Compile Include="Controls\BaseControl.cs" />
+    <Compile Include="Controls\OrderItemControl.xaml.cs">
+      <DependentUpon>OrderItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
     </Compile>
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
+    <Page Include="Controls\OrderItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PageHost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,6 +322,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\DeaconessLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFrameworkDatabase\EntityFrameworkDatabase.csproj">
+      <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
+      <Name>EntityFrameworkDatabase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

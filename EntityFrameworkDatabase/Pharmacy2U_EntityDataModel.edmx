@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Pharm2UModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="P2U_CancellationReason">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Customer">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ContactMethod" Type="nvarchar" MaxLength="20" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
+          <Property Name="AddressType" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="P2U_DeliveryArea">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PharmacyID" Type="int" />
+          <Property Name="DeliveryPrice" Type="decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="P2U_DeliveryCompany">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address" Type="nvarchar" MaxLength="400" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="P2U_Food">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Taxable" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="P2U_Order">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="PharmacyID" Type="int" />
+          <Property Name="DeliveryCompanyID" Type="int" />
+          <Property Name="ProviderUsername" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeliveryWindow" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeliveryInstructions" Type="nvarchar(max)" />
+          <Property Name="DeliveryCost" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="FoodCost" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="OTCMedCost" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="PrescriptionCost" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="Tax" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="TotalCost" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="AuthCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="TransactionKey" Type="nvarchar" MaxLength="225" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="OrderInitiatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="NewOrderCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ReadyForPaymentWhen" Type="datetime2" Precision="7" />
+          <Property Name="ReadyForPackagingWhen" Type="datetime2" Precision="7" />
+          <Property Name="ReadyForPickupWhen" Type="datetime2" Precision="7" />
+          <Property Name="OutForDeliveryWhen" Type="datetime2" Precision="7" />
+          <Property Name="DeliveredWhen" Type="datetime2" Precision="7" />
+          <Property Name="CanceledWhen" Type="datetime2" Precision="7" />
+          <Property Name="CanceledReason" Type="nvarchar" MaxLength="200" />
+          <Property Name="ReturnedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ReturnedReason" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="P2U_OrderFood">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Taxable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_OrderOTCMeds">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OTCMedID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Taxable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_OTCMedication">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Taxable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Pharmacy">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="400" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" />
+          <Property Name="UseGlobalPricing" Type="bit" />
+          <Property Name="GlobalDeliveryPrice" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="UseMinDeliveryAmt" Type="bit" />
+          <Property Name="MinDeliveryAmt" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="OrderTimeout" Type="int" />
+          <Property Name="PaymentTimeout" Type="int" />
+          <Property Name="GLNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="DefaultDeliveryCompany" Type="int" />
+          <Property Name="TaxRate" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="OrderEmailAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="OrderEmailSubject" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="P2U_Provider">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProviderID" Type="nvarchar" MaxLength="20" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="P2U_ReturnedReason">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Statuses">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ActiveStatus" Type="bit" Nullable="false" />
+          <Property Name="DisplayText" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_ZipCodes">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCreatedBy" Type="int" />
+          <Property Name="ItemCreatedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="int" />
+          <Property Name="ItemModifiedWhen" Type="datetime2" Precision="7" />
+          <Property Name="ItemOrder" Type="int" />
+          <Property Name="ItemGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="County" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="Country" Type="nvarchar" MaxLength="200" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
+        </EntityType>
+        <EntityContainer Name="Pharm2UModelStoreContainer">
+          <EntitySet Name="P2U_CancellationReason" EntityType="Self.P2U_CancellationReason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Customer" EntityType="Self.P2U_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_DeliveryArea" EntityType="Self.P2U_DeliveryArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_DeliveryCompany" EntityType="Self.P2U_DeliveryCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Food" EntityType="Self.P2U_Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Order" EntityType="Self.P2U_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_OrderFood" EntityType="Self.P2U_OrderFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_OrderOTCMeds" EntityType="Self.P2U_OrderOTCMeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_OTCMedication" EntityType="Self.P2U_OTCMedication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Pharmacy" EntityType="Self.P2U_Pharmacy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Provider" EntityType="Self.P2U_Provider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_ReturnedReason" EntityType="Self.P2U_ReturnedReason" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_Statuses" EntityType="Self.P2U_Statuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2U_ZipCodes" EntityType="Self.P2U_ZipCodes" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Pharm2UModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="P2U_CancellationReason">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Customer">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMethod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddressType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_DeliveryArea">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PharmacyID" Type="Int32" />
+          <Property Name="DeliveryPrice" Type="Decimal" Precision="12" Scale="2" />
+        </EntityType>
+        <EntityType Name="P2U_DeliveryCompany">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_Food">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Taxable" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_Order">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="PharmacyID" Type="Int32" />
+          <Property Name="DeliveryCompanyID" Type="Int32" />
+          <Property Name="ProviderUsername" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryWindow" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryInstructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryCost" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="FoodCost" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="OTCMedCost" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="PrescriptionCost" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="Tax" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="TotalCost" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="AuthCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionKey" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderInitiatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="NewOrderCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ReadyForPaymentWhen" Type="DateTime" Precision="7" />
+          <Property Name="ReadyForPackagingWhen" Type="DateTime" Precision="7" />
+          <Property Name="ReadyForPickupWhen" Type="DateTime" Precision="7" />
+          <Property Name="OutForDeliveryWhen" Type="DateTime" Precision="7" />
+          <Property Name="DeliveredWhen" Type="DateTime" Precision="7" />
+          <Property Name="CanceledWhen" Type="DateTime" Precision="7" />
+          <Property Name="CanceledReason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ReturnedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ReturnedReason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_OrderFood">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Taxable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_OrderOTCMeds">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OTCMedID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Taxable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_OTCMedication">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Taxable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Pharmacy">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UseGlobalPricing" Type="Boolean" />
+          <Property Name="GlobalDeliveryPrice" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="UseMinDeliveryAmt" Type="Boolean" />
+          <Property Name="MinDeliveryAmt" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="OrderTimeout" Type="Int32" />
+          <Property Name="PaymentTimeout" Type="Int32" />
+          <Property Name="GLNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultDeliveryCompany" Type="Int32" />
+          <Property Name="TaxRate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="OrderEmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OrderEmailSubject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_Provider">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="ProviderID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="P2U_ReturnedReason">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_Statuses">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActiveStatus" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="P2U_ZipCodes">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCreatedBy" Type="Int32" />
+          <Property Name="ItemCreatedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemModifiedBy" Type="Int32" />
+          <Property Name="ItemModifiedWhen" Type="DateTime" Precision="7" />
+          <Property Name="ItemOrder" Type="Int32" />
+          <Property Name="ItemGUID" Type="Guid" Nullable="false" />
+          <Property Name="Zip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="County" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Longitude" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="Pharm2UEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="P2U_CancellationReason" EntityType="Self.P2U_CancellationReason" />
+          <EntitySet Name="P2U_Customer" EntityType="Self.P2U_Customer" />
+          <EntitySet Name="P2U_DeliveryArea" EntityType="Self.P2U_DeliveryArea" />
+          <EntitySet Name="P2U_DeliveryCompany" EntityType="Self.P2U_DeliveryCompany" />
+          <EntitySet Name="P2U_Food" EntityType="Self.P2U_Food" />
+          <EntitySet Name="P2U_Order" EntityType="Self.P2U_Order" />
+          <EntitySet Name="P2U_OrderFood" EntityType="Self.P2U_OrderFood" />
+          <EntitySet Name="P2U_OrderOTCMeds" EntityType="Self.P2U_OrderOTCMeds" />
+          <EntitySet Name="P2U_OTCMedication" EntityType="Self.P2U_OTCMedication" />
+          <EntitySet Name="P2U_Pharmacy" EntityType="Self.P2U_Pharmacy" />
+          <EntitySet Name="P2U_Provider" EntityType="Self.P2U_Provider" />
+          <EntitySet Name="P2U_ReturnedReason" EntityType="Self.P2U_ReturnedReason" />
+          <EntitySet Name="P2U_Statuses" EntityType="Self.P2U_Statuses" />
+          <EntitySet Name="P2U_ZipCodes" EntityType="Self.P2U_ZipCodes" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Pharm2UModelStoreContainer" CdmEntityContainer="Pharm2UEntities">
+          <EntitySetMapping Name="P2U_CancellationReason">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_CancellationReason">
+              <MappingFragment StoreEntitySet="P2U_CancellationReason">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Customer">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Customer">
+              <MappingFragment StoreEntitySet="P2U_Customer">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ContactMethod" ColumnName="ContactMethod" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_DeliveryArea">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_DeliveryArea">
+              <MappingFragment StoreEntitySet="P2U_DeliveryArea">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="PharmacyID" ColumnName="PharmacyID" />
+                <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_DeliveryCompany">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_DeliveryCompany">
+              <MappingFragment StoreEntitySet="P2U_DeliveryCompany">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Food">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Food">
+              <MappingFragment StoreEntitySet="P2U_Food">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Taxable" ColumnName="Taxable" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Order">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Order">
+              <MappingFragment StoreEntitySet="P2U_Order">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PharmacyID" ColumnName="PharmacyID" />
+                <ScalarProperty Name="DeliveryCompanyID" ColumnName="DeliveryCompanyID" />
+                <ScalarProperty Name="ProviderUsername" ColumnName="ProviderUsername" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DeliveryWindow" ColumnName="DeliveryWindow" />
+                <ScalarProperty Name="DeliveryInstructions" ColumnName="DeliveryInstructions" />
+                <ScalarProperty Name="DeliveryCost" ColumnName="DeliveryCost" />
+                <ScalarProperty Name="FoodCost" ColumnName="FoodCost" />
+                <ScalarProperty Name="OTCMedCost" ColumnName="OTCMedCost" />
+                <ScalarProperty Name="PrescriptionCost" ColumnName="PrescriptionCost" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+                <ScalarProperty Name="TransactionKey" ColumnName="TransactionKey" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="OrderInitiatedWhen" ColumnName="OrderInitiatedWhen" />
+                <ScalarProperty Name="NewOrderCreatedWhen" ColumnName="NewOrderCreatedWhen" />
+                <ScalarProperty Name="ReadyForPaymentWhen" ColumnName="ReadyForPaymentWhen" />
+                <ScalarProperty Name="ReadyForPackagingWhen" ColumnName="ReadyForPackagingWhen" />
+                <ScalarProperty Name="ReadyForPickupWhen" ColumnName="ReadyForPickupWhen" />
+                <ScalarProperty Name="OutForDeliveryWhen" ColumnName="OutForDeliveryWhen" />
+                <ScalarProperty Name="DeliveredWhen" ColumnName="DeliveredWhen" />
+                <ScalarProperty Name="CanceledWhen" ColumnName="CanceledWhen" />
+                <ScalarProperty Name="CanceledReason" ColumnName="CanceledReason" />
+                <ScalarProperty Name="ReturnedWhen" ColumnName="ReturnedWhen" />
+                <ScalarProperty Name="ReturnedReason" ColumnName="ReturnedReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_OrderFood">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_OrderFood">
+              <MappingFragment StoreEntitySet="P2U_OrderFood">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Taxable" ColumnName="Taxable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_OrderOTCMeds">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_OrderOTCMeds">
+              <MappingFragment StoreEntitySet="P2U_OrderOTCMeds">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OTCMedID" ColumnName="OTCMedID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Taxable" ColumnName="Taxable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_OTCMedication">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_OTCMedication">
+              <MappingFragment StoreEntitySet="P2U_OTCMedication">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Taxable" ColumnName="Taxable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Pharmacy">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Pharmacy">
+              <MappingFragment StoreEntitySet="P2U_Pharmacy">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="UseGlobalPricing" ColumnName="UseGlobalPricing" />
+                <ScalarProperty Name="GlobalDeliveryPrice" ColumnName="GlobalDeliveryPrice" />
+                <ScalarProperty Name="UseMinDeliveryAmt" ColumnName="UseMinDeliveryAmt" />
+                <ScalarProperty Name="MinDeliveryAmt" ColumnName="MinDeliveryAmt" />
+                <ScalarProperty Name="OrderTimeout" ColumnName="OrderTimeout" />
+                <ScalarProperty Name="PaymentTimeout" ColumnName="PaymentTimeout" />
+                <ScalarProperty Name="GLNumber" ColumnName="GLNumber" />
+                <ScalarProperty Name="DefaultDeliveryCompany" ColumnName="DefaultDeliveryCompany" />
+                <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+                <ScalarProperty Name="OrderEmailAddress" ColumnName="OrderEmailAddress" />
+                <ScalarProperty Name="OrderEmailSubject" ColumnName="OrderEmailSubject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Provider">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Provider">
+              <MappingFragment StoreEntitySet="P2U_Provider">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_ReturnedReason">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_ReturnedReason">
+              <MappingFragment StoreEntitySet="P2U_ReturnedReason">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_Statuses">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_Statuses">
+              <MappingFragment StoreEntitySet="P2U_Statuses">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ActiveStatus" ColumnName="ActiveStatus" />
+                <ScalarProperty Name="DisplayText" ColumnName="DisplayText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2U_ZipCodes">
+            <EntityTypeMapping TypeName="Pharm2UModel.P2U_ZipCodes">
+              <MappingFragment StoreEntitySet="P2U_ZipCodes">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ItemCreatedBy" ColumnName="ItemCreatedBy" />
+                <ScalarProperty Name="ItemCreatedWhen" ColumnName="ItemCreatedWhen" />
+                <ScalarProperty Name="ItemModifiedBy" ColumnName="ItemModifiedBy" />
+                <ScalarProperty Name="ItemModifiedWhen" ColumnName="ItemModifiedWhen" />
+                <ScalarProperty Name="ItemOrder" ColumnName="ItemOrder" />
+                <ScalarProperty Name="ItemGUID" ColumnName="ItemGUID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

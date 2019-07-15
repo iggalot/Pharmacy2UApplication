@@ -1,0 +1,14 @@
+DELETE from Pharm2U.dbo.P2U_CancellationReason
+DELETE from Pharm2U.dbo.P2U_Customer
+DELETE from Pharm2U.dbo.P2U_DeliveryArea
+DELETE from Pharm2U.dbo.P2U_DeliveryCompany
+DELETE from Pharm2U.dbo.P2U_Food
+DELETE from Pharm2U.dbo.P2U_Order
+DELETE from Pharm2U.dbo.P2U_OrderFood
+DELETE from Pharm2U.dbo.P2U_OrderOTCMeds
+DELETE from Pharm2U.dbo.P2U_OTCMedication
+DELETE from Pharm2U.dbo.P2U_Pharmacy
+DELETE from Pharm2U.dbo.P2U_Provider
+DELETE from Pharm2U.dbo.P2U_ReturnedReason
+DELETE from Pharm2U.dbo.P2U_Statuses
+DELETE from Pharm2U.dbo.P2U_ZipCodes
