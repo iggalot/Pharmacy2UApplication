@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy2UApplication", "Pharmacy2UApplication\Pharmacy2UApplication.csproj", "{3011975B-3AE4-4C1F-BC3A-9C1494638692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityDatabaseSetup", "..\..\Users\iggymao\source\repos\EntityTest\EntityTest\EntityDatabaseSetup.csproj", "{1A633FEF-5F15-4299-B08C-A37CF908E2C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3011975B-3AE4-4C1F-BC3A-9C1494638692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3011975B-3AE4-4C1F-BC3A-9C1494638692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3011975B-3AE4-4C1F-BC3A-9C1494638692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A633FEF-5F15-4299-B08C-A37CF908E2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A633FEF-5F15-4299-B08C-A37CF908E2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A633FEF-5F15-4299-B08C-A37CF908E2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A633FEF-5F15-4299-B08C-A37CF908E2C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

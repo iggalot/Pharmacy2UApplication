@@ -82,20 +82,6 @@
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
     <Compile Include="DatabaseMonitor\DBMonitor.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_CancellationReasonDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_CustomerDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_DeliveryAreaDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_DeliveryCompanyDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_FoodDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_OrderDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_OrderFoodDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_OrderOTCMedsDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_OTCMedicationDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_PharmacyDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_ProviderDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_StatusesDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_ReturnedReasonDataModel.cs" />
-    <Compile Include="EntityFramework\Schema\P2U_ZipCodes.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="Models\OrderStatusModel.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
