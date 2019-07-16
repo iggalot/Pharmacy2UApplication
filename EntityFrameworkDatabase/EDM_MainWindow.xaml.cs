@@ -82,75 +82,70 @@ namespace EntityFrameworkDatabase
         }
         #endregion
 
-        #region Customer Data
+        #region Customer
         public void CreateCustomer()
         {
             using (Pharm2UEntities context = new Pharm2UEntities())
             {
-                // create a new random instance for faking zipcode data
-                Random ziprand = new Random();
-                for (int i = 0; i < 10; i++)
+                // Build the zipcode table
+                P2U_Customer newCustomer = context.P2U_Customer.Add(new P2U_Customer()
                 {
-                    // Create a fake zipcode string
-                    int random = ziprand.Next(1, 100000);
+                    ItemID = 1,
+                    ItemCreatedBy = 1,
+                    ItemCreatedWhen = DateTime.Now,
+                    ItemModifiedBy = 1,
+                    ItemModifiedWhen = DateTime.Now,
+                    ItemOrder = null,
+                    ItemGUID = Guid.NewGuid(),
+                    FirstName = "Jim",
+                    LastName = "Allen",
+                    ContactMethod = "By phone",
+                    Phone = "555-555-5555",
+                    Email = "abc@abc.com",
+                    StreetAddress = "1212 Anywhere Rd",
+                    Zip = "12345",
+                    AddressType = "Single-family"
+                });
 
-                    // Build the zipcode table
-                    P2U_Customer newCustomer = context.P2U_Customer.Add(new P2U_Customer()
-                    {
-                        ItemCreatedBy = 1,
-                        ItemCreatedWhen = DateTime.Now,
-                        ItemModifiedBy = 1,
-                        ItemModifiedWhen = DateTime.Now,
-                        ItemOrder = null,
-                        ItemGUID = Guid.NewGuid(),
-                        FirstName = "Jim",
-                        LastName = "Allen",
-                        ContactMethod = "By phone",
-                        Phone = "555-555-5555",
-                        Email = "abc@abc.com",
-                        StreetAddress = "1212 Anywhere Rd",
-                        Zip = "12345",
-                        AddressType = "Single-family"
-                    });
+                // Build the zipcode table
+                newCustomer = context.P2U_Customer.Add(new P2U_Customer()
+                {
+                    ItemID = 2,
+                    ItemCreatedBy = 2,
+                    ItemCreatedWhen = DateTime.Now,
+                    ItemModifiedBy = 2,
+                    ItemModifiedWhen = DateTime.Now,
+                    ItemOrder = null,
+                    ItemGUID = Guid.NewGuid(),
+                    FirstName = "Miranda",
+                    LastName = "Allen",
+                    ContactMethod = "By phone",
+                    Phone = "666-666-6666",
+                    Email = "abc@abc.com",
+                    StreetAddress = "1212 Anywhere Rd",
+                    Zip = "12345",
+                    AddressType = "Apartment"
+                });
 
-                    // Build the zipcode table
-                    newCustomer = context.P2U_Customer.Add(new P2U_Customer()
-                    {
-                        ItemCreatedBy = 1,
-                        ItemCreatedWhen = DateTime.Now,
-                        ItemModifiedBy = 1,
-                        ItemModifiedWhen = DateTime.Now,
-                        ItemOrder = null,
-                        ItemGUID = Guid.NewGuid(),
-                        FirstName = "Miranda",
-                        LastName = "Allen",
-                        ContactMethod = "By phone",
-                        Phone = "666-666-6666",
-                        Email = "abc@abc.com",
-                        StreetAddress = "1212 Anywhere Rd",
-                        Zip = "12345",
-                        AddressType = "Apartment"
-                    });
-
-                    // Build the zipcode table
-                    newCustomer = context.P2U_Customer.Add(new P2U_Customer()
-                    {
-                        ItemCreatedBy = 1,
-                        ItemCreatedWhen = DateTime.Now,
-                        ItemModifiedBy = 1,
-                        ItemModifiedWhen = DateTime.Now,
-                        ItemOrder = null,
-                        ItemGUID = Guid.NewGuid(),
-                        FirstName = "LJ",
-                        LastName = "Allen",
-                        ContactMethod = "By email",
-                        Phone = "777-777-7777",
-                        Email = "abc@abc.com",
-                        StreetAddress = "1212 Anywhere Rd",
-                        Zip = "12345",
-                        AddressType = "Office"
-                    });
-                }
+                // Build the zipcode table
+                newCustomer = context.P2U_Customer.Add(new P2U_Customer()
+                {
+                    ItemID =3,
+                    ItemCreatedBy = 1,
+                    ItemCreatedWhen = DateTime.Now,
+                    ItemModifiedBy = 1,
+                    ItemModifiedWhen = DateTime.Now,
+                    ItemOrder = null,
+                    ItemGUID = Guid.NewGuid(),
+                    FirstName = "LJ",
+                    LastName = "Allen",
+                    ContactMethod = "By email",
+                    Phone = "777-777-7777",
+                    Email = "abc@abc.com",
+                    StreetAddress = "1212 Anywhere Rd",
+                    Zip = "12345",
+                    AddressType = "Office"
+                });
 
                 // Save the data changes
                 try
@@ -417,7 +412,7 @@ namespace EntityFrameworkDatabase
                     ItemModifiedWhen = DateTime.Now,
                     ItemOrder = null,
                     ItemGUID = Guid.NewGuid(),
-                    CustomerID = 1,
+                    CustomerID = 151,
                     PharmacyID = 1,
                     DeliveryCompanyID = 1,
                     ProviderUsername = "Provider 1",
@@ -452,9 +447,9 @@ namespace EntityFrameworkDatabase
                     ItemModifiedWhen = DateTime.Now,
                     ItemOrder = null,
                     ItemGUID = Guid.NewGuid(),
-                    CustomerID = 1,
-                    PharmacyID = 1,
-                    DeliveryCompanyID = 1,
+                    CustomerID = 152,
+                    PharmacyID = 2,
+                    DeliveryCompanyID = 2,
                     ProviderUsername = "Provider 2",
                     Status = "Status 2",
                     DeliveryWindow = "Delivery Win 2",
@@ -488,9 +483,9 @@ namespace EntityFrameworkDatabase
                     ItemModifiedWhen = DateTime.Now,
                     ItemOrder = null,
                     ItemGUID = Guid.NewGuid(),
-                    CustomerID = 1,
-                    PharmacyID = 1,
-                    DeliveryCompanyID = 1,
+                    CustomerID = 153,
+                    PharmacyID = 3,
+                    DeliveryCompanyID = 3,
                     ProviderUsername = "Provider3",
                     Status = "Status3",
                     DeliveryWindow = "Delivery Win3",
@@ -1164,10 +1159,10 @@ namespace EntityFrameworkDatabase
         public void CreateDatabaseDatas()
         {
             //// populate our tables with dummy data
-            //CreateCancellationReasons();
-            //CreateCustomer();
-            //CreateDeliveryArea();
-            //CreateDeliveryCompany();
+            CreateCancellationReasons();
+            CreateCustomer();
+            CreateDeliveryArea();
+            CreateDeliveryCompany();
             CreateFood();
             CreateOrder();
             CreateOrderFood();
@@ -1183,7 +1178,8 @@ namespace EntityFrameworkDatabase
         {
             InitializeComponent();
 
-            CreateDatabaseDatas();
+            // // Now initialize all of the database tables
+            //CreateDatabaseDatas();
     
         }
     }

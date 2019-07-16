@@ -24,19 +24,23 @@
             <ScrollViewer Grid.Row="1"
             VerticalScrollBarVisibility="Visible"
             HorizontalScrollBarVisibility="Hidden">
-                <ItemsControl Name="OrderActivity" ItemsSource="{Binding Ziplist, Mode=TwoWay}">
+                <ItemsControl Name="OrderActivity" ItemsSource="{Binding JoinedOrderInfoList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Margin="5"
+                            <local:OrderItemControl DataContext="{Binding}"/>
+                            <!--<Border Margin="5"
                             CornerRadius="8"
                             Background="White"
                             Padding="5">
                                 <Grid>
-                                    <TextBlock Text="{Binding}" Foreground="Black" FontSize="10"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/> 
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="{Binding ZipCodes, FallbackValue='Error in zipcode binding'}" Foreground="Black" FontSize="10"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding ProviderUsername, FallbackValue='Error in username binding'}"/>
                                 </Grid>
-
-                            </Border>
-
+                            </Border>-->
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
