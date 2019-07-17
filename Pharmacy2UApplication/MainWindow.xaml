@@ -170,6 +170,20 @@
             </Menu>
         </StackPanel>
 
+        <!-- Dimmed overlay -->
+        <Border 
+            Grid.Row="1"
+            Grid.ColumnSpan="2"   
+                Panel.ZIndex="1"
+                Background="DarkGray"
+                Opacity="0.6"
+
+                Visibility="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
+                                Source={x:Static local:ViewModelLocator.Instance},
+                                Converter={local:BooleanToVisibilityConverter},
+                                ConverterParameter=null}" />
+
+        
         <!-- Initialize -->
         <Border 
             Background="LightSlateGray" 
@@ -219,7 +233,9 @@
         </Border>
 
         <!-- Status Info -->
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2"   Orientation="Vertical" Background="Gray" >
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2"   
+                    Orientation="Vertical" Background="Gray" 
+                    Panel.ZIndex="2">
             <Border Background="LightGreen" Padding="10"
                     Visibility="{Binding ApplicationViewModel.ShouldHideDatabaseLogging, Source={x:Static local:ViewModelLocator.Instance},
                             Converter={local:BooleanToVisibilityConverter}}"
@@ -238,11 +254,12 @@
             </Border>
             <TextBlock Text="STATUS BAR HERE" FontSize="18" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
             <Border
+                Panel.ZIndex="10"
                 Visibility="{Binding ApplicationViewModel.ShouldHideDebugTools, Source={x:Static local:ViewModelLocator.Instance},
                             Converter={local:BooleanToVisibilityConverter}}"
                 >
                 <local:DebugTestControls                         
-                DataContext="{Binding ApplicationViewModel.SQLServerConnection,
+                DataContext="{Binding ApplicationViewModel,
                                 Source={x:Static local:ViewModelLocator.Instance}}"/>
             </Border>
 
@@ -250,9 +267,17 @@
         
         <!-- Our popup for activity changed -->
         <local:DatabaseChangedControl 
-            DataContext="{Binding ApplicationViewModel.DatabaseMonitor,
+            DataContext="{Binding ApplicationViewModel,
                                 Source={x:Static local:ViewModelLocator.Instance}}"
-            Grid.Row="1" Grid.ColumnSpan="2"  HorizontalAlignment="Right" VerticalAlignment="Center" />
+            Grid.Row="1" 
+            Grid.Column="1"
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Center"
+            Panel.ZIndex="10"
+            local:AnimateSlideInFromBottomProperty.Value ="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
+                                Source={x:Static local:ViewModelLocator.Instance}}"
+            />
+            
 
     </Grid>
 </Window>

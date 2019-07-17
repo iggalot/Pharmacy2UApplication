@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Pharmacy2UApplication
 {
@@ -13,6 +14,12 @@ namespace Pharmacy2UApplication
 
         // stores the state of the database scan
         private bool dbHasChanged;
+
+        // stores the quantity changed since last time it was acknowledge
+        private int mChangeSinceLastAcknowledge;
+
+        // The monitor thread loop time in milliseconds
+        private int ThreadLoopTimeMilliSeconds = 3500;
 
         #endregion
 
@@ -42,10 +49,27 @@ namespace Pharmacy2UApplication
         }
 
         // The number of records in the test database, used for monitoring activity;
-        public int NumRecords { get; set; }
+        public static int NumRecords { get; set; } = 0;
 
         // A number of records to compare activity against for our monitor
-        public int LastCount { get; set; } = 3;
+        public static int LastAcknowledge { get; set; } = 0;
+
+        // Computes the changes since the last time the count was acknowledge
+        public int ChangeSinceLastAcknowledgeProperty
+        {
+            get { return mChangeSinceLastAcknowledge; }
+            set
+            {
+                if (mChangeSinceLastAcknowledge != value)
+                {
+                    // set the value and notify that the property has changed
+                    mChangeSinceLastAcknowledge = value;
+
+                    // notify that our property has changed
+                    OnPropertyChanged(nameof(ChangeSinceLastAcknowledgeProperty));
+                }
+            }
+        } 
 
         #endregion
 
@@ -59,23 +83,44 @@ namespace Pharmacy2UApplication
             // Signify nothing has changed from initial startup
             DBHasChanged = false;
 
+            // Create our Relay commands
+            ResetAcknowledgeCount = new RelayCommand(() => ResetAcknowledge());
+
             //// Spin off a thread to handle the monitoring of the database
             MonitorThread = new Thread(MonitorDB);
             MonitorThread.Start();
         }
 
+
+
         #endregion
 
         #region Public Methods
 
-        // The action to be used by the thread that monitors the database for changes in activity
+        /// <summary>
+        /// A routine that acknowledges that the changes in the popup status have been viewed
+        /// </summary>
+        public void DoAcknowledge()
+        {
+            // Sets the acknowledge amount to the same value as the number of records
+            LastAcknowledge = NumRecords;
+
+            // Signify that the database is now in a new unchanged state for the previous acknowledgement
+            DBHasChanged = false;
+        }
+
+        #endregion
+
+        #region Thread Loop
+
+        // The action loop to be used by the thread that monitors the database for changes in activity
         private void MonitorDB()
         {
             int loop = 0;
             while (true)
             {
                 // wait before scanning the database
-                Thread.Sleep(3000);
+                Thread.Sleep(ThreadLoopTimeMilliSeconds);
                 loop++;
 
                 using (var sqlConnection = new SqlConnection("Server = .; Database = test; User Id = sa; Password = sqlserver;"))
@@ -92,19 +137,16 @@ namespace Pharmacy2UApplication
                         using (var command = new SqlCommand(cmd, sqlConnection))
                         {
                             // Read the database results that are returned
-                            int count = (Int32)command.ExecuteScalar();
-                            cmd = $"{loop.ToString()}: {count.ToString()} records found this cycle";
+                            NumRecords = (Int32)command.ExecuteScalar();
+                            cmd = $"{loop.ToString()}: {NumRecords.ToString()} records found this cycle";
                             Console.WriteLine(cmd);
 
-                            if (count > LastCount)
+                            // If the database has more records than the last cycle, signify that it has changed
+                            if (NumRecords > LastAcknowledge)
                             {
+                                ChangeSinceLastAcknowledgeProperty = NumRecords - LastAcknowledge;
                                 DBHasChanged = true;
-                            } else
-                            {
-                                DBHasChanged = false;
-                            }
-
-                            //TODO add functionality to switch the DBHasChanged criteria back
+                            } 
                         }
                     }
                     catch
@@ -115,9 +157,22 @@ namespace Pharmacy2UApplication
                     {
                         sqlConnection.Close();
                     }
+
+                    // If a change has been detected, trigger the popup
+                    if (DBHasChanged)
+                        IoC.Get<ApplicationViewModel>().PopupAlertWindow.SetPopupWindowVisible(true);
+
+                    // Reset the flag
+                    DBHasChanged = false;
                 }
             }
         }
+
+
+
+        #endregion
+
+        #region Event handlers
 
         // Defining the function that creates the PropertyChanged Event
         private void OnPropertyChanged(string property)
@@ -128,11 +183,32 @@ namespace Pharmacy2UApplication
             }
         }
 
-        // THe interface implementation of INotifyPropertyChanged
+        // The interface implementation of INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Database Relay Commands
+
+        // Our command to reset the Acknowledge counter
+        public ICommand ResetAcknowledgeCount { get; set; }
+
+        private void ResetAcknowledge()
+        {
+            LastAcknowledge = 0;
+
+            // If the database has more records than the last cycle, signify that it has changed
+            if (NumRecords > LastAcknowledge)
+            {
+                ChangeSinceLastAcknowledgeProperty = NumRecords - LastAcknowledge;
+                DBHasChanged = true;
+            }
+
+        }
+
+        #endregion
+
     }
 
-
-    #endregion
 }
 

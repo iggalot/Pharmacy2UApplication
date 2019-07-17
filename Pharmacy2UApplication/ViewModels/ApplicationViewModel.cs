@@ -74,6 +74,8 @@ namespace Pharmacy2UApplication
         /// </summary>
         public BaseViewModel CurrentPageViewModel { get; set; }
 
+        public string TestString { get; set; } = "ApplicationVieWModel Test string";
+
         /// <summary>
         /// Our sql connection view model
         /// </summary>
@@ -83,6 +85,12 @@ namespace Pharmacy2UApplication
         /// Our database monitor apparatus
         /// </summary>
         public DBMonitor DatabaseMonitor { get; set; }
+
+        /// <summary>
+        /// Our popup alert window
+        /// </summary>
+        public PopupAlertViewModel PopupAlertWindow { get; set; }
+    
 
         #endregion
 
@@ -96,11 +104,14 @@ namespace Pharmacy2UApplication
             // Our DatabaseMonitor System for tracking when a database has changed
             DatabaseMonitor = new DBMonitor(SQLServerConnection);
 
+            // The view model that controls our popup window
+            PopupAlertWindow = new PopupAlertViewModel();
+
             // Should the database logging window be hidden?
-            ShouldHideDatabaseLogging = true;
+            ShouldHideDatabaseLogging = false;
 
             // Should the debugging tools window and buttons be hidden?
-            ShouldHideDebugTools = true;
+            ShouldHideDebugTools = false;
         }
 
         #endregion

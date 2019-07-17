@@ -12,24 +12,46 @@
         CornerRadius="20"
         Background="Pink"
         Height="100"
-        Visibility="{Binding DBHasChanged, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=True}">
+        >
 
-        <StackPanel Orientation="Vertical">
-            <TextBlock 
-                Text="{Binding DBConnection.DBTitle, FallbackValue='--Binding Error in DBTitle--'}"
-            FontSize="22"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" />
-            <TextBlock 
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" 
-            Text="The Database has Changed" FontSize="14" />
 
-            <Button Click="AcknowledgeButton_Click" 
+
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="4" ShadowDepth="2"/>
+        </Border.Effect>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions> 
+            
+            <!-- Title of the Database that was changed -->
+            <TextBlock 
+                Grid.Row="0"
+                Text="{Binding DatabaseMonitor.DBConnection.DBTitle, FallbackValue='--Binding Error in DBTitle--'}"
+                FontSize="22"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" />
+            
+            <!-- Message for the change -->
+            <StackPanel                 Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock 
+
+                Text="{Binding DatabaseMonitor.ChangeSinceLastAcknowledgeProperty, FallbackValue='Binding error in ChangeSinceLastCount'}" FontSize="14" />
+                <TextBlock 
+                Text=" records have Changed!" FontSize="14" />
+            </StackPanel>
+
+            <!-- The Acknowledge button -->
+            <Button 
+                Grid.Row="2"
+                Click="AcknowledgeButton_Click" 
                     Content="Acknowledge Notification" 
                     Width="300"
                     FontSize="18"/>
-        </StackPanel>
+        </Grid>
     </Border>
 
 </UserControl>

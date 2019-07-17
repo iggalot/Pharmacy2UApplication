@@ -19,43 +19,47 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Header info-->
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Order #" HorizontalAlignment="Center"  Foreground="Black" FontSize="5"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="CustomerID" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
-            <TextBlock Grid.Row="0" Grid.Column="2" Text="Created" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="CustomerID" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Created" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
             <TextBlock Grid.Row="0" Grid.Column="3" Text="First Name" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
             <TextBlock Grid.Row="0" Grid.Column="4" Text="Last Name" HorizontalAlignment="Center" Foreground="Black" FontSize="5"/>
-            <TextBlock Grid.Row="0" Grid.Column="5" Text="Status" HorizontalAlignment="Right" Foreground="Black" FontSize="5"/>
+            <TextBlock Grid.Row="0" Grid.Column="9" Text="Status" HorizontalAlignment="Right" Foreground="Black" FontSize="5"/>
 
 
             <!-- Order and Customer information -->
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding OrderId, FallbackValue='Error'}" HorizontalAlignment="Center" Foreground="Black" FontSize="10"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CustomerId, FallbackValue='Error'}"  HorizontalAlignment="Center" Foreground="Black" FontSize="8"/>
-            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding FirstName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding LastName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1"  Grid.Column="5" Text="{Binding Status, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5"  Text="{Binding OrderId, FallbackValue='Error'}" HorizontalAlignment="Center" Foreground="Black" FontSize="10"/>
+            <TextBlock Grid.Row="1" Grid.Column="2" Margin="5" Text="{Binding CustomerId, FallbackValue='Error'}"  HorizontalAlignment="Center" Foreground="Black" FontSize="8"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding FirstName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="4" Margin="5" Text="{Binding LastName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1"  Grid.Column="9" Margin="5" Text="{Binding Status, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
             <!-- Address In formation -->
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="ICON" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Address" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2"  Grid.Column="2" Text="City" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2"  Grid.Column="3" Text="State" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="4" Text="Zip" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="5" Text="Country" Foreground="Black" FontSize="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0"  Margin="5" Text="ICON" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="1"  Margin="5" Text="Address" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2"  Grid.Column="2" Margin="5" Text="City" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2"  Grid.Column="3" Margin="5" Text="State" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Margin="5" Text="Zip" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="5" Margin="5" Text="Country" Foreground="Black" FontSize="6" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
             <!-- Order Details In formation -->
-            <Button Grid.Row="3" Grid.Column="1" Content="Food Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Grid.Row="3"  Grid.Column="2" Content="OTC Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Button Grid.Row="3"  Grid.Column="3" Content="Delivery Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Grid.Row="0" Grid.RowSpan="3" Margin="5" Grid.Column="6" Height="30" Width="50" Content="Food Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Grid.Row="0" Grid.RowSpan="3" Margin="5" Grid.Column="7" Height="30" Width="50" Content="OTC Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Grid.Row="0" Grid.RowSpan="3" Margin="5" Grid.Column="8" Height="30" Width="50" Content="Delivery Details" Foreground="Black" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
 

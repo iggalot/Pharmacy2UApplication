@@ -19,7 +19,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideInFromRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideInFromRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -42,7 +42,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideOutToRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideOutToRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -65,7 +65,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideInFromLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideInFromLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -88,7 +88,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideOutToLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideOutToLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -111,7 +111,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideInFromBottom(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideInFromBottom(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -134,7 +134,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideOutToBottom(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideOutToBottom(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -157,7 +157,7 @@ namespace Pharmacy2UApplication
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideInFromTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideInFromTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -174,13 +174,13 @@ namespace Pharmacy2UApplication
         }
 
         /// <summary>
-        /// Adds a slide out to right animation to the storyboard
+        /// Adds a slide out to top animation to the storyboard
         /// </summary>
         /// <param name="storyboard">The stortboard to add the animation to</param>
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideOutToTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
+        public static void AddSlideOutToTop(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
             // Create the margin animate from right
             var animation = new ThicknessAnimation
@@ -199,7 +199,7 @@ namespace Pharmacy2UApplication
 
         #endregion
 
-        #region Fade Animations
+        #region Fade In / Out Animations
 
         /// <summary>
         /// Adds a fade in animation to the storyboard
