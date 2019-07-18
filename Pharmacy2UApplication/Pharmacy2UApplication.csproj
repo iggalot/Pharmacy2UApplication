@@ -332,6 +332,10 @@
       <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
       <Name>EntityFrameworkDatabase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Pharmacy2U_PopupDatabaseMonitor\Pharmacy2U_PopupDatabaseMonitor.csproj">
+      <Project>{6051b556-7e81-4929-a3d5-32c69a9fe5cf}</Project>
+      <Name>Pharmacy2U_PopupDatabaseMonitor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

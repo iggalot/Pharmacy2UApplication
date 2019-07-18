@@ -168,6 +168,8 @@
                 </MenuItem>
 
             </Menu>
+            <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
         </StackPanel>
 
         <!-- Dimmed overlay -->
