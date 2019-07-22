@@ -31,89 +31,33 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         /// A collection of NamedPipeData objects.  Used for storing the OrderID and Order Guid of a new record
         /// within the monitor prior to sending to the application via the acknowledge click.
         /// </summary>
-        public ObservableCollection<NamedPipeData> ListOfNamedPipeData{get; set;}
+                /// <summary>
+        /// The original data of our pipe process within the database monitor
+        /// </summary>
+        public static ObservableCollection<NamedPipeData> NewOrderData { get; set; }
         #endregion
 
         #region Named Pipe Serialization test methods
 
-        public static NamedPipeClientStream _converterStream;
-        public static NamedPipeServerStream _resultStream;
-        public static bool _convertProcessCompleted = false;
-        public static bool _resultProcessCompleted = false;
-
-        /// <summary>
-        /// The original data of our pipe process within the database monitor
-        /// </summary>
-        public static ObservableCollection<NamedPipeData> DefaultData { get; set; }
-
-        /// <summary>
-        /// The converted data of our pipe process as received back in the database monitor
-        /// </summary>
-        public static ObservableCollection<NamedPipeData> ResultData { get; set; }
 
         /// <summary>
         /// Creates some basic data for our collection (TESTING PURPOSES ONLY)
         /// </summary>
-        private static void GenerateDefaultData()
+        private static ObservableCollection<NamedPipeData> GenerateDefaultData()
         {
-            DefaultData = new ObservableCollection<NamedPipeData>();
-            for (int i = 0; i<10; i++)
+            ObservableCollection<NamedPipeData> temp = new ObservableCollection<NamedPipeData>();
+            for (int i = 0; i<3; i++)
             {
                 NamedPipeData client = new NamedPipeData();
                 client.OrderID = i;
                 client.OrderGuid = new Guid();
-                DefaultData.Add(client);
+                temp.Add(client);
             }
+
+            return temp;
         }
 
-        /// <summary>
-        /// Process default data and send it to the pipe -- this is the Monitor side of the pipe
-        /// </summary>
-        /// 
-        public static void ConverterPipe(ObservableCollection<NamedPipeData> defaultData)
-        {
-            _converterStream = new NamedPipeClientStream(NamedPipe.PipeNameToApplication);
-            _converterStream.Connect();
 
-            foreach (var data in defaultData)
-            {
-                //changed client data
-                NamedPipeData newData = new NamedPipeData()
-                {
-                    OrderID = data.OrderID + 1000,
-                    OrderGuid = data.OrderGuid
-                };
-
-                NamedPipeData messageToSend = newData;
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(_converterStream, messageToSend);
-            }
-            _convertProcessCompleted = true;
-        }
-
-        /// <summary>
-        /// Create the result from the default data (this is the Application side of the pipe).
-        /// </summary>
-        public void ResultPipe()
-        {
-            Console.WriteLine("Waiting for connection on named pipe");
-            _resultStream = new NamedPipeServerStream(NamedPipe.PipeNameToApplication);
-            _resultStream.WaitForConnection();
-
-            while (_resultProcessCompleted == false)
-            {
-                if(_convertProcessCompleted)
-                {
-                    _resultProcessCompleted = true;
-                    break;
-                }
-                IFormatter formatter = new BinaryFormatter();
-                NamedPipeData clientReceived = (NamedPipeData)formatter.Deserialize(_resultStream);
-                Thread.Sleep(1);
-                ResultData.Add(clientReceived);
-            }
-            _resultStream.Close();
-        }
         #endregion
 
         // TODO: Bind window startup locations in XAML to screen size
@@ -123,42 +67,45 @@ namespace Pharmacy2U_PopupDatabaseMonitor
 
             #region Named pipe serialization test
 
-            ResultData = new ObservableCollection<NamedPipeData>();
-            GenerateDefaultData();
+            // Create our server stream named pipe
+            NamedPipe.ServerStream = new NamedPipeServerStream(NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.InOut, 1);
 
-            Thread resultPipeThread = new Thread(ResultPipe);
-            resultPipeThread.IsBackground = true;
-            resultPipeThread.Start();
 
-            Thread converterPipeThread = new Thread(() => ConverterPipe(DefaultData));
-            converterPipeThread.IsBackground = true;
-            converterPipeThread.Start();
-            resultPipeThread.Join();
+            // Generate default data
+            NewOrderData = GenerateDefaultData();
 
-            if (_converterStream != null)
-                _converterStream.Close();
+            Thread FromMonitorPipeThread = new Thread(SendData);
+            FromMonitorPipeThread.IsBackground = true;
+            FromMonitorPipeThread.Start();
 
-            if (_resultStream != null)
-                _resultStream.Close();
+            Console.WriteLine("DB monitor pipe thread started...");
+
+            FromMonitorPipeThread.Join();
+
+            //if (NamedPipe._fromMonitorToApplicationPipeStream != null)
+            //    NamedPipe._fromMonitorToApplicationPipeStream.Close();
 
             Console.WriteLine("OrderID\tOrderGuid");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < NewOrderData.Count; i++)
             {
-                Console.WriteLine(DefaultData[i].OrderID + "\t" +ResultData[i].OrderID + "\t" + DefaultData[i].OrderGuid);
+                Console.WriteLine("DB Monitor: " + NewOrderData[i].OrderID + "\t" + NewOrderData[i].OrderGuid);
             }
             #endregion
 
+        }
+
+        private void SendData()
+        {
+            Console.WriteLine("Receiving data from monitor...");
+            // Receives the new order data from the monitor
+            NamedPipe.SendToApplication(NewOrderData);
+            Console.WriteLine("Data received....returning to main application...");
         }
 
         // After loading, send our message to the pipe
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //// Send a message to our pipe
-            //NamedPipe.SendByteAndReceiveResponse();
-
-            //// And await the response
-            //Response.Text = NamedPipe.ReceivedFromClient;
         }
     }
 }

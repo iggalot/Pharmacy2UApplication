@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace Pharmacy2U_PopupDatabaseMonitor
 {
@@ -27,34 +29,6 @@ namespace Pharmacy2U_PopupDatabaseMonitor
 
         #endregion
 
-        #region Constructors
-
-        /// Parameterless constructor -- needed for Deserialization process using xml
-        public NamedPipeData() { }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="order"> OrderID of <see cref="NamedPipeData"/></param>
-        /// <param name="guid"> OrderGuid of <see cref="NamedPipeData"/></param>
-        public NamedPipeData(int order, Guid guid, bool rdy = false, string msg=null)
-        {
-            OrderID = order;
-            OrderGuid = guid;
-        }
-
-        /// <summary>
-        /// Deserialization function that retrieves the data from the serialized string.
-        /// </summary>
-        /// <param name="info">The serialized string</param>
-        /// <param name="context">The type of serialization</param>
-        public NamedPipeData(SerializationInfo info, StreamingContext context)
-        {
-            OrderID = (int)info.GetValue("OrderID", typeof(int));
-            OrderGuid = (Guid)info.GetValue("OrderGuid", typeof(Guid));
-        }
-
-        #endregion
 
         #region Public Methods 
 
@@ -83,6 +57,36 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             info.AddValue("OrderGuid", OrderGuid);
         }
         #endregion
+
+        #region Constructors
+
+        /// Parameterless constructor -- needed for Deserialization process using xml
+        public NamedPipeData() { }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="order"> OrderID of <see cref="NamedPipeData"/></param>
+        /// <param name="guid"> OrderGuid of <see cref="NamedPipeData"/></param>
+        public NamedPipeData(int order, Guid guid, bool rdy = false, string msg = null)
+        {
+            OrderID = order;
+            OrderGuid = guid;
+        }
+
+        /// <summary>
+        /// Deserialization function that retrieves the data from the serialized string.
+        /// </summary>
+        /// <param name="info">The serialized string</param>
+        /// <param name="context">The type of serialization</param>
+        public NamedPipeData(SerializationInfo info, StreamingContext context)
+        {
+            OrderID = (int)info.GetValue("OrderID", typeof(int));
+            OrderGuid = (Guid)info.GetValue("OrderGuid", typeof(Guid));
+        }
+
+        #endregion
+
     }
 
     /// <summary>
@@ -90,15 +94,27 @@ namespace Pharmacy2U_PopupDatabaseMonitor
     /// </summary>
     public class NamedPipe
     {
-        #region Public Methods
-        /// <summary>
-        /// The names of our named pipes
-        /// </summary>
-        public static string PipeNameFromApplication {get;} = "Pharmacy2U_NamedPipe_FromApplication";
-        public static string PipeNameToApplication { get; } = "Pharmacy2U_NamedPipe_ToApplication";
+        #region Public Members
+        ObservableCollection<NamedPipeData> _receivedPipeData { get; set; }
 
-        public static NamedPipeServerStream namedPipeServerToApplication { get; set; }
-        public static NamedPipeClientStream namedPipeClientFromApplication { get; set; }
+        /// <summary>
+        /// Named pipe server stream for sending data from the database monitor to the main application
+        /// </summary>
+        public static NamedPipeServerStream ServerStream { get; set; }
+
+        /// <summary>
+        /// Named pipe client stream for receiving data in the main application from the database monitor
+        /// </summary>
+        public static NamedPipeClientStream ClientStream { get; set; }
+        
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// The name of our named pipe
+        /// </summary>
+        public static string PipeNameFromMonitorToApplication { get; } = "Pharmacy2U_NamedPipe_FromMonitorToApplication";
 
         #endregion
 
@@ -106,41 +122,81 @@ namespace Pharmacy2U_PopupDatabaseMonitor
 
         public NamedPipe()
         {
-            namedPipeServerToApplication = new NamedPipeServerStream(PipeNameToApplication);
-            namedPipeClientFromApplication = new NamedPipeClientStream(PipeNameFromApplication);
-        }
+            //// Create our server pipe stream
+            //if(ServerStream == null)
+            //    ServerStream = new NamedPipeServerStream(NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.Out, 1);
 
+            //// Create our client pipe stream
+            //if(ClientStream == null)
+            //    ClientStream = new NamedPipeClientStream(NamedPipe.PipeNameFromMonitorToApplication);
+
+        }
 
         #endregion
 
-        //public static string ReceivedFromClient { get; set; }
-        //public static string ReceivedFromServer { get; set; }
+        #region Public Methods
+        public static ObservableCollection<NamedPipeData> ReceiveFromMonitor()
+        {
+            bool endOfData = false;
+            ObservableCollection<NamedPipeData> temp = new ObservableCollection<NamedPipeData>();
 
-        //public static void SendByteAndReceiveResponse()
-        //{
-        //    using (NamedPipeServerStream namedPipeServer = new NamedPipeServerStream("Pharm2U_Pipe"))
-        //    {
-        //        namedPipeServer.WaitForConnection();
-        //        namedPipeServer.WriteByte(1);
-        //        int byteFromClient = namedPipeServer.ReadByte();
-        //        ReceivedFromClient = "FROM CLIENT: " + byteFromClient.ToString();
-        //        Console.WriteLine(ReceivedFromClient);
+            ClientStream.Connect();
 
-        //        namedPipeServer.W
-        //    }
-        //}
+            // Read everything in the pipe
+            int recordCount = 0;
+            while(!endOfData)
+            {
+                IFormatter formatter = new BinaryFormatter();
+                NamedPipeData clientReceived = (NamedPipeData)formatter.Deserialize(ClientStream);
+                Thread.Sleep(1);
 
-        //public static void ReceiveByteAndRespond()
-        //{
-        //    using (NamedPipeClientStream namedPipeClient = new NamedPipeClientStream("Pharm2U_Pipe"))
-        //    {
-        //        namedPipeClient.Connect();
-        //        int byteFromServer = namedPipeClient.ReadByte();
-        //        ReceivedFromServer = "FROM SERVER: " + byteFromServer.ToString();
-        //        Console.WriteLine(ReceivedFromServer);
-        //        namedPipeClient.WriteByte(2);
+                // If this is the dummy record at the end of the transmission
+                if(clientReceived.OrderID == -1)
+                {
+                    Console.WriteLine($"End of records transmission. {recordCount} records received.");
+                    endOfData = true;
+                    continue;
+                }
 
-        //    }
-        //}
+                // Otherwise add it to our temporary collection
+                temp.Add(clientReceived);
+                recordCount++;
+            }
+
+            // Return the collection to the application
+            return temp;
+        }
+
+        /// <summary>
+        /// Process default data and send it to the pipe -- this is the Monitor side of the pipe
+        /// </summary>
+        /// 
+        public static void SendToApplication(ObservableCollection<NamedPipeData> defaultData)
+        {
+            // Wait for the application to connecte
+            //TODO:  tests for pipe connection needed here....
+
+            Console.WriteLine("Waiting for connection on main application...");
+            ServerStream.WaitForConnection();
+
+            // Send each record through the pipe to the application
+            int count = 0;
+            foreach (var data in defaultData)
+            {
+                NamedPipeData messageToSend = data;
+                IFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(ServerStream, messageToSend);
+                count++;
+            }
+
+            // Now add a dummy record on the end of the transmission
+            // with an order number of -1 to signify the end of the list.
+            NamedPipeData temp = new NamedPipeData(-1, new Guid());
+
+            IFormatter formatter2 = new BinaryFormatter();
+            formatter2.Serialize(ServerStream, temp);
+        }
+
+        #endregion
     }
 }

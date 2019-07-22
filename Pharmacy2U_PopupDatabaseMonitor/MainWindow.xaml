@@ -17,7 +17,7 @@
     
     <StackPanel Orientation="Vertical"  VerticalAlignment="Center">
         <TextBlock Text="Popup Application" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="PipeConnector" Width="200" Height="25"/>
+        <Button Content="Acknowledge" Width="200" Height="25"/>
         <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </StackPanel>
 </Window>
