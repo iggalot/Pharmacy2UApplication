@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmacy2UApplication"
+        xmlns:core="clr-namespace:Pharmacy2UApplication.Core" 
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -267,7 +268,7 @@
 
         </StackPanel>
         
-        <!-- Our popup for activity changed -->
+        <!-- Our popup for activity changed --><!--
         <local:DatabaseChangedControl 
             DataContext="{Binding ApplicationViewModel,
                                 Source={x:Static local:ViewModelLocator.Instance}}"
@@ -278,7 +279,7 @@
             Panel.ZIndex="10"
             local:AnimateSlideInFromBottomProperty.Value ="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
                                 Source={x:Static local:ViewModelLocator.Instance}}"
-            />
+            />-->
             
 
     </Grid>

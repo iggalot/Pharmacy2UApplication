@@ -1,7 +1,8 @@
 ﻿
+using Pharmacy2UApplication.Core;
 using System.Windows.Controls;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2U_PopupDatabaseMonitor
 {
     /// <summary>
     /// Interaction logic for DatabaseChangedControl.xaml

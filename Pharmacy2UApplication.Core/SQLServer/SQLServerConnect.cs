@@ -1,12 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Windows;
 using System.Windows.Input;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// A class that controls the connection to a specified database
@@ -129,7 +127,7 @@ namespace Pharmacy2UApplication
                 {
                     cmd = "Error Opening database";
                     History.Add(cmd);
-                    MessageBox.Show(cmd);
+                    //MessageBox.Show(cmd);
                 } finally { 
                     //Close the SQL connection
                     sqlConnection.Close();
@@ -191,7 +189,7 @@ namespace Pharmacy2UApplication
                 {
                     cmd = "Error Opening database";
                     History.Add(cmd);
-                    MessageBox.Show(cmd);
+                    //MessageBox.Show(cmd);
                 }
                 finally
                 {
@@ -255,7 +253,7 @@ namespace Pharmacy2UApplication
                 {
                     cmd = "Error Opening database";
                     History.Add(cmd);
-                    MessageBox.Show(cmd);
+                    //MessageBox.Show(cmd);
                 }
                 finally
                 {
@@ -308,7 +306,7 @@ namespace Pharmacy2UApplication
                 {
                     cmd = "Error Opening database";
                     History.Add(cmd);
-                    MessageBox.Show(cmd);
+                    //MessageBox.Show(cmd);
                 }
                 finally
                 {

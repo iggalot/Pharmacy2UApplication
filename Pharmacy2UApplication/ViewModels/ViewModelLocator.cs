@@ -1,4 +1,6 @@
 ﻿
+using Pharmacy2UApplication.Core;
+
 namespace Pharmacy2UApplication
 {
     /// <summary>

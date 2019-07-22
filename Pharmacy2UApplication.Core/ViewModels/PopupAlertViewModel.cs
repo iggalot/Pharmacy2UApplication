@@ -1,8 +1,6 @@
-﻿
-using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     public class PopupAlertViewModel : BaseViewModel
     {
@@ -39,7 +37,7 @@ namespace Pharmacy2UApplication
         /// the UI when it has changed.
         /// </summary>
         /// <param name="v">The boolean setting for the visibility</param>
-        internal void SetPopupWindowVisible(bool v)
+        public void SetPopupWindowVisible(bool v)
         {
             PopupWindowVisible = v;
             OnPropertyChanged("PopupWindowVisible");

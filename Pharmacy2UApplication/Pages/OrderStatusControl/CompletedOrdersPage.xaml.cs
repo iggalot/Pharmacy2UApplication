@@ -1,8 +1,4 @@
-﻿
-using System.Windows.Controls;
-
-
-namespace Pharmacy2UApplication
+﻿namespace Pharmacy2UApplication
 {
     /// <summary>
     /// Interaction logic for <see cref="CompletedOrdersPage"/>.xaml

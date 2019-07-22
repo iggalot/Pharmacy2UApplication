@@ -2,7 +2,7 @@
 using Ninject;
 using System;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// The IoC container for our application

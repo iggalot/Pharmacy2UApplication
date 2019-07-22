@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Pharmacy2UApplication.Core;
+using System;
 using System.Collections.ObjectModel;
-using System.IO.Pipes;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Pharmacy2U_PopupDatabaseMonitor
 {
@@ -35,6 +20,11 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         /// The original data of our pipe process within the database monitor
         /// </summary>
         public static ObservableCollection<NamedPipeData> NewOrderData { get; set; }
+
+        //// Our DatabaseMonitor System for tracking when a database has changed
+        //DBMonitor DatabaseMonitor = new DBMonitor(SQLServerConnection);
+
+
         #endregion
 
         #region Named Pipe Serialization test methods
@@ -67,29 +57,29 @@ namespace Pharmacy2U_PopupDatabaseMonitor
 
             #region Named pipe serialization test
 
-            // Create our server stream named pipe
-            NamedPipe.ServerStream = new NamedPipeServerStream(NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.InOut, 1);
+            //// Create our server stream named pipe
+            //NamedPipe.ServerStream = new NamedPipeServerStream(NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.InOut, 1);
 
 
-            // Generate default data
-            NewOrderData = GenerateDefaultData();
+            //// Generate default data
+            //NewOrderData = GenerateDefaultData();
 
-            Thread FromMonitorPipeThread = new Thread(SendData);
-            FromMonitorPipeThread.IsBackground = true;
-            FromMonitorPipeThread.Start();
+            //Thread FromMonitorPipeThread = new Thread(SendData);
+            //FromMonitorPipeThread.IsBackground = true;
+            //FromMonitorPipeThread.Start();
 
-            Console.WriteLine("DB monitor pipe thread started...");
+            //Console.WriteLine("DB monitor pipe thread started...");
 
-            FromMonitorPipeThread.Join();
+            //FromMonitorPipeThread.Join();
 
-            //if (NamedPipe._fromMonitorToApplicationPipeStream != null)
-            //    NamedPipe._fromMonitorToApplicationPipeStream.Close();
+            ////if (NamedPipe._fromMonitorToApplicationPipeStream != null)
+            ////    NamedPipe._fromMonitorToApplicationPipeStream.Close();
 
-            Console.WriteLine("OrderID\tOrderGuid");
-            for (int i = 0; i < NewOrderData.Count; i++)
-            {
-                Console.WriteLine("DB Monitor: " + NewOrderData[i].OrderID + "\t" + NewOrderData[i].OrderGuid);
-            }
+            //Console.WriteLine("OrderID\tOrderGuid");
+            //for (int i = 0; i < NewOrderData.Count; i++)
+            //{
+            //    Console.WriteLine("DB Monitor: " + NewOrderData[i].OrderID + "\t" + NewOrderData[i].OrderGuid);
+            //}
             #endregion
 
         }

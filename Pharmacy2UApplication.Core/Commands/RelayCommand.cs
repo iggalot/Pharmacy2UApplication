@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Input;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// A basic command that runs an Action.  Allows binding via the Command or ICommand dependency property

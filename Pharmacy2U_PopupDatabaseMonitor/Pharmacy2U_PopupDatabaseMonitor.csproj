@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\DatabaseChangedControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,13 +66,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\DatabaseChangedControl.xaml.cs">
+      <DependentUpon>DatabaseChangedControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NamedPipe\NamedPipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +100,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFrameworkDatabase\EntityFrameworkDatabase.csproj">
+      <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
+      <Name>EntityFrameworkDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharmacy2UApplication.Core\Pharmacy2UApplication.Core.csproj">
+      <Project>{7082d516-1a73-443d-b2f1-07253b8f9d46}</Project>
+      <Name>Pharmacy2UApplication.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

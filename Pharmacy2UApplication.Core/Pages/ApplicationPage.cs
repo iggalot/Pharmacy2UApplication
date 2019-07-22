@@ -1,5 +1,5 @@
 ﻿
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// A page of the application

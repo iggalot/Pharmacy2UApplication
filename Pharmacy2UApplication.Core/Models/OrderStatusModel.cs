@@ -1,5 +1,5 @@
 ﻿
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     public enum OrderStatusTypes{
         STATUS_NEWORDER,

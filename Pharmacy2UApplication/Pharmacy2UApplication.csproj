@@ -87,11 +87,6 @@
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseMonitor\DBMonitor.cs" />
-    <Compile Include="IoC\IoC.cs" />
-    <Compile Include="Models\OrderStatusModel.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Pages\ApplicationPage.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -123,15 +118,10 @@
     <Compile Include="Pages\OrderInformationPage.xaml.cs">
       <DependentUpon>OrderInformationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SQLServer\SQLServerConnect.cs" />
     <Compile Include="ValueConverters\ApplicationPageValueConverter.cs" />
     <Compile Include="ValueConverters\BaseValueConverter.cs" />
     <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
     <Compile Include="ValueConverters\IoCConverter.cs" />
-    <Compile Include="ViewModels\ApplicationViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\PopupAlertViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Controls\ActiveStatisticsControl.xaml.cs">
       <DependentUpon>ActiveStatisticsControl.xaml</DependentUpon>
     </Compile>
@@ -140,9 +130,6 @@
     </Compile>
     <Compile Include="Controls\DatabaseActivityControl.xaml.cs">
       <DependentUpon>DatabaseActivityControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\DatabaseChangedControl.xaml.cs">
-      <DependentUpon>DatabaseChangedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Debug\DebugTestControls.xaml.cs">
       <DependentUpon>DebugTestControls.xaml</DependentUpon>
@@ -153,6 +140,7 @@
     <Compile Include="Controls\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\OrderItemControl.xaml">
@@ -224,10 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\DatabaseActivityControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\DatabaseChangedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,7 +293,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -332,9 +318,9 @@
       <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
       <Name>EntityFrameworkDatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Pharmacy2U_PopupDatabaseMonitor\Pharmacy2U_PopupDatabaseMonitor.csproj">
-      <Project>{6051b556-7e81-4929-a3d5-32c69a9fe5cf}</Project>
-      <Name>Pharmacy2U_PopupDatabaseMonitor</Name>
+    <ProjectReference Include="..\Pharmacy2UApplication.Core\Pharmacy2UApplication.Core.csproj">
+      <Project>{7082d516-1a73-443d-b2f1-07253b8f9d46}</Project>
+      <Name>Pharmacy2UApplication.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

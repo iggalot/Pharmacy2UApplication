@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO.Pipes;
-using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
-namespace Pharmacy2U_PopupDatabaseMonitor
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// A serializeable class that reflects information that the database monitor detects from 
@@ -95,7 +94,6 @@ namespace Pharmacy2U_PopupDatabaseMonitor
     public class NamedPipe
     {
         #region Public Members
-        ObservableCollection<NamedPipeData> _receivedPipeData { get; set; }
 
         /// <summary>
         /// Named pipe server stream for sending data from the database monitor to the main application
@@ -119,17 +117,12 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         #endregion
 
         #region Constructor
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public NamedPipe()
         {
-            //// Create our server pipe stream
-            //if(ServerStream == null)
-            //    ServerStream = new NamedPipeServerStream(NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.Out, 1);
-
-            //// Create our client pipe stream
-            //if(ClientStream == null)
-            //    ClientStream = new NamedPipeClientStream(NamedPipe.PipeNameFromMonitorToApplication);
-
+            // Pipe stream creations are handled in the database monitor (server) and the main application (client)            
         }
 
         #endregion
@@ -140,7 +133,10 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             bool endOfData = false;
             ObservableCollection<NamedPipeData> temp = new ObservableCollection<NamedPipeData>();
 
+            // Connect as the client to the server stream
+            Console.WriteLine("Main Application is attempting to connect to the database monitor...");
             ClientStream.Connect();
+            Console.WriteLine("Main Application is now connected to the database monitor.");
 
             // Read everything in the pipe
             int recordCount = 0;
@@ -153,7 +149,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
                 // If this is the dummy record at the end of the transmission
                 if(clientReceived.OrderID == -1)
                 {
-                    Console.WriteLine($"End of records transmission. {recordCount} records received.");
+                    Console.WriteLine($"Application:  End of records transmission. {recordCount} records received.");
                     endOfData = true;
                     continue;
                 }
@@ -163,7 +159,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
                 recordCount++;
             }
 
-            // Return the collection to the application
+            // Return the collection that was received
             return temp;
         }
 
@@ -176,8 +172,9 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // Wait for the application to connecte
             //TODO:  tests for pipe connection needed here....
 
-            Console.WriteLine("Waiting for connection on main application...");
+            Console.WriteLine("DB Monitor:  Waiting for connection by main application...");
             ServerStream.WaitForConnection();
+            Console.WriteLine("DB Monitor is connected to the main application.");
 
             // Send each record through the pipe to the application
             int count = 0;
@@ -192,7 +189,6 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // Now add a dummy record on the end of the transmission
             // with an order number of -1 to signify the end of the list.
             NamedPipeData temp = new NamedPipeData(-1, new Guid());
-
             IFormatter formatter2 = new BinaryFormatter();
             formatter2.Serialize(ServerStream, temp);
         }

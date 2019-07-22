@@ -3,10 +3,9 @@ using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Threading;
-using System.Windows;
 using System.Windows.Input;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     public class DBMonitor : INotifyPropertyChanged
     {
@@ -151,7 +150,7 @@ namespace Pharmacy2UApplication
                     }
                     catch
                     {
-                        MessageBox.Show("Error opening the database in the monitoring thread");
+                        Console.WriteLine("Error opening the database in the monitoring thread");
                     }
                     finally
                     {
@@ -167,8 +166,6 @@ namespace Pharmacy2UApplication
                 }
             }
         }
-
-
 
         #endregion
 
@@ -192,6 +189,7 @@ namespace Pharmacy2UApplication
 
         // Our command to reset the Acknowledge counter
         public ICommand ResetAcknowledgeCount { get; set; }
+        public object MessageBox { get; private set; }
 
         private void ResetAcknowledge()
         {

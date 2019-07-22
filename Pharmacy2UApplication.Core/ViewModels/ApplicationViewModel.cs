@@ -1,6 +1,6 @@
 ﻿
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// The application state as a view model
@@ -100,9 +100,6 @@ namespace Pharmacy2UApplication
         {
             // Testing of our C# to SQL connectivity
             SQLServerConnection = new SQLServerConnect("test");
-
-            // Our DatabaseMonitor System for tracking when a database has changed
-            DatabaseMonitor = new DBMonitor(SQLServerConnection);
 
             // The view model that controls our popup window
             PopupAlertWindow = new PopupAlertViewModel();

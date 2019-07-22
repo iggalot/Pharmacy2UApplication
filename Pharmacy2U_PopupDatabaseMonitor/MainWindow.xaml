@@ -4,20 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmacy2U_PopupDatabaseMonitor"
+        xmlns:core="clr-namespace:Pharmacy2UApplication.Core;assembly=Pharmacy2UApplication.Core"
         mc:Ignorable="d"
         WindowStartupLocation="Manual"
-        Left="1100"
-        Top="700"
+        SizeToContent="WidthAndHeight"
+        Left="950"
+        Top="675"
         Height="200" 
         Width="250"
-        Title="MainWindow" 
+        Title="Popup Database Application" 
         Loaded="Window_Loaded"
+        Background="Transparent"
+        WindowStyle="None"
         >
-    
-    
-    <StackPanel Orientation="Vertical"  VerticalAlignment="Center">
-        <TextBlock Text="Popup Application" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Content="Acknowledge" Width="200" Height="25"/>
-        <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    </StackPanel>
+   
+    <Border VerticalAlignment="Center"
+            Background="Transparent">
+
+        <!-- Our popup for activity changed -->
+        <local:DatabaseChangedControl 
+            Grid.Row="1" 
+            Grid.Column="1"
+            VerticalAlignment="Center" 
+            HorizontalAlignment="Center"
+            Panel.ZIndex="10"
+            
+            />
+        <!--
+                    DataContext="{Binding ApplicationViewModel,
+                                Source={x:Static core:ViewModelLocator.Instance}}"
+        local:AnimateSlideInFromBottomProperty.Value ="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
+                                Source={x:Static local:ViewModelLocator.Instance}}"
+            />-->
+    </Border>
 </Window>

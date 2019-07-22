@@ -1,18 +1,9 @@
-﻿
-using Pharmacy2U_PopupDatabaseMonitor;
+﻿using Pharmacy2UApplication.Core;
 using System;
-using System.ComponentModel;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;
 using System.Collections.ObjectModel;
 using System.IO.Pipes;
+using System.Threading;
+using System.Windows;
 
 namespace Pharmacy2UApplication
 {
@@ -27,6 +18,7 @@ namespace Pharmacy2UApplication
 
         #endregion
 
+        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
 
 
         #region Default Constructor
@@ -38,26 +30,24 @@ namespace Pharmacy2UApplication
             // Set the data context for the XAML Bindings in the GUI
             DataContext = new WindowViewModel(this);
 
-            // Create a named pipe
-            NamedPipe newPipe = new NamedPipe();
-            NewOrderData = new ObservableCollection<NamedPipeData>();
+            //// Create a named pipe
+            //NewOrderData = new ObservableCollection<NamedPipeData>();
 
-            // Create the client client pipe stream for reading data received from the database monitor
-            NamedPipe.ClientStream = new NamedPipeClientStream(".", NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.InOut);
+            //// Create the client client pipe stream for reading data received from the database monitor
+            //NamedPipe.ClientStream = new NamedPipeClientStream(".", NamedPipe.PipeNameFromMonitorToApplication, PipeDirection.InOut);
 
+            //// Create a thread to listen for records from the database monitor
+            //Thread FromMonitorPipeThread = new Thread(ReceiveData);
+            //FromMonitorPipeThread.IsBackground = true;
+            //FromMonitorPipeThread.Start();
 
-            // Create a thread to listen for records from the database monitor
-            Thread FromMonitorPipeThread = new Thread(ReceiveData);
-            FromMonitorPipeThread.IsBackground = true;
-            FromMonitorPipeThread.Start();
+            //FromMonitorPipeThread.Join();
 
-            FromMonitorPipeThread.Join();
-
-            Console.WriteLine("OrderID\tOrderGuid");
-            for (int i = 0; i < NewOrderData.Count; i++)
-            {
-                Console.WriteLine("Application: " + NewOrderData[i].OrderID + "\t" + NewOrderData[i].OrderGuid);
-            }
+            //Console.WriteLine("OrderID\tOrderGuid");
+            //for (int i = 0; i < NewOrderData.Count; i++)
+            //{
+            //    Console.WriteLine("Application: " + NewOrderData[i].OrderID + "\t" + NewOrderData[i].OrderGuid);
+            //}
         }
 
         private void ReceiveData()
@@ -67,6 +57,7 @@ namespace Pharmacy2UApplication
             NewOrderData = NamedPipe.ReceiveFromMonitor();
             Console.WriteLine("Data received....returning to main application...");
         }
+
         #endregion
 
         #region Menu Events
