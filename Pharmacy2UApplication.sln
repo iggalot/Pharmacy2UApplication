@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy2U_PopupDatabaseMon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacy2UApplication.Core", "Pharmacy2UApplication.Core\Pharmacy2UApplication.Core.csproj", "{7082D516-1A73-443D-B2F1-07253B8F9D46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharm2UStyles", "Pharm2UStyles\Pharm2UStyles.csproj", "{4F3859C6-6166-413F-9FC5-409646203D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{7082D516-1A73-443D-B2F1-07253B8F9D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7082D516-1A73-443D-B2F1-07253B8F9D46}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{7082D516-1A73-443D-B2F1-07253B8F9D46}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{4F3859C6-6166-413F-9FC5-409646203D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F3859C6-6166-413F-9FC5-409646203D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F3859C6-6166-413F-9FC5-409646203D59}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F3859C6-6166-413F-9FC5-409646203D59}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,10 +45,10 @@ namespace Pharmacy2UApplication
         {
             // Set our base page dimensions
             // TODO:  Move these defaults into a style that affects every Base Page automatically
-            this.Width = 600;
-            this.Height = 600;
-            this.MinWidth = 400;
-            this.MinHeight = 500;
+            //this.Width = 800;
+            //this.Height = 1100;
+            //this.MinWidth = 800;
+            //this.MinHeight = 500;
 
             // if we are animating in, hide to begin with
             if (this.PageLoadAnimation != PageAnimation.None)

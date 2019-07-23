@@ -4,18 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharmacy2UApplication"
-        xmlns:core="clr-namespace:Pharmacy2UApplication.Core" 
+        xmlns:core="clr-namespace:Pharmacy2UApplication.Core;assembly=Pharmacy2UApplication.Core"
+
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
-        Icon="Images/Logo/DeaconessLogo.ico"
+        Icon="/Pharm2UStyles;Component/Images/Logo/DeaconessLogo.ico"
         Title="Pharmacy 2U Application"
         MinWidth="{Binding WindowMinimumWidth}"
         MinHeight="{Binding WindowMinimumHeight}"
-        Width="900"
-        Height="600"
         >
 
     <Window.Resources>
@@ -76,7 +75,7 @@
 
                                         <!-- Icon -->
                                         <Button Style="{StaticResource SystemIconButton}" Command="{Binding MenuCommand}">
-                                            <Image Source="/Images/Logo/DeaconessLogo.png"/>
+                                            <Image Source="/Pharm2UStyles;Component/Images/Logo/DeaconessLogo.png"/>
                                         </Button>
 
                                         <!-- Title Text -->
@@ -147,7 +146,14 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Background="LightGray">
-            <TextBlock Text="MENU BAR" FontSize="20" HorizontalAlignment="Left"/>
+            <Border Background="White" Padding="10" >
+                <Image
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Height="40"
+                     Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_HORZ.png"
+                />
+            </Border>
             <Menu x:Name="MainMenu" Height="Auto" Width="Auto" VerticalAlignment="Center" Margin="50 0 0 0">
                 <MenuItem Header="Database">
                     <MenuItem x:Name="DatabaseLogging" 
@@ -169,7 +175,15 @@
                 </MenuItem>
 
             </Menu>
+
+
+
             <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+           
+
+
 
         </StackPanel>
 
@@ -216,15 +230,9 @@
             Grid.Column="1"  
             Padding="10">
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
 
                 <!-- The main frame of the application where major information and searches are positioned-->
-                <!--<Frame x:Name="MainFrame2" 
-                                local:NoFrameHistory.Value="True"
-                                Content="{Binding ApplicationViewModel.CurrentPage, 
-                                Source={x:Static local:ViewModelLocator.Instance}, 
-                                Converter={local:ApplicationPageValueConverter}}"               
-                       />-->
                 <local:PageHost   
                     d:DataContext=""
                     DataContext="{Binding ApplicationViewModel.CurrentPage, 
@@ -232,7 +240,7 @@
                                     Converter={local:ApplicationPageValueConverter}}"               
                     CurrentPage="{Binding}"
                        />
-            </StackPanel>
+            </Grid>
         </Border>
 
         <!-- Status Info -->

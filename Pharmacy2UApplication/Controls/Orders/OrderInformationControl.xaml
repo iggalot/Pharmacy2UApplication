@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Pharmacy2UApplication.OrderInformationControl"
+﻿<local:BaseControl x:Class="Pharmacy2UApplication.OrderInformationControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,4 +19,4 @@
             Text="ORDER INFO GOES HERE" 
             FontSize="24"/>
     </Grid>
-</UserControl>
+</local:BaseControl>

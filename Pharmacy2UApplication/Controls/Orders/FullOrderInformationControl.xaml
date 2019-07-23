@@ -1,0 +1,205 @@
+﻿<local:BaseControl x:Class="Pharmacy2UApplication.FullOrderInformationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharmacy2UApplication"
+             mc:Ignorable="d" 
+             d:DesignHeight="1100" d:DesignWidth="850"
+                   Height="1100"  Width="800"
+    >
+    <Border Background="White">
+        <Grid x:Name="MainGrid" Margin="40 0 40 0"  Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="125"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0.75*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.0*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Icon/Logo-->
+            <Border Padding="20" Margin="5"  
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                Grid.Column="0">
+                <Image Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_HORZ.png"/>
+            </Border>
+
+            <!-- Title -->
+            <Label Grid.Row="1" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="3" 
+               FontWeight="Bold"  
+               FontSize="24" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Content="Pharmacy 2U Delivery"/>
+
+            <!-- Pharmacy Address -->
+            <StackPanel Orientation="Vertical"
+            Grid.Row="2"
+            Grid.Column="0" 
+            HorizontalAlignment="Left">
+                <Label FontSize="12" Content="Pharmacy Name"/>
+                <Label FontSize="12" Content="Street"/>
+                <Label FontSize="12" Content="City/State"/>
+                <Label FontSize="12" Content="Phone # - Option Info" />
+            </StackPanel>
+
+            <!-- Order Date / Order # -->
+            <StackPanel Orientation="Horizontal"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Margin="0 15">
+                <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
+                <Label FontSize="12" Content="ORDER DATE"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Margin="0 15">
+                <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
+                <Label FontSize="12" Content="ORDER NUMBER"/>
+            </StackPanel>
+
+            <!-- Customer Info -->
+            <StackPanel 
+                Orientation="Vertical"
+                Margin="0 0 0 15"
+                Grid.Row="4"
+                Grid.Column="0" 
+                HorizontalAlignment="Left">
+                    <Label FontSize="12" Content="CUSTOMER NAME"/>
+                    <Label FontSize="12" Content="CUSTOMER STREET"/>
+                    <Label FontSize="12" Content="CUSTOMER CITY / STATE / ZIP
+                       "/>
+            </StackPanel>
+            <Label Grid.Row="4" Grid.Column="1" FontSize="12" Content="PHONE NUMBER" />
+            <Label Grid.Row="4" Grid.Column="2" FontSize="12" Content="TYPE (HOME / WORK / ETC.)" />
+
+            <!-- Delivery instructions-->
+            <StackPanel
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0 0 0 20">
+                    <Label FontSize="12" FontWeight="Bold" Content="Delivery Special Instructions"/>
+                    <Label FontSize="12" Content="SPECIAL DELIVERY INSTRUCTIONS HERE"/>
+            </StackPanel>
+
+            <!-- Order Item List -->
+            <StackPanel
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Orientation="Vertical">
+                <Label Margin="0 0 0 0" FontSize="12" FontWeight="Bold" Content="Items"/>
+                <Label Margin="0 0 0 10" FontSize="12" Content="FOOD ORDER ITEMS"/>
+                <Label Margin="0 0 0 10" FontSize="12" Content="OTC ORDER ITEMS"/>
+                <Label Margin="0 0 0 10" FontSize="12" Content="PRESCRIPTION ORDER ITEMS"/>
+            </StackPanel>
+
+            <!-- Underline -->
+            <Border Grid.Row="7"  Grid.Column="0" Grid.ColumnSpan="3" Height="2" BorderThickness="0 0 0.2 0">
+                <!-- Underline -->
+                <Canvas>
+                    <Line Stroke="Black" X1="0" X2="{Binding ElementName=MainGrid, Path=ActualWidth}" />
+                </Canvas>
+            </Border>
+
+            <!-- Additional Items / Tax / Delivery Fee -->
+            <StackPanel
+            Grid.Row="8"
+            Grid.Column="0"
+            Orientation="Vertical">
+                <Label FontSize="12" Margin="0 15 0 10"  Content="Additional Items Total"/>
+                <Label FontSize="12" Margin="0 0 0 10"  Content="Tax"/>
+                <Label FontSize="12" Margin="0 0 0 10"  Content="Delivery Fee"/>
+            </StackPanel>
+            <StackPanel
+            Grid.Row="8"
+            Grid.Column="2"
+            Grid.ColumnSpan="3"
+            Orientation="Vertical">
+                <Label FontSize="12" Margin="0 15 0 10"  Content="ADDITIONAL ITEMS PRICE"/>
+                <Label FontSize="12" Margin="0 0 0 10"  Content="TAX PRICE"/>
+                <Label FontSize="12" Margin="0 0 0 10"  Content="DELIVERY PRICE"/>
+            </StackPanel>
+
+            <!-- Underline -->
+            <Border Grid.Row="9"  Grid.Column="0" Grid.ColumnSpan="3" Height="2" BorderThickness="0 0 0.2 0">
+                <!-- Underline -->
+                <Canvas>
+                    <Line Stroke="Black" X1="0" X2="{Binding ElementName=MainGrid, Path=ActualWidth}" />
+                </Canvas>
+            </Border>
+
+            <!-- SubTotal / Prescription Cost / Total -->
+            <StackPanel
+                Grid.Row="10"
+                Grid.Column="0"
+                Orientation="Vertical">
+                    <Label FontSize="12" Margin="0 15 0 10" Content="Subtotal"/>
+                    <Label FontSize="12" Margin="0 0 0 10" Content="Prescription Cost (to be determined by Pharmacy"/>
+                    <Label FontSize="12" Margin="0 0 0 10" Content="Total"/>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="10"
+                Grid.Column="2"
+                Grid.ColumnSpan="3"
+                Orientation="Vertical">
+                    <Label FontSize="12" Margin="0 15 0 10" Content="SUBTOTAL PRICE"/>
+                    <Label FontSize="12" Margin="0 0 0 10" Content="_________________________________"/>
+                    <Label FontSize="12" Margin="0 0 0 10" Content="_________________________________"/>
+            </StackPanel>
+
+            <!-- Delivery Confirmation Label -->
+            <Label 
+                Grid.Row="11"
+                Grid.Column="0"
+                FontSize="12" FontWeight="Bold" Content="Delivery Confirmation"/>
+            <Label
+                Grid.Row="11"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                FontSize="12" FontWeight="Bold" 
+                Content="POS Receipt # ________________________________________________________________________________________________"/>
+            
+
+            <!-- Signature Line -->
+            <StackPanel Margin="0 40 0 0" Orientation="Vertical" 
+                        Grid.Row="12" Grid.Column="0">
+                <Label FontWeight="Bold" FontSize="12" Content="____________________________________________________________________________________"/>
+                <Label VerticalAlignment="Top" FontWeight="Bold" FontSize="12" Content="Signature"/>
+            </StackPanel>
+            <StackPanel Margin="0 40 0 0"  Orientation="Vertical" 
+                    Grid.Row="12" Grid.Column="1">
+                <Label FontWeight="Bold" FontSize="12" Content="___________________________________________________________"/>
+                <Label VerticalAlignment="Top" FontWeight="Bold" FontSize="12" Content="Date"/>
+            </StackPanel>
+            <StackPanel Margin="0 40 0 0"  Orientation="Vertical"
+                    Grid.Row="12" Grid.Column="2">
+                <Label FontWeight="Bold" FontSize="12" Content="___________________________________________________________"/>
+                <Label VerticalAlignment="Top" FontWeight="Bold" FontSize="12" Content="Time"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</local:BaseControl>
