@@ -139,53 +139,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" Background="LightGray">
-            <Border Background="White" Padding="10" >
-                <Image
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Height="40"
-                     Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_HORZ.png"
-                />
-            </Border>
-            <Menu x:Name="MainMenu" Height="Auto" Width="Auto" VerticalAlignment="Center" Margin="50 0 0 0">
-                <MenuItem Header="Database">
-                    <MenuItem x:Name="DatabaseLogging" 
-                              Click="DatabaseLogging_Click"
-                              Header="Show Database Logs" IsCheckable="True"  IsChecked="False">
-                        <MenuItem.ToolTip>
-                            <ToolTip>Toggle database logging control visibility</ToolTip>
-                        </MenuItem.ToolTip>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="Debug Tools">
-                    <MenuItem x:Name="DebugTools" 
-                              Click="DebugTools_Click"
-                              Header="Show Debug Tools Control" IsCheckable="True"  IsChecked="False">
-                        <MenuItem.ToolTip>
-                            <ToolTip>Toggle debug tools visibility</ToolTip>
-                        </MenuItem.ToolTip>
-                    </MenuItem>
-                </MenuItem>
-
-            </Menu>
-
-
-
-            <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
-           
-
-
-
-        </StackPanel>
 
         <!-- Dimmed overlay -->
         <Border 
@@ -205,13 +164,21 @@
         <Border 
             Background="LightSlateGray" 
             Grid.Row="1"
-            Grid.Column="0" 
+            Grid.Column="0"
+            Grid.RowSpan="3"
             Padding="10">
 
             <StackPanel
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Top"
                 Orientation="Vertical" >
+                <Image Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="40"
+                     Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_HORZ.png"
+                />
+
                 <!-- The Order status query buttons-->
                 <local:OrderStatusControl />
                 
@@ -244,7 +211,7 @@
         </Border>
 
         <!-- Status Info -->
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2"   
+        <StackPanel Grid.Row="2" Grid.Column="1"   
                     Orientation="Vertical" Background="Gray" 
                     Panel.ZIndex="2">
             <Border Background="LightGreen" Padding="10"
@@ -263,7 +230,9 @@
                    
                 </StackPanel>
             </Border>
-            <TextBlock Text="STATUS BAR HERE" FontSize="18" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <TextBlock Text="STATUS BAR HERE" 
+                       FontSize="18" Foreground="White" 
+                       FontWeight="Bold" HorizontalAlignment="Left"/>
             <Border
                 Panel.ZIndex="10"
                 Visibility="{Binding ApplicationViewModel.ShouldHideDebugTools, Source={x:Static local:ViewModelLocator.Instance},
@@ -273,9 +242,44 @@
                 DataContext="{Binding ApplicationViewModel,
                                 Source={x:Static local:ViewModelLocator.Instance}}"/>
             </Border>
+        </StackPanel>
+
+        <!-- Debugging and Database Tools -->
+        <StackPanel Grid.Row="3" 
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"  
+                    Background="LightGray">
+
+            <Menu x:Name="MainMenu" 
+                  Grid.Column="1"
+                  Height="Auto" Width="Auto" 
+                  VerticalAlignment="Center" Margin="50 0 0 0">
+                <MenuItem Header="Database">
+                    <MenuItem x:Name="DatabaseLogging" 
+                              Click="DatabaseLogging_Click"
+                              Header="Show Database Logs" IsCheckable="True"  IsChecked="False">
+                        <MenuItem.ToolTip>
+                            <ToolTip>Toggle database logging control visibility</ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Debug Tools">
+                    <MenuItem x:Name="DebugTools" 
+                              Click="DebugTools_Click"
+                              Header="Show Debug Tools Control" IsCheckable="True"  IsChecked="False">
+                        <MenuItem.ToolTip>
+                            <ToolTip>Toggle debug tools visibility</ToolTip>
+                        </MenuItem.ToolTip>
+                    </MenuItem>
+                </MenuItem>
+
+            </Menu>
+
+            <TextBlock Background="cyan"  x:Name="Response" Text="--no message received--" Width="200" Height="50" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </StackPanel>
-        
+
         <!-- Our popup for activity changed --><!--
         <local:DatabaseChangedControl 
             DataContext="{Binding ApplicationViewModel,

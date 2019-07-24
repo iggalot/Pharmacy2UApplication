@@ -46,7 +46,11 @@
             <TextBlock Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding FirstName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="1" Grid.Column="4" Margin="5" Text="{Binding LastName, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1"  Grid.Column="9" Margin="5" Text="{Binding Status, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            
+            <!-- Status Visual Control -->
+            <local:StatusVisualControl Grid.Row="1" Grid.Column="9" Grid.RowSpan="2"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+            <!--<TextBlock Grid.Row="1"  Grid.Column="9" Margin="5" Text="{Binding Status, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Center"/>-->
 
             <!-- Address In formation -->
             <TextBlock Grid.Row="2" Grid.Column="0"  Margin="5" Text="ICON" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
