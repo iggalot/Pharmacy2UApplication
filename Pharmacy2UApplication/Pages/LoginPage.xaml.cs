@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharm2UAnimations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class LoginPage : BasePage
+    public partial class LoginPage : BasePageAnimation
     {
         public LoginPage()
         {

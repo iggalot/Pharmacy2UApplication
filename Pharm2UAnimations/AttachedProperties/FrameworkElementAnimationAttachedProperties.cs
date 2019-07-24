@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
-namespace Pharmacy2UApplication
+namespace Pharm2UAnimations
 {
     /// <summary>
     /// A base class to run any animation method when a boolean is set to true
     /// and a reverse animation when set to false
     /// </summary>
     /// <typeparam name="Parent"></typeparam>
-    public abstract class AnimateBaseProperty<Parent> : BaseAttachedProperty<Parent, bool>
-        where Parent : BaseAttachedProperty<Parent, bool>, new()
+    public abstract class AnimateBaseProperty<Parent> : BaseAnimationAttachedProperty<Parent, bool>
+        where Parent : BaseAnimationAttachedProperty<Parent, bool>, new()
     {
         #region Protected Properties
 

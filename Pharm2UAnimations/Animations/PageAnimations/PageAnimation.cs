@@ -1,6 +1,6 @@
 ﻿
 
-namespace Pharmacy2UApplication
+namespace Pharm2UAnimations
 {
     /// <summary>
     /// Styles of page animations for appearing / disappearing

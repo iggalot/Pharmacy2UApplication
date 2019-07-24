@@ -1,5 +1,6 @@
 ﻿
 using EntityFrameworkDatabase;
+using Pharm2UAnimations;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Interaction logic for <see cref="AllOrdersPage"/>.xaml
     /// </summary>
-    public partial class AllOrdersPage : BasePage
+    public partial class AllOrdersPage : BasePageAnimation
     {
         #region Private Members
 

@@ -1,5 +1,5 @@
 ﻿
-using System.Windows.Controls;
+using Pharm2UAnimations;
 
 
 namespace Pharmacy2UApplication
@@ -7,7 +7,7 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Interaction logic for <see cref="ReadyForPaymentOrdersPage"/>.xaml
     /// </summary>
-    public partial class ReadyForPaymentOrdersPage : BasePage
+    public partial class ReadyForPaymentOrdersPage : BasePageAnimation
     {
         public ReadyForPaymentOrdersPage()
         {

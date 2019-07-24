@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Pharm2UAnimations;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Pharmacy2UApplication
@@ -13,9 +14,9 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// The current page to show in the page host
         /// </summary>
-        public BasePage CurrentPage
+        public BasePageAnimation CurrentPage
         {
-            get => (BasePage)GetValue(CurrentPageProperty);
+            get => (BasePageAnimation)GetValue(CurrentPageProperty);
             set => SetValue(CurrentPageProperty, value);
         }
 
@@ -23,7 +24,7 @@ namespace Pharmacy2UApplication
         /// Registers a <see cref="CurrentPage"/> as a dependency property
         /// </summary>
         public static readonly DependencyProperty CurrentPageProperty =
-            DependencyProperty.Register(nameof(CurrentPage), typeof(BasePage), typeof(PageHost), new UIPropertyMetadata(CurrentPagePropertyChanged));
+            DependencyProperty.Register(nameof(CurrentPage), typeof(BasePageAnimation), typeof(PageHost), new UIPropertyMetadata(CurrentPagePropertyChanged));
 
         #endregion
 
@@ -63,7 +64,7 @@ namespace Pharmacy2UApplication
 
             // Animate out previous page when the loaded event fires
             // right after this call due to moving frames.
-            if (oldPageContent is BasePage oldPage)
+            if (oldPageContent is BasePageAnimation oldPage)
                 oldPage.ShouldAnimateOut = true;
 
             // Set the new page content

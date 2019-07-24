@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Pharmacy2UApplication
+namespace Pharm2UAnimations
 {
     /// <summary>
     /// A base page class that all viewable pages will inherit from.
     /// And is the basis for Animations of individual pages
     /// </summary>
-    public class BasePage : Page
+    public class BasePageAnimation : Page
     {
         #region Public Properties
 
@@ -41,7 +41,7 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BasePage()
+        public BasePageAnimation()
         {
             // Set our base page dimensions
             // TODO:  Move these defaults into a style that affects every Base Page automatically

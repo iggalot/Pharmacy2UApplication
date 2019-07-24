@@ -1,11 +1,9 @@
-﻿
-using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace Pharmacy2UApplication
+namespace Pharm2UAnimations
 {
     /// <summary>
     /// Helpers to animate pages in specific ways

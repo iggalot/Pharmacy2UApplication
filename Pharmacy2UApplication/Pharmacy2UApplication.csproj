@@ -72,13 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Animations\AnimationSlideInDirection.cs" />
-    <Compile Include="Animations\FrameworkElementAnimations.cs" />
-    <Compile Include="Animations\PageAnimation.cs" />
-    <Compile Include="Animations\PageAnimations.cs" />
-    <Compile Include="Animations\StoryboardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
-    <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
     <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Controls\Orders\FullOrderInformationControl.xaml.cs">
@@ -90,7 +84,6 @@
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -274,6 +267,10 @@
     <ProjectReference Include="..\EntityFrameworkDatabase\EntityFrameworkDatabase.csproj">
       <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
       <Name>EntityFrameworkDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharm2UAnimations\Pharm2UAnimations.csproj">
+      <Project>{458a010a-7bc4-49e3-b19e-b180683d9058}</Project>
+      <Name>Pharm2UAnimations</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pharm2UStyles\Pharm2UStyles.csproj">
       <Project>{4f3859c6-6166-413f-9fc5-409646203d59}</Project>

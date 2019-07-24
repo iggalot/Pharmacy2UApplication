@@ -4,7 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace Pharmacy2UApplication
+namespace Pharm2UAnimations
 {
     /// <summary>
     /// Animation helpers for <see cref="Storyboard"/>
