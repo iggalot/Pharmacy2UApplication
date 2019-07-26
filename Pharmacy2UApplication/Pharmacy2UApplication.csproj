@@ -139,6 +139,7 @@
     <Compile Include="Controls\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\OrderStatusTypesToFillValueConverter.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />

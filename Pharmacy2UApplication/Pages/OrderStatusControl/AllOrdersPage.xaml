@@ -18,7 +18,8 @@
                 <RowDefinition Height="25" />
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="All Orders Page" 
+                       
+            <TextBlock Grid.Row="0" Text="{Binding PageTitleString, FallbackValue='ERROR in Binding'}" 
                    HorizontalAlignment="Center" 
                    FontSize="20" Foreground="White"/>
 
