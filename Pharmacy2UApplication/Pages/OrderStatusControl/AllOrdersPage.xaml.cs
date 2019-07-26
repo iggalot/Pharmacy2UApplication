@@ -102,8 +102,8 @@ namespace Pharmacy2UApplication
             using (var context = new Pharm2UEntities())
             {
                 var AllOrders = (from order in context.P2U_Order
-                                 join customer in context.P2U_Customer
-                                 on order.CustomerID equals customer.ItemID
+                                 //join customer in context.P2U_Customer
+                                 //on order.CustomerID equals customer.ItemID
 
                                  select new
                                  {
@@ -117,9 +117,9 @@ namespace Pharmacy2UApplication
                                      CanceledWhen = order.CanceledWhen,
                                      ReturnedWhen = order.ReturnedWhen,
 
-                                     CustomerID = customer.ItemID,
-                                     FirstName = customer.FirstName,
-                                     LastName = customer.LastName,
+                                    // CustomerID = customer.ItemID,
+                                    // FirstName = customer.FirstName,
+                                    // LastName = customer.LastName,
                                      Status = order.Status
                                  }).ToList();
 
@@ -140,9 +140,9 @@ namespace Pharmacy2UApplication
                     JoinedOrderInfoList.Add(new JoinedOrderInfo()
                     {
                         OrderId = p.OrderID,
-                        FirstName = p.FirstName,
-                        LastName = p.LastName,
-                        CustomerId = p.CustomerID,
+                        //FirstName = p.FirstName,
+                        //LastName = p.LastName,
+                       // CustomerId = p.CustomerID,
                         NewOrderCreatedWhen = p.NewOrderCreatedWhen,
 
                         ReadyForPaymentWhen = p.ReadyForPaymentWhen,
@@ -190,52 +190,59 @@ namespace Pharmacy2UApplication
             // Check for null fields in the database UTC time fields to determine our status.
             // This is very ugly...
             if(NewOrderCreatedWhen != null)
+            {
+                if (ReadyForPaymentWhen != null)
                 {
-                    if (ReadyForPaymentWhen != null)
+                    if (ReadyForPackagingWhen != null)
                     {
-                        if (ReadyForPackagingWhen != null)
+                        if (ReadyForPickupWhen != null)
                         {
-                            if (ReadyForPickupWhen != null)
+                            if (OutForDeliveryWhen != null)
                             {
-                                if (OutForDeliveryWhen != null)
+                                if (DeliveredWhen != null)
                                 {
-                                    if (DeliveredWhen != null)
+                                    if ((CanceledWhen == null) || (ReturnedWhen == null))
                                     {
-                                        if(CanceledWhen == null &&  ReturnedWhen == null)
+                                        if ((CanceledWhen == null) && (ReturnedWhen == null))
                                         {
-                                        return OrderStatusTypes.STATUS_COMPLETED;
-
-                                        } else
-                                        {
-                                        if (CanceledWhen == null || ReturnedWhen == null)
-                                            return (CanceledWhen == null ? OrderStatusTypes.STATUS_RETURN_NOT_DELIVERED
-                                                : OrderStatusTypes.STATUS_CANCELED);
+                                            return OrderStatusTypes.STATUS_COMPLETED;
+                                        }
+                                        else if ((CanceledWhen == null) && (ReturnedWhen != null))
+                                            return OrderStatusTypes.STATUS_RETURN_NOT_DELIVERED;
+                                        else if ((CanceledWhen != null) && (ReturnedWhen == null))
+                                            return OrderStatusTypes.STATUS_CANCELED;
                                         else
+                                        {
                                             return OrderStatusTypes.STATUS_UNKNOWN;
-                                    }
+                                        }
                                     } else
                                     {
-                                        return OrderStatusTypes.STATUS_OUT_FOR_DELIVERY;
+                                        return OrderStatusTypes.STATUS_COMPLETED;
                                     }
+
                                 } else
                                 {
-                                    return OrderStatusTypes.STATUS_READY_FOR_PICKUP;
+                                    return OrderStatusTypes.STATUS_OUT_FOR_DELIVERY;
                                 }
-
                             } else
                             {
-                                return OrderStatusTypes.STATUS_READY_FOR_PACKAGING;
+                                return OrderStatusTypes.STATUS_READY_FOR_PICKUP;
                             }
+
                         } else
                         {
-                            return OrderStatusTypes.STATUS_READY_FOR_PAYMENT;
+                            return OrderStatusTypes.STATUS_READY_FOR_PACKAGING;
                         }
-                    }
-                    else
+                    } else
                     {
-                        return OrderStatusTypes.STATUS_NEWORDER;
+                        return OrderStatusTypes.STATUS_READY_FOR_PAYMENT;
                     }
                 }
+                else
+                {
+                    return OrderStatusTypes.STATUS_NEWORDER;
+                }
+            }
             else
                 return OrderStatusTypes.STATUS_UNKNOWN;
         }
