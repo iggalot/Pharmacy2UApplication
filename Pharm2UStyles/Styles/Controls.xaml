@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Pharmacy2UStyles">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Order is important here -->
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Control Hover highlight effect -->
+    <Style TargetType="{x:Type Border}" x:Key="OrderItemControlBorder">
+        <Setter Property="Background" Value="White"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockBase">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+
+    </Style>
+    
+    <!-- The main display text (always visible) of our item control -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockMain" BasedOn="{StaticResource OrderItemTextBlockBase}">
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+
+    <!-- The main display header text (always visible) of our item control -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockMainHeader" BasedOn="{StaticResource OrderItemTextBlockBase}">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- The expanded hovered text -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockExpanded" BasedOn="{StaticResource OrderItemTextBlockBase}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Light"/>
+    </Style>
+
+    <!-- The expanded hovered text -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockExpandedHeader" BasedOn="{StaticResource OrderItemTextBlockBase}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
+</ResourceDictionary>

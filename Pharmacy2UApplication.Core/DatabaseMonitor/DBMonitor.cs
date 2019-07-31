@@ -115,56 +115,56 @@ namespace Pharmacy2UApplication.Core
         // The action loop to be used by the thread that monitors the database for changes in activity
         private void MonitorDB()
         {
-            int loop = 0;
-            while (true)
-            {
-                // wait before scanning the database
-                Thread.Sleep(ThreadLoopTimeMilliSeconds);
-                loop++;
+        //    int loop = 0;
+        //    while (true)
+        //    {
+        //        // wait before scanning the database
+        //        Thread.Sleep(ThreadLoopTimeMilliSeconds);
+        //        loop++;
 
-                using (var sqlConnection = new SqlConnection("Server = .; Database = test; User Id = sa; Password = sqlserver;"))
-                {
-                    try
-                    {
-                        // Open the SQL connection
-                        sqlConnection.Open();
+        //        using (var sqlConnection = new SqlConnection("Server = .; Database = test; User Id = sa; Password = sqlserver;"))
+        //        {
+        //            try
+        //            {
+        //                // Open the SQL connection
+        //                sqlConnection.Open();
 
-                        // For Reading a record:  The command to execute on our SQL server
-                        string cmd = "SELECT COUNT(*) FROM dbo.Users";
-                        Console.WriteLine(cmd);
+        //                // For Reading a record:  The command to execute on our SQL server
+        //                string cmd = "SELECT COUNT(*) FROM dbo.Users";
+        //                Console.WriteLine(cmd);
 
-                        using (var command = new SqlCommand(cmd, sqlConnection))
-                        {
-                            // Read the database results that are returned
-                            NumRecords = (Int32)command.ExecuteScalar();
-                            cmd = $"{loop.ToString()}: {NumRecords.ToString()} records found this cycle";
-                            Console.WriteLine(cmd);
+        //                using (var command = new SqlCommand(cmd, sqlConnection))
+        //                {
+        //                    // Read the database results that are returned
+        //                    NumRecords = (Int32)command.ExecuteScalar();
+        //                    cmd = $"{loop.ToString()}: {NumRecords.ToString()} records found this cycle";
+        //                    Console.WriteLine(cmd);
 
-                            // If the database has more records than the last cycle, signify that it has changed
-                            if (NumRecords > LastAcknowledge)
-                            {
-                                ChangeSinceLastAcknowledgeProperty = NumRecords - LastAcknowledge;
-                                DBHasChanged = true;
-                            } 
-                        }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Error opening the database in the monitoring thread");
-                    }
-                    finally
-                    {
-                        sqlConnection.Close();
-                    }
+        //                    // If the database has more records than the last cycle, signify that it has changed
+        //                    if (NumRecords > LastAcknowledge)
+        //                    {
+        //                        ChangeSinceLastAcknowledgeProperty = NumRecords - LastAcknowledge;
+        //                        DBHasChanged = true;
+        //                    } 
+        //                }
+        //            }
+        //            catch
+        //            {
+        //                Console.WriteLine("Error opening the database in the monitoring thread");
+        //            }
+        //            finally
+        //            {
+        //                sqlConnection.Close();
+        //            }
 
-                    // If a change has been detected, trigger the popup
-                    if (DBHasChanged)
-                        IoC.Get<ApplicationViewModel>().PopupAlertWindow.SetPopupWindowVisible(true);
+        //            // If a change has been detected, trigger the popup
+        //            if (DBHasChanged)
+        //                IoC.Get<ApplicationViewModel>().PopupAlertWindow.SetPopupWindowVisible(true);
 
-                    // Reset the flag
-                    DBHasChanged = false;
-                }
-            }
+        //            // Reset the flag
+        //            DBHasChanged = false;
+        //        }
+        //    }
         }
 
         #endregion

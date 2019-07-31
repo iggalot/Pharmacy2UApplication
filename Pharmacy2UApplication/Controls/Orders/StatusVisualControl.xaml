@@ -8,7 +8,7 @@
              >
 
     <UserControl.Resources>
-        <GridLength x:Key="GridHeight">30</GridLength>
+        <GridLength x:Key="GridHeight">15</GridLength>
         <GridLength x:Key="GridWidth">10</GridLength>
         <Thickness x:Key="RectMargin">2</Thickness>
     </UserControl.Resources>

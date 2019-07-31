@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Buttons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Texts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Window.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

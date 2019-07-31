@@ -29,7 +29,7 @@
                 <ItemsControl Name="OrderActivity" ItemsSource="{Binding JoinedOrderInfoList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:OrderItemControl DataContext="{Binding}"/>
+                            <local:OrderItemControl DataContext="{Binding}" />
                             <!--<Border Margin="5"
                             CornerRadius="8"
                             Background="White"

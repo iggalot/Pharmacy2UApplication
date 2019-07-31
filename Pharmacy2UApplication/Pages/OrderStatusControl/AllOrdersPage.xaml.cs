@@ -75,11 +75,11 @@ namespace Pharmacy2UApplication
 
 
         /// <summary>
-        /// The query to read all orders in the database
+        /// The query to read all orders in the database.  Reads the databse one by one rather than
+        /// performing one single large join query in the database
         /// </summary>
         public void ReadAllOrders()
         {
-
             // Clear the JoinedOrderInfoList
             JoinedOrderInfoList.Clear();
 
@@ -98,12 +98,13 @@ namespace Pharmacy2UApplication
             // Join the order with the provider info
 
 
-
+            // Our context for the database
             using (var context = new Pharm2UEntities())
             {
+                // join our order data with our customer data
                 var AllOrders = (from order in context.P2U_Order
-                                 //join customer in context.P2U_Customer
-                                 //on order.CustomerID equals customer.ItemID
+                                 join customer in context.P2U_Customer
+                                 on order.CustomerID equals customer.ItemID
 
                                  select new
                                  {
@@ -117,9 +118,9 @@ namespace Pharmacy2UApplication
                                      CanceledWhen = order.CanceledWhen,
                                      ReturnedWhen = order.ReturnedWhen,
 
-                                    // CustomerID = customer.ItemID,
-                                    // FirstName = customer.FirstName,
-                                    // LastName = customer.LastName,
+                                     CustomerID = customer.ItemID,
+                                     FirstName = customer.FirstName,
+                                     LastName = customer.LastName,
                                      Status = order.Status
                                  }).ToList();
 
@@ -140,9 +141,9 @@ namespace Pharmacy2UApplication
                     JoinedOrderInfoList.Add(new JoinedOrderInfo()
                     {
                         OrderId = p.OrderID,
-                        //FirstName = p.FirstName,
-                        //LastName = p.LastName,
-                       // CustomerId = p.CustomerID,
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        CustomerId = p.CustomerID,
                         NewOrderCreatedWhen = p.NewOrderCreatedWhen,
 
                         ReadyForPaymentWhen = p.ReadyForPaymentWhen,
@@ -165,7 +166,7 @@ namespace Pharmacy2UApplication
 
         #region Helper Methods
         /// <summary>
-        /// 
+        /// A routine to determine the status of an order by looking at which time fields are currently null.
         /// </summary>
         /// <param name="NewOrderCreatedWhen">Time when the order was placed</param>
         /// <param name="ReadyForPaymentWhen">Time when the order was marked ready for payment</param>
@@ -250,7 +251,9 @@ namespace Pharmacy2UApplication
 
 
         #region Default Constructor
-
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public AllOrdersPage()
         {
             // Initialize our collection
@@ -259,8 +262,10 @@ namespace Pharmacy2UApplication
 
             InitializeComponent();
 
+            // Fetch all orders from the database
             DisplayAllOrders();
 
+            // Set our data context
             DataContext = this;
         }
 
@@ -271,7 +276,6 @@ namespace Pharmacy2UApplication
         {
             //Read all Orders
             ReadAllOrders();
-            //ReadAllZips();
         }
         #endregion
     }
