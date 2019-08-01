@@ -41,12 +41,18 @@
     <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockExpanded" BasedOn="{StaticResource OrderItemTextBlockBase}">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 0 10 0"/>
     </Style>
 
     <!-- The expanded hovered text -->
     <Style TargetType="{x:Type TextBlock}" x:Key="OrderItemTextBlockExpandedHeader" BasedOn="{StaticResource OrderItemTextBlockBase}">
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
     </Style>
     
 </ResourceDictionary>

@@ -7,6 +7,52 @@
              mc:Ignorable="d" 
             >
 
+    <local:BaseControl.Resources>
+        <!-- Data template for our customer information exapnded screen -->
+        <DataTemplate x:Key="CustomerDataTemplate">
+            <Grid>
+                <!-- Address In formation -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+                <!-- Address expanded data headers -->
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="0" Text="AddressType"/>
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="1" Grid.Column="0" Text="Address" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="2" Grid.Column="0" Text="City / State / Zip"/>
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="3" Grid.Column="0" Text="Country"/>
+
+                <!-- Address expanded data -->
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="0" Grid.Column="1" Text="{Binding AddressType, FallbackValue='Error'}"/>
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="1" Text="{Binding StreetAddress, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="1" Text="{Binding City, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="2" Text="{Binding State, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="3" Text="{Binding Zip, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="3" Grid.Column="1" Text="{Binding Country, FallbackValue='Error'}" />
+
+                <!-- Address expanded data headers -->
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="1" Grid.Column="4" Text="ContactMethod" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="2" Grid.Column="4" Text="Email" />
+
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="5" Text="{Binding Path=ContactMethod, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="5" Text="{Binding Email, FallbackValue='Error'}" />
+
+            </Grid>
+        </DataTemplate>
+    </local:BaseControl.Resources>
+    
+    
     <!-- Our main button conttrol -->
     <Button >
         <Button.Template>
@@ -20,22 +66,25 @@
                     >
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- Header info-->
@@ -44,66 +93,39 @@
                         <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Row="0" Grid.Column="2" Text="First Name" />
                         <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Row="0" Grid.Column="3" Text="Last Name" />
                         <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Row="0" Grid.Column="4" Text="Created" />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Row="0" Grid.Column="5" Text="Phone" />
                         <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Row="0" Grid.Column="9" Text="{Binding StatusType, FallbackValue='Error'}" HorizontalAlignment="Right"/>
                                                                             
-                        <!-- Order and Customer information -->             
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="0" Margin="5" Text="{Binding OrderId, FallbackValue='Error'}" />
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding CustomerId, FallbackValue='Error'}"  />
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="2" Margin="5" Text="{Binding FirstName, FallbackValue='Error'}" />
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding LastName, FallbackValue='Error'}" />
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="4" Margin="5" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" />
+                        <!-- Order and Customer data -->             
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="0" Text="{Binding OrderId, FallbackValue='Error'}" />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="1" Text="{Binding CustomerId, FallbackValue='Error'}"  />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="2" Text="{Binding FirstName, FallbackValue='Error'}" />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="3" Text="{Binding LastName, FallbackValue='Error'}" />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="4" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" />
+                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="5" Text="{Binding Phone, FallbackValue='Error'}"  />
 
                         <!-- Status Visual Control -->
-                        <local:StatusVisualControl Grid.Row="1" Grid.Column="9" Grid.RowSpan="2"  Margin ="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <local:StatusVisualControl 
+                            Grid.Row="1" 
+                            Grid.Column="9" 
+                            Grid.RowSpan="2" 
+                            Margin ="0 0 5 0" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Center"/>
 
                         <!-- Expanded information from hovering -->
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="9" Grid.RowSpan="4" Orientation="Vertical" x:Name="ExpandedInfo" Visibility="Collapsed">
 
-                        <Border Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="9" x:Name="ExpandedInfo" Visibility="Collapsed">
-                            <Grid>
-                                <!-- Address In formation -->
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="200"/>
+                            <!-- Customer Address Information -->
+                            <ContentControl 
+                                Content="{Binding}"
+                                ContentTemplate="{StaticResource CustomerDataTemplate}"/>
 
-                                </Grid.ColumnDefinitions>
-                                
-                                <!-- Address expanded data headers -->
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="1" Text="Address" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="2" Text="City"/>
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="3" Text="State" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="4" Text="Zip"/>
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="0" Grid.Column="5" Text="Country"/>
-
-                                <!-- Address expanded data -->
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="1" Text="{Binding Address, FallbackValue='Error'}" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="2" Text="{Binding City, FallbackValue='Error'}" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="3" Text="{Binding State, FallbackValue='Error'}" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="4" Text="{Binding Zip, FallbackValue='Error'}" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="5" Text="{Binding Country, FallbackValue='Error'}" />
-                                
-                                <!-- Order Details Information -->
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Grid.Row="2" Grid.Column="1" Text="Food Details" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Grid.Row="3" Grid.Column="1" Text="OTC Details" />
-                                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Grid.Row="4" Grid.Column="1" Text="Delivery Details" />
-
-                            </Grid>
-                        </Border>
+                            <!-- Order Details Information -->
+                            <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Text="Food Details" />
+                            <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Text="OTC Details" />
+                            <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}"  Text="Delivery Details" />
+                        </StackPanel>
                     </Grid>
                 </Border>
                 

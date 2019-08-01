@@ -10,11 +10,25 @@ using System.Linq;
 namespace Pharmacy2UApplication
 {
     /// <summary>
+    /// A class for holding our city info search results from P2U_ZipCodes
+    /// </summary>
+    public class CityInfo
+    {
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string County { get; set; }
+    }
+    
+    /// <summary>
     /// A class to contain the join query for all records
     /// </summary>
     public class JoinedOrderInfo
     {
+        // OrderID number
         public int OrderId { get; set; }
+
+        // Order status dates
         public DateTime? NewOrderCreatedWhen { get; set; }
         public DateTime? ReadyForPaymentWhen {get; set; }
         public DateTime? ReadyForPackagingWhen { get; set; }
@@ -24,9 +38,23 @@ namespace Pharmacy2UApplication
         public DateTime? CanceledWhen { get; set; }
         public DateTime? ReturnedWhen { get; set; }
 
+        // Customer information
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string ContactMethod { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string StreetAddress { get; set; }
+
+        public string Zip { get; set; }
+        public string AddressType { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Country { get; set; }
+        public string County { get; set; }
+
 
         // the status string as expressed in the Order Table
         public string Status { get; set; } 
@@ -48,9 +76,10 @@ namespace Pharmacy2UApplication
         private string mPageTitleString;
 
         #endregion
-        
+
 
         #region Public Properties
+        public string ContactMethod { get; set; } = "All Orders Page";
 
         /// <summary>
         /// The collection entity to store our joined order queries {
@@ -70,9 +99,6 @@ namespace Pharmacy2UApplication
         #endregion
 
         #region Queries / Methods
-
-
-
 
         /// <summary>
         /// The query to read all orders in the database.  Reads the databse one by one rather than
@@ -121,6 +147,14 @@ namespace Pharmacy2UApplication
                                      CustomerID = customer.ItemID,
                                      FirstName = customer.FirstName,
                                      LastName = customer.LastName,
+
+                                     ContactMethod = customer.ContactMethod,
+                                     Phone = customer.Phone,
+                                     Email = customer.Email,
+                                     StreetAddress = customer.StreetAddress,
+                                     Zip = customer.Zip,
+                                     AddressType = customer.AddressType,
+
                                      Status = order.Status
                                  }).ToList();
 
@@ -138,25 +172,76 @@ namespace Pharmacy2UApplication
                         p.ReturnedWhen
                         );
 
-                    JoinedOrderInfoList.Add(new JoinedOrderInfo()
-                    {
-                        OrderId = p.OrderID,
-                        FirstName = p.FirstName,
-                        LastName = p.LastName,
-                        CustomerId = p.CustomerID,
-                        NewOrderCreatedWhen = p.NewOrderCreatedWhen,
+  
+                    // Record our database record from the order information search
+                    JoinedOrderInfo temp = new JoinedOrderInfo();
 
-                        ReadyForPaymentWhen = p.ReadyForPaymentWhen,
-                        ReadyForPackagingWhen = p.ReadyForPackagingWhen,
-                        ReadyForPickupWhen = p.ReadyForPickupWhen,
-                        OutForDeliveryWhen = p.OutForDeliveryWhen,
-                        DeliveredWhen = p.DeliveredWhen,
-                        CanceledWhen = p.CanceledWhen,
-                        ReturnedWhen = p.ReturnedWhen,
-                        Status = p.Status,
-                        StatusType = statusType
-                        
-                    });
+                    temp.OrderId = p.OrderID;
+                    temp.FirstName = p.FirstName;
+                    temp.LastName = p.LastName;
+                    temp.CustomerId = p.CustomerID;
+
+                    temp.ContactMethod = p.ContactMethod;
+                    temp.Phone = p.Phone;
+                    temp.Email = p.Email;
+                    temp.StreetAddress = p.StreetAddress;
+                    temp.Zip = p.Zip;
+                    temp.AddressType = p.AddressType;
+
+                    temp.NewOrderCreatedWhen = p.NewOrderCreatedWhen;
+                    temp.ReadyForPaymentWhen = p.ReadyForPaymentWhen;
+                    temp.ReadyForPackagingWhen = p.ReadyForPackagingWhen;
+                    temp.ReadyForPickupWhen = p.ReadyForPickupWhen;
+                    temp.OutForDeliveryWhen = p.OutForDeliveryWhen;
+                    temp.DeliveredWhen = p.DeliveredWhen;
+                    temp.CanceledWhen = p.CanceledWhen;
+                    temp.ReturnedWhen = p.ReturnedWhen;
+                    temp.Status = p.Status;
+                    temp.StatusType = statusType;
+
+                    // Determine the city information based on the zip code of our query
+
+                    // join our order data with our customer data
+                    var cityresult = (from cityinfo in context.P2U_ZipCodes
+                                    where cityinfo.Zip == temp.Zip
+
+                                    select new
+                                    {
+                                        City = cityinfo.City,
+                                        State = cityinfo.State,
+                                        Country = cityinfo.Country,
+                                        County = cityinfo.County
+                                    }).ToList();
+
+                    // Take the first matching zipcode that isnt null
+                    bool cityFound = false;
+                    // Loop through our cityresult search results
+                    foreach (var c in cityresult)
+                    {
+                        // If we have valid strings in all fields on the result, take the first one
+                        if (c.City != null && c.State != null && c.Country != null && c.County != null)
+                        {
+                            temp.City = c.City;
+                            temp.State = c.State;
+                            temp.Country = c.Country;
+                            temp.County = c.County;
+                            cityFound = true;
+                            break;
+                        }
+                    }
+
+                    // If no matching record is found, install placeholder information
+                    if (!cityFound)
+                    {
+                        temp.City = "City?";
+                        temp.State = "State?";
+                        temp.Country = "Country?";
+                        temp.County = "County?";
+                    }
+
+                    // Add our entry to our list
+                    JoinedOrderInfoList.Add(temp);
+
                     //Console.WriteLine($"{p.OrderID},  {p.FirstName}, {p.LastName}");
                 }
             }

@@ -10,6 +10,8 @@ namespace Pharmacy2UApplication
     /// </summary>
     public partial class OrderItemControl : BaseControl
     {
+       // public string ContactMethod { get; set; } = "Order Item Control Page";
+
         public OrderItemControl()
         {
             InitializeComponent();
