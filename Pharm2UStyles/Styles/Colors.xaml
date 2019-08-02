@@ -17,5 +17,62 @@
     <Color x:Key="ForegroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}"/>
 
+    <!-- Deaconess Greens -->
+    <Color x:Key="DeaconessVeryLightGreen">#06ebdd</Color>
+    <SolidColorBrush x:Key="DeaconessVeryLightGreenBrush" Color="{StaticResource DeaconessVeryLightGreen}"/>
+
+    <Color x:Key="DeaconessLightGreen">#04dccf</Color>
+    <SolidColorBrush x:Key="DeaconessLightGreenBrush" Color="{StaticResource DeaconessLightGreen}"/>
+
+    <Color x:Key="DeaconessGreen">#03c6ba</Color>
+    <SolidColorBrush x:Key="DeaconessGreenBrush" Color="{StaticResource DeaconessGreen}"/>
+
+    <Color x:Key="DeaconessDarkGreen">#03b4aa</Color>
+    <SolidColorBrush x:Key="DeaconessDarkGreenBrush" Color="{StaticResource DeaconessDarkGreen}"/>
+
+    <Color x:Key="DeaconessVeryDarkGreen">#02a69c</Color>
+    <SolidColorBrush x:Key="DeaconessVeryDarkGreenBrush" Color="{StaticResource DeaconessVeryDarkGreen}"/>
+    
+    <Color x:Key="DeaconessUltraDarkGreen">#059e94</Color>
+    <SolidColorBrush x:Key="DeaconessUltraDarkGreenBrush" Color="{StaticResource DeaconessUltraDarkGreen}"/>
+
+    <!-- Deaconess Blues -->
+    <Color x:Key="DeaconessVeryLightBlue">#76e2f5</Color>
+    <SolidColorBrush x:Key="DeaconessVeryLightBlueBrush" Color="{StaticResource DeaconessVeryLightBlue}"/>
+
+    <Color x:Key="DeaconessLightBlue">#28d6f5</Color>
+    <SolidColorBrush x:Key="DeaconessLightBlueBrush" Color="{StaticResource DeaconessLightBlue}"/>
+
+    <Color x:Key="DeaconessBlue">#03c6e8</Color>
+    <SolidColorBrush x:Key="DeaconessBlueBrush" Color="{StaticResource DeaconessBlue}"/>
+
+    <Color x:Key="DeaconessDarkBlue">#03b2d1</Color>
+    <SolidColorBrush x:Key="DeaconessDarkBlueBrush" Color="{StaticResource DeaconessDarkBlue}"/>
+
+    <Color x:Key="DeaconessVeryDarkBlue">#029bb6</Color>
+    <SolidColorBrush x:Key="DeaconessVeryDarkBlueBrush" Color="{StaticResource DeaconessVeryDarkBlue}"/>
+
+    <Color x:Key="DeaconessUltraDarkBlue">#028ca4</Color>
+    <SolidColorBrush x:Key="DeaconessUltraDarkBlueBrush" Color="{StaticResource DeaconessUltraDarkBlue}"/>
+
+    <!-- Deaconess Purples -->
+    <Color x:Key="DeaconessVeryLightPurple">#c5a9e1</Color>
+    <SolidColorBrush x:Key="DeaconessVeryLightPurpleBrush" Color="{StaticResource DeaconessVeryLightPurple}"/>
+
+    <Color x:Key="DeaconessLightPurple">#a980d2</Color>
+    <SolidColorBrush x:Key="DeaconessLightPurpleBrush" Color="{StaticResource DeaconessLightPurple}"/>
+
+    <Color x:Key="DeaconessPurple">#966ac3</Color>
+    <SolidColorBrush x:Key="DeaconessPurpleBrush" Color="{StaticResource DeaconessPurple}"/>
+
+    <Color x:Key="DeaconessDarkPurple">#845fa9</Color>
+    <SolidColorBrush x:Key="DeaconessDarkPurpleBrush" Color="{StaticResource DeaconessDarkPurple}"/>
+
+    <Color x:Key="DeaconessVeryDarkPurple">#774ba3</Color>
+    <SolidColorBrush x:Key="DeaconessVeryDarkPurpleBrush" Color="{StaticResource DeaconessVeryDarkPurple}"/>
+
+    <Color x:Key="DeaconessUltraDarkPurple">#70419f</Color>
+    <SolidColorBrush x:Key="DeaconessUltraDarkPurpleBrush" Color="{StaticResource DeaconessUltraDarkPurple}"/>
+
 
 </ResourceDictionary>

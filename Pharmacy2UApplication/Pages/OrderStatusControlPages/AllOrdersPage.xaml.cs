@@ -79,8 +79,6 @@ namespace Pharmacy2UApplication
 
 
         #region Public Properties
-        public string ContactMethod { get; set; } = "All Orders Page";
-
         /// <summary>
         /// The collection entity to store our joined order queries {
         /// </summary>

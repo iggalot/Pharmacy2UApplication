@@ -8,4 +8,20 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 4"/>
     </Style>
+    
+    <!-- Deaconess Admin Control TextBlocks-->
+    <Style TargetType="{x:Type TextBlock}" x:Key="AdminTextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 4"/>
+    </Style>
+    
+    <!-- Deaconess Admin Control CheckBox-->
+    <Style TargetType="{x:Type CheckBox}" x:Key="AdminCheckBox">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 4"/>
+    </Style>
 </ResourceDictionary>

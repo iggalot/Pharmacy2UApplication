@@ -50,9 +50,29 @@ namespace Pharmacy2UApplication
         public ICommand ReturnedOrdersCommand { get; set; }
 
         /// <summary>
-        ///  The command to execute when the Completed ORders button is clicked
+        ///  The command to execute when the Completed Orders button is clicked
         /// </summary>
         public ICommand CompletedOrdersCommand { get; set; }
+
+        /// <summary>
+        /// The command to execute when the OTCMedication Admin button is clicked
+        /// </summary>
+        public ICommand AdminOTCMedicationEditCommand { get; set; }
+
+        /// <summary>
+        /// The command to execute when the Food Admin button is clicked
+        /// </summary>
+        public ICommand AdminFoodEditCommand { get; set; }
+
+        /// <summary>
+        /// The command to execute when the Pharmacy admin button is clicked
+        /// </summary>
+        public ICommand AdminPharmacyEditCommand { get; set; }
+
+        /// <summary>
+        /// The command to execute when the Delivery admin button is clicked
+        /// </summary>
+        public ICommand AdminDeliveryEditCommand { get; set; }
 
         #endregion
 
@@ -71,7 +91,12 @@ namespace Pharmacy2UApplication
             ReadyForDeliveryCommand = new RelayCommand(() => this.GetReadyForDeliveryOrders());
             OutForDeliveryCommand = new RelayCommand(() => this.GetOutForDeliveryOrders());
             ReturnedOrdersCommand = new RelayCommand(() => this.GetReturnedOrders());
-            CompletedOrdersCommand = new RelayCommand(() => this.GetCompletedOrders());            
+            CompletedOrdersCommand = new RelayCommand(() => this.GetCompletedOrders());
+
+            AdminOTCMedicationEditCommand = new RelayCommand(() => this.GetAdminOTCMedicationEdit());
+            AdminFoodEditCommand = new RelayCommand(() => this.GetAdminFoodEdit());
+            AdminPharmacyEditCommand = new RelayCommand(() => this.GetAdminPharmacyEdit());
+            AdminDeliveryEditCommand = new RelayCommand(() => this.GetAdminDeliveryEdit());
         }
 
         #endregion
@@ -140,6 +165,39 @@ namespace Pharmacy2UApplication
         {
             IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.CompletedOrdersPage);
         }
+
+        /// <summary>
+        /// The functionality for when the user clickes the OTC Medication admin button on the AdminControl
+        /// </summary>
+        public void GetAdminOTCMedicationEdit()
+        {
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.AdminOTCMedicationEditPage);
+        }
+
+        /// <summary>
+        /// The functionality for when the user clickes the Food admin button on the AdminControl
+        /// </summary>
+        public void GetAdminFoodEdit()
+        {
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.AdminFoodEditPage);
+        }
+
+        /// <summary>
+        /// The functionality for when the user clickes the Pharmacy admin button on the AdminControl
+        /// </summary>
+        public void GetAdminPharmacyEdit()
+        {
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.AdminPharmacyEditPage);
+        }
+
+        /// <summary>
+        /// The functionality for when the user clickes the Delivery admin button on the AdminControl
+        /// </summary>
+        public void GetAdminDeliveryEdit()
+        {
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.AdminDeliveryEditPage);
+        }
+
 
 
 

@@ -71,5 +71,25 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         AllOrdersPage = 12,
 
+        /// <summary>
+        /// For displaying the OTC Medication admin page
+        /// </summary>
+        AdminOTCMedicationEditPage = 13,
+
+        /// <summary>
+        /// For displaying the Food admin page
+        /// </summary>
+        AdminFoodEditPage = 14,
+
+        /// <summary>
+        /// For displaying the Pharmacy admin page
+        /// </summary>
+        AdminPharmacyEditPage = 15,
+
+        /// <summary>
+        /// For displaying the delivery admin page
+        /// </summary>
+       AdminDeliveryEditPage = 16,
+
     }
 }

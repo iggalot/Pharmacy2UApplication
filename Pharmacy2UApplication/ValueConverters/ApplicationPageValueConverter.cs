@@ -45,6 +45,20 @@ namespace Pharmacy2UApplication
 
                 case ApplicationPage.AllOrdersPage:
                     return new AllOrdersPage();
+
+                case ApplicationPage.AdminOTCMedicationEditPage:
+                    return new AdminOTCMedicationEditPage();
+
+                case ApplicationPage.AdminFoodEditPage:
+                    return new AdminFoodEditPage();
+
+                case ApplicationPage.AdminPharmacyEditPage:
+                    return new AdminPharmacyEditPage();
+
+                case ApplicationPage.AdminDeliveryEditPage:
+                    return new AdminDeliveryEditPage();
+
+
                 default:
                     Debugger.Break();
                     return null;

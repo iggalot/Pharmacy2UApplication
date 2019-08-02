@@ -74,7 +74,22 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
+    <Compile Include="Controls\Administration\AdminDeliveryEditControl.xaml.cs">
+      <DependentUpon>AdminDeliveryEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AdminPharmacyEditControl.xaml.cs">
+      <DependentUpon>AdminPharmacyEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AdminOTCMedicationEditControl.xaml.cs">
+      <DependentUpon>AdminOTCMedicationEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\AdminFoodEditControl.xaml.cs">
+      <DependentUpon>AdminFoodEditControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BaseControl.cs" />
+    <Compile Include="Controls\Debug\DebugColorSchemeVisualControl.xaml.cs">
+      <DependentUpon>DebugColorSchemeVisualControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Orders\FullOrderInformationControl.xaml.cs">
       <DependentUpon>FullOrderInformationControl.xaml</DependentUpon>
     </Compile>
@@ -87,31 +102,43 @@
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdminControlPages\AdminPharmacyEditPage.xaml.cs">
+      <DependentUpon>AdminPharmacyEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminControlPages\AdminDeliveryEditPage.xaml.cs">
+      <DependentUpon>AdminDeliveryEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminControlPages\AdminFoodEditPage.xaml.cs">
+      <DependentUpon>AdminFoodEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminControlPages\AdminOTCMedicationEditPage.xaml.cs">
+      <DependentUpon>AdminOTCMedicationEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\CompletedOrdersPage.xaml.cs">
       <DependentUpon>CompletedOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\AllOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\AllOrdersPage.xaml.cs">
       <DependentUpon>AllOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\ReturnedOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml.cs">
       <DependentUpon>ReturnedOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\OutForDeliveryOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\OutForDeliveryOrdersPage.xaml.cs">
       <DependentUpon>OutForDeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\ReadyForDeliveryOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\ReadyForDeliveryOrdersPage.xaml.cs">
       <DependentUpon>ReadyForDeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\ReadyForPaymentOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\ReadyForPaymentOrdersPage.xaml.cs">
       <DependentUpon>ReadyForPaymentOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\ReadyForPackagingOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\ReadyForPackagingOrdersPage.xaml.cs">
       <DependentUpon>ReadyForPackagingOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderStatusControl\NewOrdersPage.xaml.cs">
+    <Compile Include="Pages\OrderStatusControlPages\NewOrdersPage.xaml.cs">
       <DependentUpon>NewOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrderInformationPage.xaml.cs">
@@ -143,6 +170,26 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
+    <Page Include="Controls\Administration\AdminDeliveryEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\AdminPharmacyEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\AdminOTCMedicationEditControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\AdminFoodEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Debug\DebugColorSchemeVisualControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Orders\FullOrderInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,39 +218,55 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AdminControlPages\AdminPharmacyEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AdminControlPages\AdminDeliveryEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AdminControlPages\AdminFoodEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AdminControlPages\AdminOTCMedicationEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OrderStatusControl\CompletedOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\CompletedOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\AllOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\AllOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\ReturnedOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\OutForDeliveryOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\OutForDeliveryOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\ReadyForDeliveryOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\ReadyForDeliveryOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\ReadyForPaymentOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\ReadyForPaymentOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\ReadyForPackagingOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\ReadyForPackagingOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OrderStatusControl\NewOrdersPage.xaml">
+    <Page Include="Pages\OrderStatusControlPages\NewOrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
