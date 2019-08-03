@@ -11,6 +11,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -22,17 +26,94 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Style="{StaticResource AdminTextBlock}" Grid.Row="0" Grid.Column="0" Text="FOOD ITEM" IsEnabled="False"/>
-        <TextBlock Style="{StaticResource AdminTextBlock}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Text="DESCRIPTION" IsEnabled="False"/>
-        <TextBlock Style="{StaticResource AdminTextBlock}" Grid.Row="0" Grid.Column="2" Text="COST" IsEnabled="False"/>
-        <CheckBox  Style="{StaticResource AdminCheckBox}" Grid.Row="0" Grid.Column="3" Content="Taxable" IsChecked="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Style="{StaticResource AdminTextBlock}" Grid.Row="0" Grid.Column="4" Text="FOOD TYPE" IsEnabled="False"/>
+        <!-- Headers -->
+        <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Row="0" Grid.Column="0" Text="{Binding ViewModel.ModeText}"/>
+        <Button Grid.Row="0"  Grid.Column="6"  
+                Content="Add New Item"
+                Visibility="{Binding Path=ViewModel.IsEditEnabled, 
+                    Converter={local:BooleanToVisibilityConverter}}"
+                />
+        
+        <Grid Grid.Row="1" Grid.ColumnSpan="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <Button Style="{StaticResource AdminControlButton}" Grid.Row="0" Grid.Column="5" Content="Edit" />
-        <Button Style="{StaticResource AdminControlButton}" Grid.Row="0" Grid.Column="6" Content="Save" />
-        <Button Style="{StaticResource AdminControlButton}" Grid.Row="0" Grid.Column="7" Content="Cancel" />
+
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="0" Text="Item Name" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="1" Text="Description" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="2" Text="Price" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="3" Text="Taxable?" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="4" Text="Food Type" IsEnabled="False"/>
+        </Grid>
+
+        <!-- Data View (NonEdit Mode) -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="8"
+            Visibility="{Binding Path=ViewModel.IsEditEnabled, 
+            Converter={local:BooleanToVisibilityConverter}}"
+                            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="FoodItemName" Style="{StaticResource AdminTextBlock}" Grid.Column="0" Text="{Binding ViewModel.FoodName}" IsEnabled="False"/>
+            <TextBlock x:Name="FoodItemDescription" Style="{StaticResource AdminTextBlock}" Grid.Column="1" Text="{Binding ViewModel.FoodDescription}" IsEnabled="False"/>
+            <TextBlock x:Name="FoodItemPrice" Style="{StaticResource AdminTextBlock}" Grid.Column="2" Text="{Binding ViewModel.FoodPrice}" IsEnabled="False"/>
+            <CheckBox  x:Name="FoodItemTaxable" Style="{StaticResource AdminCheckBox}"  Grid.Column="3" IsChecked="{Binding ViewModel.FoodTaxable}" IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="FoodItemType" Style="{StaticResource AdminTextBlock}" Grid.Column="4" Text="{Binding ViewModel.FoodType}" IsEnabled="False"/>
+            
+            <!-- Edit button -->
+            <Button Style="{StaticResource AdminControlButton}" Grid.Row="3" Grid.Column="5" 
+                    Content="Edit" 
+                    Click="EditControl_Click"    
+                    />
+        </Grid>
+
+        <!-- Data View (Edit Mode) -->
+        <Grid Grid.Row="3" Grid.ColumnSpan="8" 
+              Visibility="{Binding Path=ViewModel.IsEditEnabled, 
+            Converter={local:BooleanToVisibilityConverter}, 
+            ConverterParameter='True'}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox x:Name="EditFoodName" Style="{StaticResource AdminTextBox}" Grid.Column="0" Text="{Binding ElementName=FoodItemName, Path=Text, Mode=OneWay}" />
+            <TextBox x:Name="EditFoodDescription" Style="{StaticResource AdminTextBox}" Grid.Column="1" Text="{Binding ElementName=FoodItemDescription, Path=Text, Mode=OneWay}" />
+            <TextBox x:Name="EditFoodPrice"  Style="{StaticResource AdminTextBox}" Grid.Column="2" Text="{Binding ElementName=FoodItemPrice, Path=Text, Mode=OneWay}" />
+            <CheckBox x:Name="EditFoodTaxable" Style="{StaticResource AdminCheckBox}"  Grid.Column="3" IsChecked="{Binding ElementName=FoodItemTaxable, Path=IsChecked, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="EditFoodType" Style="{StaticResource AdminTextBox}"  Grid.Column="4" Text="{Binding ElementName=FoodItemType, Path=Text, Mode=OneWay}" />
+            
+            <!-- Save and Cancel buttons -->
+            <Button Style="{StaticResource AdminControlButton}" Grid.Column="5" 
+                    Content="Save" 
+                    Click="SaveControl_Click" 
+                    />
+            <Button Style="{StaticResource AdminControlButton}" Grid.Column="6" 
+                    Content="Cancel" 
+                    Click="CancelControl_Click"/>
+        </Grid>
 
         <!-- Display the color pallet (DEBUGGING) -->
-        <local:DebugColorSchemeVisualControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <local:DebugColorSchemeVisualControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
     </Grid>
 </local:BaseControl>

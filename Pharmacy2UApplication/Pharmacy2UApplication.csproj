@@ -167,6 +167,7 @@
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\OrderStatusTypesToFillValueConverter.cs" />
+    <Compile Include="ViewModels\AdminFoodControlViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />

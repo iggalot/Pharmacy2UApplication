@@ -6,7 +6,6 @@
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="0 4"/>
     </Style>
     
     <!-- Deaconess Admin Control TextBlocks-->
@@ -14,14 +13,26 @@
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="0 4"/>
     </Style>
-    
+
+    <!-- Header style for the Admin controls -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="AdminTextBlockHeader" BasedOn="{StaticResource AdminTextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+
+    <!-- TextBox (input fields) style for the Admin controls -->
+    <Style TargetType="{x:Type TextBox}" x:Key="AdminTextBox" BasedOn="{StaticResource BaseStyle}">
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Margin" Value="2"/>
+    </Style>
+
     <!-- Deaconess Admin Control CheckBox-->
     <Style TargetType="{x:Type CheckBox}" x:Key="AdminCheckBox">
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="0 4"/>
     </Style>
 </ResourceDictionary>
