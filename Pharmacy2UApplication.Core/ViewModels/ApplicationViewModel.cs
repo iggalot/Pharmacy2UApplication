@@ -105,10 +105,10 @@ namespace Pharmacy2UApplication.Core
             PopupAlertWindow = new PopupAlertViewModel();
 
             // Should the database logging window be hidden?
-            ShouldHideDatabaseLogging = false;
+            ShouldHideDatabaseLogging = true;
 
             // Should the debugging tools window and buttons be hidden?
-            ShouldHideDebugTools = false;
+            ShouldHideDebugTools = true;
         }
 
         #endregion

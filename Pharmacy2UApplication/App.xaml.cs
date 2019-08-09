@@ -1,4 +1,7 @@
 ﻿using Pharmacy2UApplication.Core;
+using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 
 namespace Pharmacy2UApplication
@@ -15,15 +18,49 @@ namespace Pharmacy2UApplication
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            // let the base application do what it needs
-            base.OnStartup(e);
+                using (SingleProgramInstance spi = new SingleProgramInstance("abcdefg"))
+                {
+                    if (spi.IsSingleInstance)
+                    {
+                        //// Set the startup URI as normal
+                        //StartupUri = new Uri("/Pharmacy2U_PopupDatabaseMonitor;component/MainWindow.xaml", UriKind.Relative);
 
-            // Setup IoC right away
-            IoC.Setup();
+                        // let the base application do what it needs for startup
+                        base.OnStartup(e);
 
-            // Show the main window
-            Current.MainWindow = new MainWindow();
-            Current.MainWindow.Show();
+                        // Setup IoC right away
+                        IoC.Setup();
+
+                        // Show the main window
+                        Current.MainWindow = new MainWindow();
+                        Current.MainWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Duplicate application " + Assembly.GetExecutingAssembly().GetName().Name + "shown -- raising the other one instead of launching a new one");
+                    
+                        // Raise the other instance
+                        spi.RaiseOtherProcess();
+
+                        //// Shutdown the current application since its not needed.
+                        System.Windows.Application.Current.Shutdown();
+
+                        // Release the mutex of this instance and dispose of the item...
+                        spi.Dispose();
+
+                    }
+            }
+
+
+            //// let the base application do what it needs
+            //base.OnStartup(e);
+
+            //// Setup IoC right away
+            //IoC.Setup();
+
+            //// Show the main window
+            //Current.MainWindow = new MainWindow();
+            //Current.MainWindow.Show();
         }
     }
 }

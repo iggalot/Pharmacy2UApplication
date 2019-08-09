@@ -44,7 +44,8 @@ namespace Pharmacy2UApplication
                     return new CompletedOrdersPage();
 
                 case ApplicationPage.AllOrdersPage:
-                    return new AllOrdersPage();
+                    //return new AllOrdersPage();
+                    return new OrderViewBasePage();
 
                 case ApplicationPage.AdminOTCMedicationEditPage:
                     return new AdminOTCMedicationEditPage();

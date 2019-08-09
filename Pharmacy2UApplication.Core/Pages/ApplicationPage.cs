@@ -91,5 +91,10 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
        AdminDeliveryEditPage = 16,
 
+        /// <summary>
+        /// OrderView page
+        /// </summary>
+       OrderViewPage = 17,
+
     }
 }

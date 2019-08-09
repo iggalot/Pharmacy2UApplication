@@ -74,6 +74,7 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
+    <Compile Include="AttachedProperties\TextAttachedProperties.cs" />
     <Compile Include="Controls\Administration\AdminDeliveryEditControl.xaml.cs">
       <DependentUpon>AdminDeliveryEditControl.xaml</DependentUpon>
     </Compile>
@@ -95,6 +96,12 @@
     </Compile>
     <Compile Include="Controls\Orders\OrderItemControl.xaml.cs">
       <DependentUpon>OrderItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Orders\OrderListControl.xaml.cs">
+      <DependentUpon>OrderListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Orders\OrderSearchControl.xaml.cs">
+      <DependentUpon>OrderSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Orders\StatusVisualControl.xaml.cs">
       <DependentUpon>StatusVisualControl.xaml</DependentUpon>
@@ -122,6 +129,9 @@
     </Compile>
     <Compile Include="Pages\OrderStatusControlPages\AllOrdersPage.xaml.cs">
       <DependentUpon>AllOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderStatusControlPages\OrderViewBasePage.xaml.cs">
+      <DependentUpon>OrderViewBasePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml.cs">
       <DependentUpon>ReturnedOrdersPage.xaml</DependentUpon>
@@ -199,6 +209,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Orders\OrderListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Orders\OrderSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Orders\StatusVisualControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +264,10 @@
     <Page Include="Pages\OrderStatusControlPages\AllOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\OrderStatusControlPages\OrderViewBasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>

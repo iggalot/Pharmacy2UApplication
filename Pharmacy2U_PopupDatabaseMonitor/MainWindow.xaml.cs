@@ -1,6 +1,8 @@
 ﻿using Pharmacy2UApplication.Core;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace Pharmacy2U_PopupDatabaseMonitor
@@ -53,6 +55,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         // TODO: Bind window startup locations in XAML to screen size
         public MainWindow()
         {
+
             InitializeComponent();
 
             #region Named pipe serialization test

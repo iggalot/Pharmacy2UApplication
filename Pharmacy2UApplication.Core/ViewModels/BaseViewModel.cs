@@ -7,6 +7,14 @@ namespace Pharmacy2UApplication.Core
     /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Protected Members
+        /// <summary>
+        /// A global lock for property check to prevent locking on different instances of expressions.
+        /// Considering how fast this check will always be, it itsn't an issue to globally lock all callers.
+        /// </summary>
+        protected object mPropertyValueCheckLock = new object();
+
+        #endregion
         /// <summary>
         /// The event that is fired when any child property changes its value
         /// </summary>

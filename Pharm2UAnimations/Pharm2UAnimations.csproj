@@ -53,6 +53,11 @@
     <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Pharmacy2UApplication.Core\Pharmacy2UApplication.Core.csproj">
+      <Project>{7082D516-1A73-443D-B2F1-07253B8F9D46}</Project>
+      <Name>Pharmacy2UApplication.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
