@@ -11,10 +11,14 @@ namespace Pharmacy2UApplication
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (parameter == null)
+
+            if (string.Equals((string)parameter, "Invert") || (parameter == null))
                 return (bool)value ? Visibility.Collapsed : Visibility.Visible;
             else
+            {
                 return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+            }
+
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

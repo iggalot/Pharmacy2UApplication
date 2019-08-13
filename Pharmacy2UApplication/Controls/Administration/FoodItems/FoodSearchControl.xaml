@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Pharmacy2UApplication.OrderSearchControl"
+﻿<UserControl x:Class="Pharmacy2UApplication.FoodSearchControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,6 @@
              >
     <Grid Margin="0 10 0 0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -37,14 +36,14 @@
         <TextBox Grid.Row="1"
             Style="{StaticResource SearchField}"
             Grid.Column="1" 
-            Tag="Order ID"
-            Text="{Binding OrderIDSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Tag="Food ID #"
+            Text="{Binding FoodIDSearchText, UpdateSourceTrigger=PropertyChanged}"
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearOrderIDSearchCommand}" Key="Esc" />
+                <KeyBinding Command="{Binding ClearFoodIDSearchCommand}" Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -54,14 +53,14 @@
         <TextBox Grid.Row="1"
             Style="{StaticResource SearchField}"
             Grid.Column="2" 
-            Tag="First Name"
-            Text="{Binding FirstNameSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Tag="Food Name"
+            Text="{Binding FoodNameSearchText, UpdateSourceTrigger=PropertyChanged}"
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearFirstNameSearchCommand}" Key="Esc" />
+                <KeyBinding Command="{Binding ClearFoodNameSearchCommand}" Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -71,9 +70,9 @@
         <TextBox Grid.Row="1"
             Style="{StaticResource SearchField}"
             Grid.Column="3" 
-            Tag="Last Name"
+            Tag="Food Type"
 
-            Text="{Binding LastNameSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding FoodTypeSearchText, UpdateSourceTrigger=PropertyChanged}"
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
@@ -81,7 +80,7 @@
 
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearLastNameSearchCommand}" Key="Esc" />
+                <KeyBinding Command="{Binding ClearFoodTypeSearchCommand}" Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -91,7 +90,7 @@
         <Button Grid.Row="1"
             Grid.Column="4" 
                         Style="{StaticResource SearchControlButton}"
-                        Content="Find Orders"
+                        Content="Find Foods"
                         Command="{Binding SearchCommand}"
                         />
         <!--Clear All search button-->
@@ -101,17 +100,5 @@
                         Content="Clear Search"
                         Command="{Binding ClearAllSearchCommand}"
                         />
-
-        <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal">
-            <CheckBox x:Name="NewOrders"     Content="New Orders" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="True" IsEnabled="True"/>
-            <CheckBox x:Name="RdyPayment"    Content="Rdy Payment" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="RdyPackage"    Content="Rdy Package" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="RdyDeliver"    Content="Rdy Deliver" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="OutForDeliver" Content="Out for Delivery" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Returned"      Content="Returned" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Canceled"      Content="Canceled" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Completed"     Content="Completed" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-        </WrapPanel>
-
     </Grid>
 </UserControl>

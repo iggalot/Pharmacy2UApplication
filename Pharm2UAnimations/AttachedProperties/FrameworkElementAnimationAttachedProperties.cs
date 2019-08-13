@@ -145,6 +145,23 @@ namespace Pharm2UAnimations
     }
 
     /// <summary>
+    /// Animates a framework element sliding it in from the left on show
+    /// and sliding out to the lwft on hide
+    /// </summary>
+    public class AnimateSlideInFromLeftMarginProperty : AnimateBaseProperty<AnimateSlideInFromLeftMarginProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value, bool firstLoad)
+        {
+            if (value)
+                // Animate in
+                await element.SlideAndFadeInAsync(AnimationSlideInDirection.Left, firstLoad, firstLoad ? 1.0f : 1.0f, keepMargin: true);
+            else
+                // Animate out
+                await element.SlideAndFadeOutAsync(AnimationSlideInDirection.Left, firstLoad ? 1.0f : 1.0f, keepMargin: true);
+        }
+    }
+
+    /// <summary>
     /// Animates a framework element sliding it in from the right on show
     /// and sliding out to the right on hide
     /// </summary>

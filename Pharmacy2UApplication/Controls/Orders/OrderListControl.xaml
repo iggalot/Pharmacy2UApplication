@@ -9,21 +9,19 @@
 
     <!-- How to declare and execute a design model data context-->
     <!--<Grid d:DataContext="{x:Static local:ChatMessageListDesignModel.Instance}">-->
-        <Grid>
+    <Grid>
+
         <!-- TODO: Scrolling attached Properties-->
         <!--local:ScrollToBottomOnLoadProperty.Value="True"
             local:AutoScrollToBottomProperty.Value="True"-->
-        <ScrollViewer
-                VerticalScrollBarVisibility="Auto"
-                HorizontalScrollBarVisibility="Auto">
-            <ItemsControl Name="OrderActivity" ItemsSource="{Binding FilteredItems}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!-- See AngelSix ChatMessageListControl for animation of this -->
-                        <local:OrderItemControl />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+
+        <ItemsControl Name="OrderActivity" ItemsSource="{Binding FilteredItems}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!-- See AngelSix ChatMessageListControl for animation of this -->
+                    <local:OrderItemControl />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

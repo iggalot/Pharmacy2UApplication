@@ -55,6 +55,8 @@
     <Compile Include="Startup\SingleProgramInstance.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Foods\FoodListItemViewModel.cs" />
+    <Compile Include="ViewModels\Foods\FoodListViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderListItemViewModel.cs" />
     <Compile Include="ViewModels\Orders\OrderListViewModel.cs" />
     <Compile Include="ViewModels\PopupAlertViewModel.cs" />
@@ -62,5 +64,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

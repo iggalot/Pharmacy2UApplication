@@ -2,8 +2,11 @@
 {
      public class OrderListItemViewModel : BaseViewModel
     {
+
+
         #region Public Properties
 
+        // Fields of our property
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int OrderNumber { get; set; }

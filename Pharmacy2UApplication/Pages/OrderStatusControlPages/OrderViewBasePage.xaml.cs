@@ -1,6 +1,5 @@
 ﻿using Pharm2UAnimations;
 using Pharmacy2UApplication.Core;
-using System.Windows.Controls;
 
 namespace Pharmacy2UApplication
 {

@@ -1,0 +1,200 @@
+﻿<local:BaseControl x:Class="Pharmacy2UApplication.FoodListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharmacy2UApplication"
+             mc:Ignorable="d" 
+            >
+
+    <local:BaseControl.Resources>
+        <!-- Data template for our customer information exapnded screen -->
+        <DataTemplate x:Key="FoodInformationDataTemplate">
+            <Grid>
+  
+            </Grid>
+        </DataTemplate>
+    </local:BaseControl.Resources>
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Our main button control -->
+        <Button Grid.Row="0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border
+                    x:Name="MainBorder"
+                    Margin="5"
+                    CornerRadius="4"
+                    IsHitTestVisible="True"
+                    Style="{StaticResource OrderItemControlBorder}"
+                    Visibility="{Binding IsExpanded, Converter={local:BooleanToVisibilityConverter}, ConverterParameter='Invert'}"
+                                                        Grid.Row="2" Grid.ColumnSpan="7"
+                    >
+                        <Grid 
+                        >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <!-- Food Item data -->
+                            <Grid Grid.Row="1"
+                              Visibility="{Binding IsEditEnabled, Converter={local:BooleanToVisibilityConverter}}"
+                              x:Name="FoodData">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                x:Name="FoodID"  Style="{StaticResource OrderItemTextBlockMain}" 
+                                Grid.Column="0" 
+                                Text="{Binding FoodIDNumber, FallbackValue='Error'}" />
+                                <TextBlock 
+                                x:Name="FoodName"  Style="{StaticResource OrderItemTextBlockMain}" 
+                                Grid.Column="1" 
+                                Text="{Binding FoodName, FallbackValue='Error'}" />
+
+                                <TextBlock 
+                                Style="{StaticResource OrderItemTextBlockMain}" 
+                                Grid.Column="2" 
+                                Text="{Binding FoodType, FallbackValue='Error'}" />
+                                <TextBlock 
+                                Style="{StaticResource OrderItemTextBlockMain}" 
+                                Grid.Column="3" 
+                                Text="{Binding FoodPrice, FallbackValue='Error'}" />
+                                <CheckBox 
+                                Grid.Column="4" 
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding FoodIsTaxable, FallbackValue='Error'}" />
+
+                                <!-- Edit button -->
+                                <Button Style="{StaticResource AdminControlButton}"
+                                    x:Name="EditButton"
+                                    Grid.Column="6"
+                                    Content="Edit"
+                                    PreviewMouseLeftButtonDown="OpenEdit_Click"                                   
+                                    Command="{Binding OpenEditCommand}"
+                                    Panel.ZIndex="2"
+                            />
+
+                            </Grid>
+
+                            <Grid Grid.Row="2"
+                              x:Name="FoodDataExpanded"
+                                  Visibility="Collapsed"
+                                                            >
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label 
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                Content="Description:" FontWeight="Bold" FontFamily="{StaticResource LatoRegular}"/>
+
+                                <TextBlock 
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource OrderItemTextBlockMain}"                               
+                                Text="{Binding FoodDescription, FallbackValue='Error'}" />
+                            </Grid>
+                            <Grid Grid.Row="3"
+                              x:Name="FoodDataExpanded2"
+                              Visibility="Collapsed"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label 
+                                Grid.Column="0"
+                                HorizontalAlignment="Left"
+                                Content="Last Modified:" FontWeight="Bold" FontFamily="{StaticResource LatoRegular}"/>
+
+                                <TextBlock 
+                                HorizontalAlignment="Left"
+                                Style="{StaticResource OrderItemTextBlockMain}" 
+                                Grid.Column="1" 
+                                Text="{Binding ItemModifiedWhen, FallbackValue='Error'}" />
+                            </Grid>
+
+                            <Grid Grid.Row="4" 
+                              >
+                                <!-- Edit button -->
+                                <!--
+                            <Button Style="{StaticResource AdminControlButton}"                                    
+                                    Content="Edit"  
+                                Command="{Binding OpenEditCommand}"
+                            />-->
+
+                                <!--<TextBlock Grid.Row="1" Grid.Column="5" FontSize="{StaticResource FontSizeSmall}" 
+                                Background="{StaticResource BackgroundLightBrush}" 
+                                Foreground="{StaticResource DeaconessDarkPurpleBrush}"
+                                VerticalAlignment="Center"
+                                Text="Click To Edit..."
+                                x:Name="EditButton"                                   
+                                Visibility="Collapsed"
+                                    />-->
+                                <!--<Rectangle Grid.Row="1" Grid.Column="7" Height="50" Width="50" Fill="Green" 
+                                Visibility="{Binding IsEditEnabled, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=null}"
+
+                                   />-->
+
+                            </Grid>
+
+                            <!--<TextBlock Grid.Row="2" Grid.ColumnSpan="6"  Text="EDIT FIELD HERE" Width="100" Height="50"
+                                   Visibility="{Binding IsEditEnabled, Converter={local:BooleanToVisibilityConverter}, ConverterParameter='Invert'}"/>-->
+
+                            <!-- The Edit control for when the button is clicked -->
+
+
+
+
+                        </Grid>
+                    </Border>
+
+                    <!-- Edit button click reminder Visibility -->
+                    <ControlTemplate.Triggers>
+                        <!--<Trigger SourceName="MainBorder" Property="IsMouseOver" Value="True">
+                        <Setter TargetName="EditButton" Property="Visibility" Value="Visible"/>
+                    </Trigger>-->
+                        <Trigger SourceName="MainBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="FoodDataExpanded" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger SourceName="MainBorder" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="FoodDataExpanded2" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+
+            </Button.Template>
+        </Button>
+        <!-- The popup edit window -->
+        <Grid Background="{StaticResource DeaconessVeryLightPurpleBrush}"
+              Visibility="{Binding IsEditEnabled, 
+                Converter={local:BooleanToVisibilityConverter}, 
+                ConverterParameter='Inverted'}"
+              Grid.Row="1" Grid.ColumnSpan="7"
+              >
+            <local:AdminFoodEditControl />
+        </Grid>
+    </Grid>
+    
+</local:BaseControl>

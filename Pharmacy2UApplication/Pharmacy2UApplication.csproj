@@ -84,8 +84,20 @@
     <Compile Include="Controls\Administration\AdminOTCMedicationEditControl.xaml.cs">
       <DependentUpon>AdminOTCMedicationEditControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Administration\AdminFoodEditControl.xaml.cs">
+    <Compile Include="Controls\Administration\FoodItems\AdminFoodEditControl.xaml.cs">
       <DependentUpon>AdminFoodEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\FoodItems\FoodListItemControl.xaml.cs">
+      <DependentUpon>FoodListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\FoodItems\FoodListControl.xaml.cs">
+      <DependentUpon>FoodListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\FoodItems\FoodAddItemControl.xaml.cs">
+      <DependentUpon>FoodAddItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Administration\FoodItems\FoodSearchControl.xaml.cs">
+      <DependentUpon>FoodSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BaseControl.cs" />
     <Compile Include="Controls\Debug\DebugColorSchemeVisualControl.xaml.cs">
@@ -170,14 +182,10 @@
     <Compile Include="Controls\Debug\DebugTestControls.xaml.cs">
       <DependentUpon>DebugTestControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Orders\OrderInformationControl.xaml.cs">
-      <DependentUpon>OrderInformationControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\OrderStatusTypesToFillValueConverter.cs" />
-    <Compile Include="ViewModels\AdminFoodControlViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />
@@ -193,9 +201,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Administration\AdminFoodEditControl.xaml">
+    <Page Include="Controls\Administration\FoodItems\AdminFoodEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Administration\FoodItems\FoodListItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\FoodItems\FoodListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\FoodItems\FoodAddItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Administration\FoodItems\FoodSearchControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Debug\DebugColorSchemeVisualControl.xaml">
       <SubType>Designer</SubType>
@@ -310,10 +334,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Debug\DebugTestControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Orders\OrderInformationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

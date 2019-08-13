@@ -4,18 +4,115 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Pharmacy2UApplication"
+      xmlns:core="clr-namespace:Pharmacy2UApplication.Core;assembly=Pharmacy2UApplication.Core"                     
       xmlns:animate="clr-namespace:Pharm2UAnimations;assembly=Pharm2UAnimations"
 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Admin Food Edit Page">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"  Text="Admin Food Edit Page" FontSize="20" Background="Cornsilk"/>
-        <local:AdminFoodEditControl Grid.Row="1"/>
-    </Grid>
+    <Border Background="{StaticResource DeaconessDarkPurpleBrush}" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Title Text -->
+            <TextBlock Text="{Binding DisplayTitle, FallbackValue='ERROR in Binding'}"
+                    Grid.Row="0"
+                    Foreground="{StaticResource ForegroundLightBrush}"
+                    FontSize="{StaticResource FontSizeLarge}"
+                    FontFamily="{StaticResource LatoRegular}"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                       />
+
+            <!-- Title Bar / Search Field -->
+            <!-- Main Buttons -->
+            <Grid 
+                Grid.Row="1"
+                Visibility="{Binding Path=AddFoodOrSearchIsOpen, Converter={local:BooleanToVisibilityConverter}}"  
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <!-- Add Food Item Button -->
+                <Button Grid.Column="0"
+                    Style="{StaticResource SearchControlButton}"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment ="Left" 
+                    Content="Add Food..." 
+                    Command="{Binding AddFoodItemCommand}"
+                    Height="Auto"/>
+
+                <!-- Search Button -->
+                <Button 
+                    Grid.Column="1"
+                    Style="{StaticResource SearchControlButton}"
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment ="Right" 
+                    Content="Search..." 
+                    Command="{Binding OpenSearchCommand}"
+                    Height="Auto"/>
+            </Grid>
+
+            <!-- Status of Search or Add Food -->
+            <TextBlock 
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Padding="25 25 0 0"
+                Text="{Binding AddFoodOrSearchStatusString}" 
+                HorizontalAlignment="Left"
+                Foreground="{StaticResource ForegroundLightBrush}"
+                FontSize="{StaticResource FontSizeRegular}"
+                FontStyle="Italic"
+                FontWeight="Bold"
+                   />
+            
+            <!-- Search Overlay -->
+            <Grid
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                animate:AnimateSlideInFromRightMarginProperty.Value="{Binding SearchIsOpen}"
+                >
+                <!-- Search Control -->
+                <local:FoodSearchControl 
+                    x:Name="FoodSearch"
+                    DataContext="{Binding FallbackValue='Error in DataContext Binding for FoodSearch control'}" 
+                    />
+            </Grid>
+
+            <!-- Add Food Item Overlay -->
+            <Grid
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                animate:AnimateSlideInFromLeftMarginProperty.Value="{Binding AddFoodItemIsOpen}"
+                >
+                <!-- Add Food Item Control -->
+                <local:FoodAddItemControl
+                        x:Name="AddFoodItem"
+                        DataContext="{Binding FallbackValue='Error in DataContext Binding for AddFoodItem control'}"
+                        />
+            </Grid>
+
+             <!--Food Item List--> 
+            <local:FoodListControl 
+                x:Name="FoodList"
+                Grid.Row="4"
+                DataContext="{Binding FallbackValue='Error in DataContext Binding'}" 
+                />
+        </Grid>
+    </Border>
 </animate:BasePageAnimation>

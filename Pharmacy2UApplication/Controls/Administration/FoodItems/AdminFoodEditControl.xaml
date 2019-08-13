@@ -1,0 +1,85 @@
+﻿<local:BaseControl x:Class="Pharmacy2UApplication.AdminFoodEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharmacy2UApplication"
+             mc:Ignorable="d" 
+             
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- Headers -->
+        <!--<TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Row="0" Grid.Column="0" Text="{Binding ViewModel.ModeText}"/>-->
+        
+        <Grid Grid.Row="1" Grid.ColumnSpan="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="0" Text="Item Name" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="1" Text="Description" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="2" Text="Price" IsEnabled="False"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="3" Text="Taxable?" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Style="{StaticResource AdminTextBlockHeader}" Grid.Column="4" Text="Food Type" IsEnabled="False"/>
+        </Grid>
+
+        <!-- Data View (NonEdit Mode) -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="8"
+                            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="FoodItemName"  Grid.Column="0" Height="20" Text="{Binding Path=DataContext.FoodName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True"/>
+            <TextBox x:Name="FoodItemDescription"  Grid.Column="1" Height="20" Text="{Binding Path=DataContext.FoodDescription, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True"/>
+            <TextBox x:Name="FoodItemPrice"  Grid.Column="2" Height="20" Text="{Binding Path=DataContext.FoodPrice, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True"/>
+            <CheckBox x:Name="FoodItemTaxable"   Grid.Column="3" Height="20" IsChecked="{Binding Path=DataContext.FoodIsTaxable, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox x:Name="FoodItemType"  Grid.Column="4" Height="20" Text="{Binding Path=DataContext.FoodType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True"/>
+
+            <!-- Save and Cancel button -->
+            <Button Style="{StaticResource AdminControlButton}" Grid.Row="3" Grid.Column="5" 
+                    Command="{Binding Path=DataContext.SaveEditChangesCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}"
+                    Content="Save"                       
+                    />
+            <Button Style="{StaticResource AdminControlButton}" Grid.Row="3" Grid.Column="6" 
+                    Content="Cancel" 
+                    Command="{Binding Path=DataContext.CancelEditChangesCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}"                                       
+                    />
+        </Grid>
+    </Grid>
+</local:BaseControl>

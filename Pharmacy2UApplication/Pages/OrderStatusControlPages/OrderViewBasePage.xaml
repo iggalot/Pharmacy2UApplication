@@ -11,8 +11,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Order View Base Page">
 
-    <Border Background="Teal" CornerRadius="10">
-
+    <Border Background="{StaticResource DeaconessUltraDarkGreenBrush}" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,7 +32,7 @@
                        />
 
             <!-- Title Bar / Search Field -->
-            <Grid Height="50" Grid.Row="1">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -42,7 +41,11 @@
                 <!-- Main Buttons -->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                     <!-- Search Button -->
+ 
+                    <!-- TODO:  Fix visibility of search button so it hides when the search window is open -->
                     <Button 
+                        Style="{StaticResource SearchControlButton}"
+                        Visibility="{Binding SearchIsOpen, Converter={local:BooleanToVisibilityConverter}}"
                         Margin="5"
                         VerticalAlignment="Center"
                         HorizontalAlignment ="Right" 
@@ -53,68 +56,31 @@
 
                 <!-- Search Overlay -->
                 <Grid
-                Grid.ColumnSpan="2"
-                animate:AnimateSlideInFromRightMarginProperty.Value="{Binding SearchIsOpen}"
-                >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    
+                    Grid.ColumnSpan="2"
+                    animate:AnimateSlideInFromRightMarginProperty.Value="{Binding SearchIsOpen}"
+                    >
                     <!-- Search Control -->
-                    <!--<local:OrderSearchControl 
+                    <local:OrderSearchControl 
                         x:Name="OrderSearch"
                         DataContext="{Binding FallbackValue='Error in DataContext Binding'}" 
-                        />-->
-                    
-                    <!-- Close search button -->
-                    <Button 
-                        Grid.Column="0"
-                        Margin="5"
-                        Width="100"
-                        Height="20"
-                        Content="Close"
-                        Command="{Binding CloseSearchCommand}"
                         />
-
-                    <!-- Search box -->
-                    <TextBox 
-                        Style="{StaticResource SearchField}"
-                        Grid.Column="1" 
-                        Tag="Search text..."
-                        local:FocusProperty.Value="{Binding SearchIsOpen}"
-                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                        Margin="0 5 5 5"
-                        FontSize="{StaticResource FontSizeRegular}"
-                        >
-                        <TextBox.InputBindings>
-                            <!--Clear text on Esc-->
-                            <KeyBinding Command="{Binding ClearSearchCommand}" Key="Esc" />
-                            <!--Search on enter-->
-                            <KeyBinding Command="{Binding SearchCommand}" Key="Return" />
-                        </TextBox.InputBindings>
-                    </TextBox>
-
-                    <!--Close search button-->
-                    <!--<Button Grid.Column="2"  
-                        Content="Begin Search"
-                        Margin="5"
-                        Width="100"
-                        Height="20"
-                        Command="{Binding SearchCommand}"
-                        />-->
                 </Grid>
+                
+                
             </Grid>
 
             <!-- Order Item List -->
-            <local:OrderListControl 
-                x:Name="OrderList"
-                Grid.Row="2"
-                DataContext="{Binding FallbackValue='Error in DataContext Binding'}" 
+            <ScrollViewer Grid.Row="2"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto">
+                <Border>
+                    <local:OrderListControl 
+                    x:Name="OrderList"
+                    DataContext="{Binding FallbackValue='Error in DataContext Binding'}" 
                 />
+                </Border>
+
+            </ScrollViewer>
 
             <!-- Test snippet of code -->
             <!--
