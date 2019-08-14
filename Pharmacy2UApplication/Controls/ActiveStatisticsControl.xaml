@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Pharmacy2UApplication"
              mc:Ignorable="d" 
             >
-    <StackPanel Orientation="VErtical" >
+    <StackPanel Orientation="Vertical" >
         <StackPanel Margin ="5" Orientation="Vertical" Background="LightGreen" VerticalAlignment="Center">
             <TextBlock Text="Active #"/>
             <TextBlock Text="Average Time"/>

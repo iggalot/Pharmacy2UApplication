@@ -78,14 +78,13 @@
     <Style TargetType="{x:Type Button}" x:Key="AdminControlButton">
         <Setter Property="Background" Value="{StaticResource DeaconessBlueBrush}"/>
         <Setter Property="Width" Value="65"/>
-        <Setter Property="Height" Value="40"/>
-        <Setter Property="Margin" Value="5" />
+        <Setter Property="Height" Value="Auto"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
                         <!-- Rectangle with rounded corners. -->
-                        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" StrokeThickness="20" Fill="{TemplateBinding Background}" RadiusX="7" RadiusY="7" />
+                        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" StrokeThickness="20" Fill="{TemplateBinding Background}" RadiusX="2" RadiusY="2" />
                         <!-- Present Content (text) of the button. -->
                         <DockPanel Name="myContentPresenterDockPanel">
                             <ContentPresenter x:Name="myContentPresenter" Margin="{TemplateBinding Margin}" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>

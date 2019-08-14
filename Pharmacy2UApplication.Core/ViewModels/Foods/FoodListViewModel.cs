@@ -634,10 +634,44 @@ namespace Pharmacy2UApplication.Core
             ClearAllSearch();
             Search();
 
-            MessageBox.Show("Creating food item now...");
-
             // Close the add food item dialog
             AddFoodItemIsOpen = false;
+        }
+
+        #endregion
+
+        #region Public Methods
+        public void UpdateFLIVM(FoodListItemViewModel flivm, FoodListItemViewModel newItem)
+        {
+            // Update the existing record with the new data
+            // ID Number is not affected.
+            flivm.FoodName = newItem.FoodName;
+            flivm.FoodDescription = newItem.FoodDescription;
+            flivm.FoodType = newItem.FoodType;
+            flivm.FoodIsTaxable = newItem.FoodIsTaxable;
+            flivm.FoodPrice = newItem.FoodPrice;
+        }
+
+        public FoodListItemViewModel findFLIVM(int num)
+        {
+            bool matchFound = false;
+            int index = -1;
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (num == Items[i].FoodIDNumber)
+                {
+                    MessageBox.Show("Match Found");
+                    matchFound = true;
+                    index = i;
+                    break;
+                }
+            }
+
+            if (!matchFound)
+                return null;
+            else
+                return Items[index];
         }
 
         #endregion

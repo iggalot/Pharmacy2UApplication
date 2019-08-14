@@ -42,7 +42,7 @@
 
         <!-- TODO:  Bind the MaxHeight to the correct window size -->
         <ScrollViewer Grid.Row="1"
-                MaxHeight="450"
+                      MaxHeight="250"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Auto">
             <ItemsControl Name="FoodActivity" ItemsSource="{Binding FilteredItems}">

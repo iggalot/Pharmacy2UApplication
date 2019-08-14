@@ -1,4 +1,5 @@
-﻿using Pharmacy2UApplication.Core;
+﻿using Ninject;
+using Pharmacy2UApplication.Core;
 using System;
 using System.Diagnostics;
 using System.Reflection;
@@ -31,8 +32,14 @@ namespace Pharmacy2UApplication
                         // Setup IoC right away
                         IoC.Setup();
 
-                        // Show the main window
-                        Current.MainWindow = new MainWindow();
+                    // Bind to a single instance of Order view model
+                    IoC.Kernel.Bind<OrderViewModel>().ToConstant(new OrderViewModel());
+
+
+
+
+                    // Show the main window
+                    Current.MainWindow = new MainWindow();
                         Current.MainWindow.Show();
                     }
                     else

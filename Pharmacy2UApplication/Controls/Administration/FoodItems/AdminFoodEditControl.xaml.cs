@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy2UApplication
 {
@@ -12,10 +13,10 @@ namespace Pharmacy2UApplication
     {
         #region Public Members
 
-        /// <summary>
-        /// The view model for this control
-        /// </summary>
-        public FoodListViewModel ViewModel { get; set; }
+        ///// <summary>
+        ///// The view model for this control
+        ///// </summary>
+        //public FoodListViewModel ViewModel { get; set; }
 
         #endregion
 
@@ -25,125 +26,98 @@ namespace Pharmacy2UApplication
         {
             InitializeComponent();
 
-            // Create our viewmodel for this control
-            ViewModel = new FoodListViewModel();
+            //// Create our viewmodel for this control
+            //ViewModel = new FoodListViewModel();
 
-            // Set our datacontext for this control
-            DataContext = this;
+            //// Set our datacontext for this control
+            //DataContext = this;
         }
 
         #endregion
 
-
-
-
-
-
-
-
-        private void SaveEditControl_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-            //// Test our string date if it is null or empty or whitespace
-            //if (string.IsNullOrEmpty(EditFoodName.Text) || string.IsNullOrWhiteSpace(EditFoodName.Text) ||
-            //    string.IsNullOrEmpty(EditFoodDescription.Text) || string.IsNullOrWhiteSpace(EditFoodDescription.Text) ||
-            //    string.IsNullOrEmpty(EditFoodPrice.Text) || string.IsNullOrWhiteSpace(EditFoodPrice.Text) ||
-            //    string.IsNullOrEmpty(EditFoodType.Text) || string.IsNullOrWhiteSpace(EditFoodType.Text))
-            //{
-            //    MessageBox.Show("All fields must non-null and non-whitespace");
-            //    return;
-            //}
-
-            ////TODO make some sort of graphical indicator in the viewmodel that there is a problem with a particular view
-
-            //// Otherwise, continue testing the data
-            //decimal testDecimal;
-            //bool isNumeric = Decimal.TryParse(EditFoodPrice.Text, out testDecimal);
-            
-            //// If the price string is a numeric decimal value, abort the save
-            //if (!isNumeric)
-            //{
-            //    MessageBox.Show("The price must be a numeric value");
-            //    return;
-            //}
-
-            //// parse the price
-            //decimal priceParse = Decimal.Parse(EditFoodPrice.Text);
-
-            //// Can't have a negative price
-            //if (priceParse < 0)
-            //{
-            //    MessageBox.Show("The price must be a non-negative value");
-            //    return;
-            //}
-
-            ////TODO:  Check if there are more than two decimal places in the price value...
-
-            //// Otherwise we have valid data presumably, so save it to the view model
-            //ViewModel.FoodName = EditFoodName.Text;
-            //ViewModel.FoodDescription = EditFoodName.Text;
-            //ViewModel.FoodTaxable = (bool)EditFoodTaxable.IsChecked;
-            //ViewModel.FoodPrice = Decimal.Parse(EditFoodPrice.Text);
-            //ViewModel.FoodType = EditFoodType.Text;
-
-            //// TODO:  Have the ViewModel save the data back to the database....
-
-
-            //// Finally, reset the the control to nonedit mode
-            //ViewModel.IsEditEnabled = false;
-        }
-
-
-        private void CancelEdit_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            // Cast sender to the control type -- in this case a button
-            Button mybutton = (Button)sender;
-
-            // Create the data object from the datacontext of the sender.
-            FoodListItemViewModel myObject = mybutton.DataContext as FoodListItemViewModel;
-
-            // disable the editor
-            myObject.IsEditEnabled = false;
-
-            // disable the expanded view
-            myObject.IsExpanded = false;
-
-            // Stop the event from bubbling up to the user control
-            e.Handled = true;
-
-        }
+        #region Click Methods
 
         /// <summary>
-        /// The click command that saes changes from the edit form
+        /// The click command that saves the data from our food editing controls back to the 
+        /// appropriate viewmodel.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SaveEditControl_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void SaveEditControl_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            e.Handled = true;
-            return;
+            // Test our string data if it is null or empty or whitespace
+            if (string.IsNullOrEmpty(FoodItemName.Text) || string.IsNullOrWhiteSpace(FoodItemName.Text) ||
+                string.IsNullOrEmpty(FoodItemDescription.Text) || string.IsNullOrWhiteSpace(FoodItemDescription.Text) ||
+                string.IsNullOrEmpty(FoodItemPrice.Text) || string.IsNullOrWhiteSpace(FoodItemPrice.Text) ||
+                string.IsNullOrEmpty(FoodItemType.Text) || string.IsNullOrWhiteSpace(FoodItemType.Text))
+            {
+                MessageBox.Show("All fields must non-null and non-whitespace");
+                return;
+            }
 
+            ////TODO make some sort of graphical indicator in the viewmodel that there is a problem with a particular view
 
-            // Cast sender to the control type -- in this case a button
-            Button mybutton = (Button)sender;
+            // Otherwise, continue testing the data
+            decimal testDecimal;
+            bool isNumeric = Decimal.TryParse(FoodItemPrice.Text, out testDecimal);
 
-            // Create the data object from the datacontext of the sender.
-            AdminFoodEditControl myControl = mybutton.DataContext as AdminFoodEditControl;
-            AdminFoodEditControl myParentControl = myControl.DataContext as AdminFoodEditControl;
-            AdminFoodEditControl myItemControl = myParentControl.DataContext as AdminFoodEditControl;
-            FoodListItemControl myFoodListItemControl = myItemControl.DataContext as FoodListItemControl;
-            FoodListItemViewModel myObject = myFoodListItemControl.DataContext as FoodListItemViewModel;
+            // If the price string is not a numeric decimal value, abort the save
+            if (!isNumeric)
+            {
+                MessageBox.Show("The price must be a numeric value");
+                return;
+            }
 
-            //FoodListItemViewModel myObject = (mybutton.DataContext as AdminFoodEditControl).DataContext as FoodListItemViewModel;
+            // parse the price
+            //TODO:  Check if there are more than two decimal places in the price value...
 
-            //// disable the editor
-            //myObject.IsEditEnabled = false;
+            decimal priceParse = Decimal.Parse(FoodItemPrice.Text);
+
+            // Can't have a negative price
+            if (priceParse < 0)
+            {
+                MessageBox.Show("The price must be a non-negative value");
+                return;
+            }
+
+            // Now retrieve the viewmodel for this item -- which should be the FoodListItemViewModel
+            // in the DataContext of the ancestor control.
+            var flic = VisualTreeHelperExtensions.FindAncestor<FoodListItemControl>(this);
+            FoodListItemViewModel flivm = (FoodListItemViewModel) flic.DataContext;
+
+            // Otherwise we have valid data presumably, so save it back to the view model
+            // First find the food list item view control that contains our current food list item view model
+            flivm.FoodName = FoodItemName.Text;
+            flivm.FoodDescription = FoodItemName.Text;
+            flivm.FoodIsTaxable = (bool)FoodItemTaxable.IsChecked;
+            flivm.FoodPrice = Decimal.Parse(FoodItemPrice.Text);
+            flivm.FoodType = FoodItemType.Text;
+
+            // Copy the data model from the data context to a temporary item for
+            // passing to the food list view model.
+            FoodListItemViewModel newItem = new FoodListItemViewModel(
+                flivm.FoodIDNumber,
+                flivm.FoodName,
+                flivm.FoodDescription,
+                flivm.FoodType,
+                flivm.FoodPrice,
+                flivm.FoodIsTaxable
+                );
+
+            // Find the food list view model from the food list control ancestor
+            var flc = VisualTreeHelperExtensions.FindAncestor<FoodListControl>(this);
+            FoodListViewModel flvc = (FoodListViewModel)flc.DataContext;
+
+            // Apply the update to the view model
+            flvc.UpdateFLIVM(flvc.findFLIVM(flivm.FoodIDNumber), newItem);
+
+            //// TODO:  Have the ViewModel save the data back to the database....
+
+            //// Finally, reset the the control to nonedit mode
+            flivm.IsEditEnabled = false;
 
             //// disable the expanded view
-            //myObject.IsExpanded = false;
-
-            //// save the changes that have been made
-            //myObject.SaveEditChanges();
+            flivm.IsExpanded = false;
         }
 
         /// <summary>
@@ -165,5 +139,6 @@ namespace Pharmacy2UApplication
             // disable the expanded view
             myObject.IsExpanded = false;
         }
+        #endregion
     }
 }

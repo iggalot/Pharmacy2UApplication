@@ -72,7 +72,8 @@
             <TextBox x:Name="FoodItemType"  Grid.Column="4" Height="20" Text="{Binding Path=DataContext.FoodType, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}" IsEnabled="True"/>
 
             <!-- Save and Cancel button -->
-            <Button Style="{StaticResource AdminControlButton}" Grid.Row="3" Grid.Column="5" 
+            <Button Style="{StaticResource AdminControlButton}" Grid.Row="3" Grid.Column="5"
+                    Click="SaveEditControl_Click"
                     Command="{Binding Path=DataContext.SaveEditChangesCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:FoodListItemControl}}}"
                     Content="Save"                       
                     />

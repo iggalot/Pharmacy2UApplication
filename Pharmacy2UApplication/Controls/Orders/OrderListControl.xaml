@@ -10,18 +10,47 @@
     <!-- How to declare and execute a design model data context-->
     <!--<Grid d:DataContext="{x:Static local:ChatMessageListDesignModel.Instance}">-->
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header info-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="90"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="0" Text="OrderID #" />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="1" Text="CustomerID " />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="2" Text="First Name" />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="3" Text="Last Name" />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="4" Text="Created Date" />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="5" Text="Phone" />
+            <TextBlock Style="{StaticResource OrderItemTextBlockMainHeader}" Grid.Column="6" Text="Status" />
+        </Grid>
 
         <!-- TODO: Scrolling attached Properties-->
         <!--local:ScrollToBottomOnLoadProperty.Value="True"
             local:AutoScrollToBottomProperty.Value="True"-->
-
-        <ItemsControl Name="OrderActivity" ItemsSource="{Binding FilteredItems}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!-- See AngelSix ChatMessageListControl for animation of this -->
-                    <local:OrderItemControl />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer Grid.Row="1"
+                      MaxHeight="250"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto">
+            <ItemsControl Name="OrderActivity" ItemsSource="{Binding FilteredItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- See AngelSix ChatMessageListControl for animation of this -->
+                        <local:OrderListItemControl />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

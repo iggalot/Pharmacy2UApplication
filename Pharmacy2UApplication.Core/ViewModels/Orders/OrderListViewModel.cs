@@ -319,7 +319,12 @@ namespace Pharmacy2UApplication.Core
 
         #region Constructor
 
-        public OrderListViewModel()
+        /// <summary>
+        /// OrderListViewModel constructor that creates itself based on any list
+        /// of OrderListItemViewModel that is supplied to it
+        /// </summary>
+        /// <param name="myList"></param>
+        public OrderListViewModel(ObservableCollection<OrderListItemViewModel> myList)
         {
             // Create commands
             SearchCommand = new RelayCommand(Search);
@@ -331,19 +336,22 @@ namespace Pharmacy2UApplication.Core
             ClearLastNameSearchCommand = new RelayCommand(ClearLastNameSearch);
             ClearAllSearchCommand = new RelayCommand(ClearAllSearch);
 
-
-            // Dummy data for our search test page
-            ObservableCollection<OrderListItemViewModel> temp = new ObservableCollection<OrderListItemViewModel>();
-            temp.Add(new OrderListItemViewModel("Jim", "Allen", 11111));
-            temp.Add(new OrderListItemViewModel("Miranda", "Allen", 22222));
-            temp.Add(new OrderListItemViewModel("LJ", "Allen", 33333));
-            temp.Add(new OrderListItemViewModel("Kira", "Dog", 1));
-            temp.Add(new OrderListItemViewModel("Olaf", "Dog", 2));
-            temp.Add(new OrderListItemViewModel("Leslie", "Dog", 3));
-
             // Assign our new list to Items
-            Items = new ObservableCollection<OrderListItemViewModel>(temp);
+            Items = new ObservableCollection<OrderListItemViewModel>(myList);
             FilteredItems = new ObservableCollection<OrderListItemViewModel>(Items);
+
+            //// Dummy data for our search test page
+            //ObservableCollection<OrderListItemViewModel> temp = new ObservableCollection<OrderListItemViewModel>();
+            //temp.Add(new OrderListItemViewModel("Jim", "Allen", 11111));
+            //temp.Add(new OrderListItemViewModel("Miranda", "Allen", 22222));
+            //temp.Add(new OrderListItemViewModel("LJ", "Allen", 33333));
+            //temp.Add(new OrderListItemViewModel("Kira", "Dog", 1));
+            //temp.Add(new OrderListItemViewModel("Olaf", "Dog", 2));
+            //temp.Add(new OrderListItemViewModel("Leslie", "Dog", 3));
+
+            //// Assign our new list to Items
+            //Items = new ObservableCollection<OrderListItemViewModel>(temp);
+            //FilteredItems = new ObservableCollection<OrderListItemViewModel>(Items);
 
         }
 
@@ -424,7 +432,7 @@ namespace Pharmacy2UApplication.Core
             if (!string.IsNullOrEmpty(OrderIDSearchText))
             {
                 searchResults = new ObservableCollection<OrderListItemViewModel>(
-                    searchResults.Where(item => item.OrderNumber.ToString().ToLower().Contains(OrderIDSearchText.ToLower())));
+                    searchResults.Where(item => item.OrderId.ToString().ToLower().Contains(OrderIDSearchText.ToLower())));
             } 
 
             // If the FirstName has a valid search field

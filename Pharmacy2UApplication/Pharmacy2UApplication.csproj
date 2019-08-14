@@ -106,8 +106,8 @@
     <Compile Include="Controls\Orders\FullOrderInformationControl.xaml.cs">
       <DependentUpon>FullOrderInformationControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Orders\OrderItemControl.xaml.cs">
-      <DependentUpon>OrderItemControl.xaml</DependentUpon>
+    <Compile Include="Controls\Orders\OrderListItemControl.xaml.cs">
+      <DependentUpon>OrderListItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Orders\OrderListControl.xaml.cs">
       <DependentUpon>OrderListControl.xaml</DependentUpon>
@@ -186,8 +186,10 @@
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\OrderStatusTypesToFillValueConverter.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
+    <Compile Include="VisualTree\VisualTreeHelperExtensions.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Administration\AdminDeliveryEditControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -229,7 +231,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Orders\OrderItemControl.xaml">
+    <Page Include="Controls\Orders\OrderListItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

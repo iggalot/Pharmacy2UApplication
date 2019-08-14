@@ -7,15 +7,6 @@
              mc:Ignorable="d" 
             >
 
-    <local:BaseControl.Resources>
-        <!-- Data template for our customer information exapnded screen -->
-        <DataTemplate x:Key="FoodInformationDataTemplate">
-            <Grid>
-  
-            </Grid>
-        </DataTemplate>
-    </local:BaseControl.Resources>
-   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,7 +18,7 @@
                 <ControlTemplate>
                     <Border
                     x:Name="MainBorder"
-                    Margin="5"
+                    Margin="2"
                     CornerRadius="4"
                     IsHitTestVisible="True"
                     Style="{StaticResource OrderItemControlBorder}"
@@ -81,21 +72,22 @@
                                 IsChecked="{Binding FoodIsTaxable, FallbackValue='Error'}" />
 
                                 <!-- Edit button -->
-                                <Button Style="{StaticResource AdminControlButton}"
+                                <Button 
+                                    Style="{StaticResource AdminControlButton}"
                                     x:Name="EditButton"
                                     Grid.Column="6"
                                     Content="Edit"
                                     PreviewMouseLeftButtonDown="OpenEdit_Click"                                   
                                     Command="{Binding OpenEditCommand}"
-                                    Panel.ZIndex="2"
+                                    
                             />
 
                             </Grid>
-
+                            
                             <Grid Grid.Row="2"
-                              x:Name="FoodDataExpanded"
-                                  Visibility="Collapsed"
-                                                            >
+                                x:Name="FoodDataExpanded"
+                                Visibility="Collapsed"
+                                      >
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="150"/>
@@ -133,39 +125,6 @@
                                 Grid.Column="1" 
                                 Text="{Binding ItemModifiedWhen, FallbackValue='Error'}" />
                             </Grid>
-
-                            <Grid Grid.Row="4" 
-                              >
-                                <!-- Edit button -->
-                                <!--
-                            <Button Style="{StaticResource AdminControlButton}"                                    
-                                    Content="Edit"  
-                                Command="{Binding OpenEditCommand}"
-                            />-->
-
-                                <!--<TextBlock Grid.Row="1" Grid.Column="5" FontSize="{StaticResource FontSizeSmall}" 
-                                Background="{StaticResource BackgroundLightBrush}" 
-                                Foreground="{StaticResource DeaconessDarkPurpleBrush}"
-                                VerticalAlignment="Center"
-                                Text="Click To Edit..."
-                                x:Name="EditButton"                                   
-                                Visibility="Collapsed"
-                                    />-->
-                                <!--<Rectangle Grid.Row="1" Grid.Column="7" Height="50" Width="50" Fill="Green" 
-                                Visibility="{Binding IsEditEnabled, Converter={local:BooleanToVisibilityConverter}, ConverterParameter=null}"
-
-                                   />-->
-
-                            </Grid>
-
-                            <!--<TextBlock Grid.Row="2" Grid.ColumnSpan="6"  Text="EDIT FIELD HERE" Width="100" Height="50"
-                                   Visibility="{Binding IsEditEnabled, Converter={local:BooleanToVisibilityConverter}, ConverterParameter='Invert'}"/>-->
-
-                            <!-- The Edit control for when the button is clicked -->
-
-
-
-
                         </Grid>
                     </Border>
 
@@ -186,6 +145,7 @@
 
             </Button.Template>
         </Button>
+        
         <!-- The popup edit window -->
         <Grid Background="{StaticResource DeaconessVeryLightPurpleBrush}"
               Visibility="{Binding IsEditEnabled, 

@@ -8,6 +8,13 @@ namespace Pharmacy2UApplication.Core
 
         #region Protected Members
 
+        protected int mFoodIDNumber;
+        protected string mFoodName;
+        protected string mFoodDescription;
+        protected string mFoodType;
+        protected bool mFoodIsTaxable;
+        protected decimal mFoodPrice;
+
         /// <summary>
         /// A flag for indicating if the control is enabled for editing
         /// </summary>
@@ -65,32 +72,122 @@ namespace Pharmacy2UApplication.Core
         /// <summary>
         /// The name of the food
         /// </summary>
-        public string FoodName { get; set; }
+        public string FoodName
+        {
+            get => mFoodName;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodName == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodName = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodName));
+            }
+        }
 
         /// <summary>
         /// The type of the food
         /// </summary>
-        public string FoodType { get; set; }
+        public string FoodType
+        {
+            get => mFoodType;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodType == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodType = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodType));
+            }
+        }
 
         /// <summary>
         /// The description of the food item
         /// </summary>
-        public string FoodDescription { get; set; }
+        public string FoodDescription
+        {
+            get => mFoodDescription;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodDescription == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodDescription = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodDescription));
+            }
+        }
 
         /// <summary>
         /// A flag to indicate if the food item is taxable
         /// </summary>
-        public bool FoodIsTaxable { get; set; }
+        public bool FoodIsTaxable
+        {
+            get => mFoodIsTaxable;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodIsTaxable == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodIsTaxable = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodIsTaxable));
+            }
+        }
 
         /// <summary>
         /// The price of hte food item
         /// </summary>
-        public decimal FoodPrice { get; set; }
+        public decimal FoodPrice
+        {
+            get => mFoodPrice;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodPrice == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodPrice = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodPrice));
+            }
+        }
 
         /// <summary>
         /// The id number of the food item in the database
         /// </summary>
-        public int FoodIDNumber { get; set; }
+        public int FoodIDNumber
+        {
+            get => mFoodIDNumber;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodIDNumber == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodIDNumber = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodIDNumber));
+            }
+        }
 
         #endregion
 

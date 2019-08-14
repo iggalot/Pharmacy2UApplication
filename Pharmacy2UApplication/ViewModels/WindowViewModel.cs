@@ -8,7 +8,7 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Viewmodel for the custom flat window
     /// </summary>
-    public class WindowViewModel :BaseViewModel
+    public class WindowViewModel : BaseViewModel
     {
         #region Private Members
 

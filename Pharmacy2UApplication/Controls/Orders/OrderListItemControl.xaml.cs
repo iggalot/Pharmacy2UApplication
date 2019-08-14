@@ -8,11 +8,11 @@ namespace Pharmacy2UApplication
     /// <summary>
     /// Interaction logic for OrderItemControl.xaml
     /// </summary>
-    public partial class OrderItemControl : BaseControl
+    public partial class OrderListItemControl : BaseControl
     {
        // public string ContactMethod { get; set; } = "Order Item Control Page";
 
-        public OrderItemControl()
+        public OrderListItemControl()
         {
             InitializeComponent();
         }
