@@ -12,6 +12,17 @@
       Title="NewOrdersPage">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         <TextBlock Text="New Orders Page" FontSize="20" Foreground="White" Background="Crimson"/>
+
+        <ScrollViewer Grid.Row="1"
+                      MaxHeight="350"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto">
+            <local:FullOrderInformationControl />
+        </ScrollViewer>
     </Grid>
 </animate:BasePageAnimation>

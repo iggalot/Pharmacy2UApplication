@@ -145,14 +145,14 @@
     <Compile Include="Pages\OrderStatusControlPages\OrderViewBasePage.xaml.cs">
       <DependentUpon>OrderViewBasePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderStatusControlPages\ReadyForPickupOrdersPage.xaml.cs">
+      <DependentUpon>ReadyForPickupOrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml.cs">
       <DependentUpon>ReturnedOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrderStatusControlPages\OutForDeliveryOrdersPage.xaml.cs">
       <DependentUpon>OutForDeliveryOrdersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\OrderStatusControlPages\ReadyForDeliveryOrdersPage.xaml.cs">
-      <DependentUpon>ReadyForDeliveryOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OrderStatusControlPages\ReadyForPaymentOrdersPage.xaml.cs">
       <DependentUpon>ReadyForPaymentOrdersPage.xaml</DependentUpon>
@@ -295,15 +295,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\OrderStatusControlPages\ReadyForPickupOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\OrderStatusControlPages\ReturnedOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\OrderStatusControlPages\OutForDeliveryOrdersPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\OrderStatusControlPages\ReadyForDeliveryOrdersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

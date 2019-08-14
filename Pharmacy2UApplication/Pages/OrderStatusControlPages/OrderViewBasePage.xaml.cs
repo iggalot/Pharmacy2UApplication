@@ -22,10 +22,12 @@ namespace Pharmacy2UApplication
             InitializeComponent();
 
             // Retrieve database query from our collection in the IoC<OrderViewModel>
-            ObservableCollection<OrderListItemViewModel> fullList = IoC.Get<OrderViewModel>().GetFullOrderList();
+            ObservableCollection<OrderListItemViewModel> fullList = IoC.Get<DatabaseQueryViewModel>().GetFullOrderList();
 
+            // Create a view model for the full order list
             ViewModel = new OrderListViewModel(fullList);
 
+            // And set that as the data context
             DataContext = ViewModel;
         }
     }

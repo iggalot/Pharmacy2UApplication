@@ -17,7 +17,7 @@
             <Button Content="New Orders" Command="{Binding Path=NewOrdersCommand}" Width="150" Height="20"/>
             <Button Content="Ready For Payment" Command="{Binding Path=ReadyForPaymentCommand}" Width="150" Height="20"/>
             <Button Content="Ready for Packaging" Command="{Binding Path=ReadyForPackagingCommand}" Width="150" Height="20"/>
-            <Button Content="Ready for Delivery" Command="{Binding Path=ReadyForDeliveryCommand}" Width="150" Height="20"/>
+            <Button Content="Ready for Delivery" Command="{Binding Path=ReadyForPickupCommand}" Width="150" Height="20"/>
             <Button Content="Out for Delivery" Command="{Binding Path=OutForDeliveryCommand}" Width="150" Height="20"/>
             <Button Content="Returns- Not Delivered" Command="{Binding Path=ReturnedOrdersCommand}" Width="150" Height="20"/>
             <Button Content="Completed" Command="{Binding Path=CompletedOrdersCommand}" Width="150" Height="20"/>

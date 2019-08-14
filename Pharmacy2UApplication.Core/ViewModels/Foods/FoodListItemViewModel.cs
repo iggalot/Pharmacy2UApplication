@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Pharmacy2UApplication.Core
 {
      public class FoodListItemViewModel : BaseViewModel
     {
-
         #region Protected Members
 
         protected int mFoodIDNumber;
@@ -14,6 +15,11 @@ namespace Pharmacy2UApplication.Core
         protected string mFoodType;
         protected bool mFoodIsTaxable;
         protected decimal mFoodPrice;
+
+        protected DateTime? mFoodCreatedWhen;
+        protected int? mFoodCreatedBy;
+        protected DateTime? mFoodModifiedWhen;
+        protected int? mFoodModifiedBy;
 
         /// <summary>
         /// A flag for indicating if the control is enabled for editing
@@ -189,6 +195,86 @@ namespace Pharmacy2UApplication.Core
             }
         }
 
+        /// <summary>
+        /// The datetime when the food item was created in the database
+        /// </summary>
+        public DateTime? FoodCreatedWhen
+        {
+            get => mFoodCreatedWhen;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodCreatedWhen == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodCreatedWhen = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodCreatedWhen));
+            }
+        }
+
+        /// <summary>
+        /// The datetime when the food item was last modified in the database
+        /// </summary>
+        public DateTime? FoodModifiedWhen
+        {
+            get => mFoodModifiedWhen;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodModifiedWhen == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodModifiedWhen = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodModifiedWhen));
+            }
+        }
+
+        /// <summary>
+        /// The name of who created the food item in the database
+        /// </summary>
+        public int? FoodCreatedBy
+        {
+            get => mFoodCreatedBy;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodCreatedBy == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodCreatedBy = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodCreatedBy));
+            }
+        }
+
+        /// <summary>
+        /// The name of who created the food item in the database
+        /// </summary>
+        public int? FoodModifiedBy
+        {
+            get => mFoodModifiedBy;
+            set
+            {
+                // Check if we are changing the value
+                if (mFoodModifiedBy == value)
+                    return;
+
+                // Otherwise set the value
+                mFoodModifiedBy = value;
+
+                // Notify the system that a property has been changed
+                OnPropertyChanged(nameof(FoodModifiedBy));
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -203,6 +289,17 @@ namespace Pharmacy2UApplication.Core
 
 
         #region Constructor 
+        /// <summary>
+        /// A private parameterless constructor -- used by the SQL database query functions
+        /// </summary>
+        public FoodListItemViewModel()
+        {             
+            // Setup the relay commands and basic status effects
+            SetupInfo();
+        }
+
+
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -221,6 +318,16 @@ namespace Pharmacy2UApplication.Core
             FoodPrice = price;
             FoodIsTaxable = taxable;
 
+            // Setup the relay commands and basic status effects
+            SetupInfo();
+
+        }
+
+        /// <summary>
+        /// Helper function to setup basic information for the viewmodel
+        /// </summary>
+        private void SetupInfo()
+        {
             // Setup commands for this viewmodel
             OpenEditCommand = new RelayCommand(OpenEditDialog);
             CloseEditCommand = new RelayCommand(CloseEditDialog);

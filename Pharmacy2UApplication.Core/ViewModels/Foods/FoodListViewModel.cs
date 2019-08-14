@@ -389,7 +389,12 @@ namespace Pharmacy2UApplication.Core
 
         #region Constructor
 
-        public FoodListViewModel()
+        /// <summary>
+        /// FoodListViewModel constructor that creates itself based on any list
+        /// of FoodListItemViewModel that is supplied to it
+        /// </summary>
+        /// <param name="myList">The list on which view model is based</param>
+        public FoodListViewModel(ObservableCollection<FoodListItemViewModel> myList)
         {
             // Create commands
             SearchCommand = new RelayCommand(Search);
@@ -405,18 +410,23 @@ namespace Pharmacy2UApplication.Core
             CancelAddFoodItemCommand = new RelayCommand(CancelAddFoodItem);
             CreateFoodItemCommand = new RelayCommand(CreateFoodItem);
 
-            // Dummy data for our search test page
-            ObservableCollection<FoodListItemViewModel> temp = new ObservableCollection<FoodListItemViewModel>();
-            temp.Add(new FoodListItemViewModel(11111, "Soup", "A hearty meal", "liquid", (decimal)1.11, false));
-            temp.Add(new FoodListItemViewModel(22222, "Pad Thai", "An international sensation", "awesome", (decimal)2.22, true));
-            temp.Add(new FoodListItemViewModel(33333, "Saltine Crackers", "A simple basic", "solid", (decimal)3.33, false));
-            temp.Add(new FoodListItemViewModel(44444, "Herbal Tea", "A simple beverage", "liquid", (decimal)4.44, false));
-            temp.Add(new FoodListItemViewModel(55555, "Red Jello", "There's always room", "unknown", (decimal)5.55, false));
-            temp.Add(new FoodListItemViewModel(66666, "Spicy Chicken Burritos", "Yum!  Tasty!", "solid", (decimal)6.66, false));
-
             // Assign our new list to Items
-            Items = new ObservableCollection<FoodListItemViewModel>(temp);
+            Items = new ObservableCollection<FoodListItemViewModel>(myList);
             FilteredItems = new ObservableCollection<FoodListItemViewModel>(Items);
+
+
+            //// Dummy data for our search test page
+            //ObservableCollection<FoodListItemViewModel> temp = new ObservableCollection<FoodListItemViewModel>();
+            //temp.Add(new FoodListItemViewModel(11111, "Soup", "A hearty meal", "liquid", (decimal)1.11, false));
+            //temp.Add(new FoodListItemViewModel(22222, "Pad Thai", "An international sensation", "awesome", (decimal)2.22, true));
+            //temp.Add(new FoodListItemViewModel(33333, "Saltine Crackers", "A simple basic", "solid", (decimal)3.33, false));
+            //temp.Add(new FoodListItemViewModel(44444, "Herbal Tea", "A simple beverage", "liquid", (decimal)4.44, false));
+            //temp.Add(new FoodListItemViewModel(55555, "Red Jello", "There's always room", "unknown", (decimal)5.55, false));
+            //temp.Add(new FoodListItemViewModel(66666, "Spicy Chicken Burritos", "Yum!  Tasty!", "solid", (decimal)6.66, false));
+
+            //// Assign our new list to Items
+            //Items = new ObservableCollection<FoodListItemViewModel>(temp);
+            //FilteredItems = new ObservableCollection<FoodListItemViewModel>(Items);
 
         }
 

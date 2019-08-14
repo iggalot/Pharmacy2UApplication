@@ -43,7 +43,11 @@
                       MaxHeight="250"
                 VerticalScrollBarVisibility="Auto"
                 HorizontalScrollBarVisibility="Auto">
-            <ItemsControl Name="OrderActivity" ItemsSource="{Binding FilteredItems}">
+            <ItemsControl Name="OrderActivity" 
+                          ItemsSource="{Binding Path=ViewModel.FilteredItems, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"              
+                    
+                          
+                          >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <!-- See AngelSix ChatMessageListControl for animation of this -->

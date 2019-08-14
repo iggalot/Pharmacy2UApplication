@@ -33,7 +33,7 @@ namespace Pharmacy2UApplication
                         IoC.Setup();
 
                     // Bind to a single instance of Order view model
-                    IoC.Kernel.Bind<OrderViewModel>().ToConstant(new OrderViewModel());
+                    IoC.Kernel.Bind<DatabaseQueryViewModel>().ToConstant(new DatabaseQueryViewModel());
 
 
 

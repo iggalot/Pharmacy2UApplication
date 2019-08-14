@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -29,8 +30,15 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         protected string mLastLastNameSearchText;
 
-
-
+        // Checkbox statuses
+        protected static bool mOrderNewIsChecked;
+        protected bool mOrderReadyForPaymentIsChecked;
+        protected bool mOrderReadyForPackagingIsChecked;
+        protected bool mOrderReadyForPickupIsChecked;
+        protected bool mOrderOutForDeliveryIsChecked;
+        protected bool mOrderCanceledIsChecked;
+        protected bool mOrderReturnedIsChecked;
+        protected bool mOrderCompletedIsChecked;
 
 
         /// <summary>
@@ -63,6 +71,12 @@ namespace Pharmacy2UApplication.Core
         ///  The filtered items list
         /// </summary>
         protected ObservableCollection<OrderListItemViewModel> mFilteredItems;
+
+        /// <summary>
+        /// A collection that contains all of the status filters for the collection
+        /// </summary>
+        protected ObservableCollection<OrderStatusTypes> mStatusFilterList;
+
 
         /// <summary>
         /// A flag indicating if the search dialog is open
@@ -120,6 +134,23 @@ namespace Pharmacy2UApplication.Core
 
                 // Signal that the Filtered items list has changed.
                 OnPropertyChanged(nameof(FilteredItems));
+            }
+        }
+
+        /// <summary>
+        /// A collection that contains all of the currently active status filters
+        /// </summary>
+        public ObservableCollection<OrderStatusTypes> StatusFilterList
+        {
+            get => mStatusFilterList;
+            set
+            {
+                // Make sure list has changed
+                if (mStatusFilterList == value)
+                    return;
+
+                // Update value
+                mStatusFilterList = value;
             }
         }
 
@@ -267,7 +298,171 @@ namespace Pharmacy2UApplication.Core
                 OnPropertyChanged(nameof(SearchIsOpen));
             }
         }
+
+        /// <summary>
+        /// Flag indicating if the new order filter is applied
+        /// </summary>
+        public bool OrderNewIsChecked
+        {
+            get => mOrderNewIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderNewIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderNewIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderNewIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order ready for payment filter is applied
+        /// </summary>
+        public bool OrderReadyForPaymentIsChecked
+        {
+            get => mOrderReadyForPaymentIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderReadyForPaymentIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderReadyForPaymentIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderReadyForPaymentIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order ready for packaging filter is applied
+        /// </summary>
+        public bool OrderReadyForPackagingIsChecked
+        {
+            get => mOrderReadyForPackagingIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderReadyForPackagingIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderReadyForPackagingIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderReadyForPackagingIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order ready for delivery filter is applied
+        /// </summary>
+        public bool OrderReadyForPickupIsChecked
+        {
+            get => mOrderReadyForPickupIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderReadyForPickupIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderReadyForPickupIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderReadyForPickupIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order out for delivery filter is applied
+        /// </summary>
+        public bool OrderOutForDeliveryIsChecked
+        {
+            get => mOrderOutForDeliveryIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderOutForDeliveryIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderOutForDeliveryIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderOutForDeliveryIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order canceled filter is applied
+        /// </summary>
+        public bool OrderCanceledIsChecked
+        {
+            get => mOrderCanceledIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderCanceledIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderCanceledIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderCanceledIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order returned filter is applied
+        /// </summary>
+        public bool OrderReturnedIsChecked
+        {
+            get => mOrderReturnedIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderReturnedIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderReturnedIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderReturnedIsChecked));
+            }
+        }
+
+        /// <summary>
+        /// Flag indicating if the order completed filter is applied
+        /// </summary>
+        public bool OrderCompletedIsChecked
+        {
+            get => mOrderCompletedIsChecked;
+            set
+            {
+                //Check value has changed
+                if (mOrderCompletedIsChecked == value)
+                    return;
+
+                // Update value
+                mOrderCompletedIsChecked = value;
+
+                // Notify that the property has changed 
+                OnPropertyChanged(nameof(OrderCompletedIsChecked));
+            }
+        }
+
+
         #endregion
+
+
 
         #region Public Commands
 
@@ -313,6 +508,46 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         public ICommand ClearAllSearchCommand { get; set; }
 
+        /// <summary>
+        /// The command that is activated when the new order filter is applied
+        /// </summary>
+        public ICommand OrderNewFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the ready for packing filter is applied
+        /// </summary>
+        public ICommand OrderReadyForPackagingFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the ready for payment filter is applied
+        /// </summary>
+        public ICommand OrderReadyForPaymentFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the ready for delivery filter is applied
+        /// </summary>
+        public ICommand OrderReadyForPickupFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the out for delivery filter is applied
+        /// </summary>
+        public ICommand OrderOutForDeliveryFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the out for delivery filter is applied
+        /// </summary>
+        public ICommand OrderCanceledFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the out for delivery filter is applied
+        /// </summary>
+        public ICommand OrderReturnedFilterCommand { get; set; }
+
+        /// <summary>
+        /// The command that is activated when the out for delivery filter is applied
+        /// </summary>
+        public ICommand OrderCompletedFilterCommand { get; set; }
+
 
 
         #endregion
@@ -323,7 +558,7 @@ namespace Pharmacy2UApplication.Core
         /// OrderListViewModel constructor that creates itself based on any list
         /// of OrderListItemViewModel that is supplied to it
         /// </summary>
-        /// <param name="myList"></param>
+        /// <param name="myList">The list on which view model is based</param>
         public OrderListViewModel(ObservableCollection<OrderListItemViewModel> myList)
         {
             // Create commands
@@ -335,6 +570,21 @@ namespace Pharmacy2UApplication.Core
             ClearFirstNameSearchCommand = new RelayCommand(ClearFirstNameSearch);
             ClearLastNameSearchCommand = new RelayCommand(ClearLastNameSearch);
             ClearAllSearchCommand = new RelayCommand(ClearAllSearch);
+
+            OrderNewFilterCommand = new RelayCommand(NewOrderFilter);
+            OrderReadyForPackagingFilterCommand = new RelayCommand(OrderReadyForPackagingFilter);
+            OrderReadyForPaymentFilterCommand = new RelayCommand(OrderReadyForPaymentFilter);
+            OrderReadyForPickupFilterCommand = new RelayCommand(OrderReadyForPickupFilter);
+            OrderOutForDeliveryFilterCommand = new RelayCommand(OrderOutForDeliveryFilter);
+            OrderCanceledFilterCommand = new RelayCommand(OrderCanceledFilter);
+            OrderReturnedFilterCommand = new RelayCommand(OrderReturnedFilter);
+            OrderCompletedFilterCommand = new RelayCommand(OrderCompletedFilter);
+
+            // Create our base status list
+            StatusFilterList = new ObservableCollection<OrderStatusTypes>();
+
+            // Set All Delivery Status Filters to cleared (false)
+            ClearAllDeliveryStatusFilters();
 
             // Assign our new list to Items
             Items = new ObservableCollection<OrderListItemViewModel>(myList);
@@ -452,39 +702,16 @@ namespace Pharmacy2UApplication.Core
             // Save the search results to the filtered list
             FilteredItems = new ObservableCollection<OrderListItemViewModel>(searchResults);
 
+            // Update the status list
+            UpdateStatusFilterList();
+
+            // Apply the status filter list
+            ApplyStatusFilters();
+
+            OnPropertyChanged(nameof(FilteredItems));
+
             // Set last search criterion
-            SaveSearchCriteria();
-
-
-
-
-
-            //// Make sure we don't re-search the same text
-            //if ((string.IsNullOrEmpty(mLastSearchText) && string.IsNullOrEmpty(SearchText)) ||
-            //    string.Equals(mLastSearchText, SearchText))
-            //    return;
-
-            //// If we have no search text, or no items
-            //if (string.IsNullOrEmpty(SearchText) || Items == null || Items.Count <= 0)
-            //{
-            //    // Make filtered list the same
-            //    FilteredItems = new ObservableCollection<OrderListItemViewModel>(Items ?? Enumerable.Empty<OrderListItemViewModel>());
-
-            //    // Set last search
-            //    mLastSearchText = SearchText.ToLower();
-
-            //    return;
-            //}
-
-            //// Find all items that contain the given text
-            //// TODO: Make more efficient search
-            //FilteredItems = new ObservableCollection<OrderListItemViewModel>(
-            //    Items.Where(item => item.LastName.ToLower().Contains(LastNameSearchText.ToLower())));
-            //// REFERENCE: See AngelSix WPF32 36:42
-
-
-            //// Set last search text
-            //mLastSearchText = SearchText.ToLower();
+            SaveSearchCriteria();           
         }
 
         /// <summary>
@@ -546,13 +773,42 @@ namespace Pharmacy2UApplication.Core
         }
 
         /// <summary>
+        /// Clears all the date filters
+        /// </summary>
+        public void ClearAllDeliveryStatusFilters()
+        {
+            // Clear all order status checkboxes
+            OrderNewIsChecked = false;
+            OrderReadyForPaymentIsChecked = false;
+            OrderReadyForPackagingIsChecked = false;
+            OrderReadyForPickupIsChecked = false;
+            OrderOutForDeliveryIsChecked = false;
+            OrderCanceledIsChecked = false;
+            OrderReturnedIsChecked = false;
+            OrderCompletedIsChecked = false;
+
+            // Clear the StatusFilter List
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
         /// A function to clear all the search fields of our control.
         /// </summary>
         public void ClearAllSearch()
         {
+            // Clear the status filters
+            ClearAllDeliveryStatusFilters();
+
+            // Now clear the search fields 
+            // -- These must be last because changes to these fields trigger a new search
             ClearOrderIDSearch();
             ClearFirstNameSearch();
             ClearLastNameSearch();
+
+            // Search again to reset the FilteredItems list
+            Search();
+
+
         }
 
 
@@ -570,6 +826,135 @@ namespace Pharmacy2UApplication.Core
         public void CloseSearch()
         {
             SearchIsOpen = false;
+        }
+
+        /// <summary>
+        /// The command that executes when the order completed filter is checked
+        /// </summary>
+        private void OrderCompletedFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the order returned filter is checked
+        /// </summary>
+        private void OrderReturnedFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the order canceled filter is checked
+        /// </summary>
+        private void OrderCanceledFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the out for delivery filter is checked
+        /// </summary>
+        private void OrderOutForDeliveryFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the out for delivery filter is clicked
+        /// </summary>
+        private void OrderReadyForPickupFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the ready for payment filter is clicked
+        /// </summary>
+        private void OrderReadyForPaymentFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the ready for packging filter is clicked
+        /// </summary>
+        private void OrderReadyForPackagingFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        /// <summary>
+        /// The command that executes when the new order check box is clicked
+        /// </summary>
+        private void NewOrderFilter()
+        {
+            // Apply the filter
+            UpdateStatusFilterList();
+        }
+
+        #endregion
+
+
+
+
+        #region Helper Functions
+        private void UpdateStatusFilterList()
+        {
+            // Clear the status filter list
+            StatusFilterList.Clear();
+
+            if (OrderNewIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_NEWORDER);
+            if (OrderReadyForPackagingIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_READY_FOR_PACKAGING);
+            if (OrderReadyForPaymentIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_READY_FOR_PAYMENT);
+            if (OrderReadyForPickupIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_READY_FOR_PICKUP);
+            if (OrderOutForDeliveryIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_OUT_FOR_DELIVERY);
+            if (OrderCanceledIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_CANCELED);
+            if (OrderReturnedIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_RETURN_NOT_DELIVERED);
+            if (OrderCompletedIsChecked)
+                StatusFilterList.Add(OrderStatusTypes.STATUS_COMPLETED);
+
+            ApplyStatusFilters();
+        }
+
+        // Applies the date filters from the checkboxes to the FilteredItems list
+        private void ApplyStatusFilters()
+        {
+            // If none of the filters are checked, make no changes...
+            if (StatusFilterList.Count == 0)
+                return;
+
+            // Otherwise apply our filter
+            ObservableCollection<OrderListItemViewModel> temp = new ObservableCollection<OrderListItemViewModel>();
+
+            foreach(OrderStatusTypes type in StatusFilterList)
+            {
+                for (int i = 0; i < FilteredItems.Count; i++)
+                {
+                    if (FilteredItems[i].StatusType == type)
+                    {
+                        temp.Add(FilteredItems[i]);
+                    }
+                }
+            }
+
+            // Recreated the Filtered Items list. If there were any changes, 
+            // signal that the collection was changed
+            FilteredItems = new ObservableCollection<OrderListItemViewModel>(temp);
         }
 
         #endregion

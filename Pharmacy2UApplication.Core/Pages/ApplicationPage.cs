@@ -49,7 +49,7 @@ namespace Pharmacy2UApplication.Core
         /// <summary>
         /// For displaying the information about Ready for Delivery Orders
         /// </summary>
-        ReadyForDeliveryOrdersPage = 8,
+        ReadyForPickupOrdersPage = 8,
 
         /// <summary>
         /// For displaying the information about Out for Delivery Orders

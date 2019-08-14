@@ -105,6 +105,8 @@
                                 Style="{StaticResource OrderItemTextBlockMain}"                               
                                 Text="{Binding FoodDescription, FallbackValue='Error'}" />
                             </Grid>
+                            
+                            <!-- Exapanded information-->
                             <Grid Grid.Row="3"
                               x:Name="FoodDataExpanded2"
                               Visibility="Collapsed"
@@ -114,16 +116,26 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label 
-                                Grid.Column="0"
-                                HorizontalAlignment="Left"
-                                Content="Last Modified:" FontWeight="Bold" FontFamily="{StaticResource LatoRegular}"/>
+                                <StackPanel Orientation="Vertical" Grid.Column="0">
+                                    <Label
+                                        HorizontalAlignment="Left"
+                                        Content="Created:" FontWeight="Bold" FontFamily="{StaticResource LatoRegular}"/>
+                                    <Label
+                                        HorizontalAlignment="Left"
+                                        Content="Last Modified:" FontWeight="Bold" FontFamily="{StaticResource LatoRegular}"/>
+                                </StackPanel>
 
-                                <TextBlock 
-                                HorizontalAlignment="Left"
-                                Style="{StaticResource OrderItemTextBlockMain}" 
-                                Grid.Column="1" 
-                                Text="{Binding ItemModifiedWhen, FallbackValue='Error'}" />
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                    <TextBlock 
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource OrderItemTextBlockMain}" 
+                                        Text="{Binding FoodCreatedWhen, FallbackValue='Error'}" />
+                                    <TextBlock 
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource OrderItemTextBlockMain}" 
+                                        Text="{Binding FoodModifiedWhen, FallbackValue='Error'}" />
+
+                                </StackPanel>
                             </Grid>
                         </Grid>
                     </Border>

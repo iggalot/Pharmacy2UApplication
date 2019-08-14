@@ -31,8 +31,8 @@ namespace Pharmacy2UApplication
                 case ApplicationPage.ReadyForPackagingOrdersPage:
                     return new ReadyForPackagingOrdersPage();
 
-                case ApplicationPage.ReadyForDeliveryOrdersPage:
-                    return new ReadyForDeliveryOrdersPage();
+                case ApplicationPage.ReadyForPickupOrdersPage:
+                    return new ReadyForPickupOrdersPage();
 
                 case ApplicationPage.OutForDeliveryOrdersPage:
                     return new OutForDeliveryOrdersPage();

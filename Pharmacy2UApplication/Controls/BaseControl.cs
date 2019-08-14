@@ -37,7 +37,7 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// The command to execute when the Ready For Delivery button is clicked
         /// </summary>
-        public ICommand ReadyForDeliveryCommand { get; set; }
+        public ICommand ReadyForPickupCommand { get; set; }
 
         /// <summary>
         /// The command to execute when the Out for Delivery button is clicked
@@ -88,7 +88,7 @@ namespace Pharmacy2UApplication
             NewOrdersCommand = new RelayCommand(() => this.GetNewOrders());
             ReadyForPaymentCommand = new RelayCommand(() => this.GetReadyForPaymentOrders());
             ReadyForPackagingCommand = new RelayCommand(() => this.GetReadyForPackagingOrders());
-            ReadyForDeliveryCommand = new RelayCommand(() => this.GetReadyForDeliveryOrders());
+            ReadyForPickupCommand = new RelayCommand(() => this.GetReadyForPickupOrders());
             OutForDeliveryCommand = new RelayCommand(() => this.GetOutForDeliveryOrders());
             ReturnedOrdersCommand = new RelayCommand(() => this.GetReturnedOrders());
             CompletedOrdersCommand = new RelayCommand(() => this.GetCompletedOrders());
@@ -137,9 +137,9 @@ namespace Pharmacy2UApplication
         /// <summary>
         /// The functionality for when the user clicks the Ready for Delivery button on the OrderStatusControl
         /// </summary>
-        public void GetReadyForDeliveryOrders()
+        public void GetReadyForPickupOrders()
         {
-            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.ReadyForDeliveryOrdersPage);
+            IoC.Get<ApplicationViewModel>().GoToPage(ApplicationPage.ReadyForPickupOrdersPage);
         }
 
         /// <summary>

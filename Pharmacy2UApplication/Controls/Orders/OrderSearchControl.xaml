@@ -29,7 +29,8 @@
             Style="{StaticResource SearchControlButton}"
             Grid.Column="0"
             Content="Close"
-            Command="{Binding CloseSearchCommand}"
+            Command="{Binding Path=ViewModel.CloseSearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"              
+                    
             />
 
 
@@ -38,13 +39,16 @@
             Style="{StaticResource SearchField}"
             Grid.Column="1" 
             Tag="Order ID"
-            Text="{Binding OrderIDSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding Path=ViewModel.OrderIDSearchText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}, UpdateSourceTrigger=PropertyChanged}" 
+           
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearOrderIDSearchCommand}" Key="Esc" />
+                <KeyBinding 
+                    Command="{Binding Path=ViewModel.ClearOrderIDSearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"              
+                    Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -55,13 +59,16 @@
             Style="{StaticResource SearchField}"
             Grid.Column="2" 
             Tag="First Name"
-            Text="{Binding FirstNameSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding Path=ViewModel.FirstNameSearchText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}, UpdateSourceTrigger=PropertyChanged}" 
+           
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearFirstNameSearchCommand}" Key="Esc" />
+                <KeyBinding 
+                    Command="{Binding Path=ViewModel.ClearFirstNameSearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                    Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -73,7 +80,8 @@
             Grid.Column="3" 
             Tag="Last Name"
 
-            Text="{Binding LastNameSearchText, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding Path=ViewModel.LastNameSearchText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}, UpdateSourceTrigger=PropertyChanged}" 
+                            
             Margin="0 5 5 5"
             FontSize="{StaticResource FontSizeRegular}"
             >
@@ -81,7 +89,9 @@
 
             <TextBox.InputBindings>
                 <!--Clear text on Esc-->
-                <KeyBinding Command="{Binding ClearLastNameSearchCommand}" Key="Esc" />
+                <KeyBinding
+                    Command="{Binding Path=ViewModel.ClearLastNameSearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                    Key="Esc" />
                 <!--Search on enter-->
                 <!--<KeyBinding Command="{Binding SearchCommand}" Key="Return" />-->
             </TextBox.InputBindings>
@@ -92,25 +102,61 @@
             Grid.Column="4" 
                         Style="{StaticResource SearchControlButton}"
                         Content="Find Orders"
-                        Command="{Binding SearchCommand}"
+                        Command="{Binding Path=ViewModel.SearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+
                         />
         <!--Clear All search button-->
         <Button Grid.Row="1"
             Grid.Column="5" 
                         Style="{StaticResource SearchControlButton}"
                         Content="Clear Search"
-                        Command="{Binding ClearAllSearchCommand}"
+                        Command="{Binding Path=ViewModel.ClearAllSearchCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+
                         />
 
         <WrapPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal">
-            <CheckBox x:Name="NewOrders"     Content="New Orders" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="True" IsEnabled="True"/>
-            <CheckBox x:Name="RdyPayment"    Content="Rdy Payment" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="RdyPackage"    Content="Rdy Package" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="RdyDeliver"    Content="Rdy Deliver" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="OutForDeliver" Content="Out for Delivery" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Returned"      Content="Returned" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Canceled"      Content="Canceled" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
-            <CheckBox x:Name="Completed"     Content="Completed" Margin="5 0 10 0" VerticalAlignment="Center" IsChecked="False" IsEnabled="True"/>
+            <CheckBox x:Name="NewOrders"     
+                      Content="New Orders" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderNewFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderNewIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"  
+                      IsEnabled="True"/>
+            <CheckBox x:Name="RdyPayment"    
+                      Content="Rdy Payment" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderReadyForPaymentFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderReadyForPaymentIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsEnabled="True"/>
+            <CheckBox x:Name="RdyPackage"    
+                      Content="Rdy Package" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderReadyForPackagingFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderReadyForPackagingIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"  
+                      IsEnabled="True"/>
+            <CheckBox x:Name="RdyDeliver"    
+                      Content="Rdy Pickup" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderReadyForPickupFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderReadyForPickupIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsEnabled="True"/>
+            <CheckBox x:Name="OutForDeliver" 
+                      Content="Out for Delivery" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderOutForDeliveryFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderOutForDeliveryIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsEnabled="True"/>
+            <CheckBox x:Name="Returned"      
+                      Content="Returned" Margin="5 0 10 0" VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderReturnedFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderReturnedIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsEnabled="True"/>
+            <CheckBox x:Name="Canceled"      
+                      Content="Canceled" Margin="5 0 10 0" 
+                      VerticalAlignment="Center" 
+                      Command="{Binding Path=ViewModel.OrderCanceledFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderCanceledIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"
+                      IsEnabled="True"/>
+            <CheckBox x:Name="Completed"
+                      Content="Completed" Margin="5 0 10 0" 
+                      VerticalAlignment="Center"
+                      Command="{Binding Path=ViewModel.OrderCompletedFilterCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}" 
+                      IsChecked="{Binding Path=ViewModel.OrderCompletedIsChecked, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:OrderViewBasePage}}}"
+                      IsEnabled="True"/>
         </WrapPanel>
 
     </Grid>

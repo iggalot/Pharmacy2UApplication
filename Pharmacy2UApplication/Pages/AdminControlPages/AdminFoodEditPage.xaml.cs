@@ -1,5 +1,6 @@
 ﻿using Pharm2UAnimations;
 using Pharmacy2UApplication.Core;
+using System.Collections.ObjectModel;
 
 namespace Pharmacy2UApplication
 {
@@ -17,10 +18,13 @@ namespace Pharmacy2UApplication
         {
             InitializeComponent();
 
-            // Create the viewmodel for this page
-            ViewModel = new FoodListViewModel();
+            // Retrieve food list database query from our collection in the IoC<OrderViewModel>
+            ObservableCollection<FoodListItemViewModel> fullList = IoC.Get<DatabaseQueryViewModel>().GetFullFoodList();
 
-            // Set the data context
+            // Create a view model for the full order list
+            ViewModel = new FoodListViewModel(fullList);
+
+            // And set that as the data context
             DataContext = ViewModel;
         }
     }

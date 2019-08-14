@@ -12,17 +12,19 @@ namespace Pharmacy2UApplication
     /// A class that controls the reading and retrieving of order data from the data base
     /// TODO:  Move this to .CORE project -- issues with namespace naming in the meantime
     /// </summary>
-    public class OrderViewModel : BaseViewModel
+    public class DatabaseQueryViewModel : BaseViewModel
     {
         #region Constructor
 
-        public OrderViewModel()
+        public DatabaseQueryViewModel()
         {
-            // Initialize our order list
+            // Initialize our database query lists
             FullOrderInfoList = new ObservableCollection<OrderListItemViewModel>();
+            FullFoodInfoList = new ObservableCollection<FoodListItemViewModel>();
 
             // Query the database for all orders
             ReadAllOrders();
+            ReadAllFoods();
         }
 
         #endregion
@@ -30,9 +32,14 @@ namespace Pharmacy2UApplication
         #region Public Properties
 
         /// <summary>
-        /// The collection entity to store our joined order queries {
+        /// The collection entity to store our list of full order data queries
         /// </summary>
         public static ObservableCollection<OrderListItemViewModel> FullOrderInfoList { get; set; }
+
+        /// <summary>
+        /// The collection entity for all food items  data queries
+        /// </summary>
+        public static ObservableCollection<FoodListItemViewModel> FullFoodInfoList { get; set; }
 
         #endregion
 
@@ -46,21 +53,6 @@ namespace Pharmacy2UApplication
         {
             // Clear the JoinedOrderInfoList
             FullOrderInfoList.Clear();
-
-            // Get the orders that meet our time / status criteria
-
-            // Join the orders of our criteria with the customer data table
-
-            // Join the orders of our criteria with the food order table
-
-            // Join the order of our criteria with the otcmed table
-
-            // Join the order with delivery area and delivery company
-
-            // Join the order with the pharmacy info
-
-            // Join the order with the provider info
-
 
             // Our context for the database
             using (var context = new Pharm2UEntities())
@@ -184,6 +176,63 @@ namespace Pharmacy2UApplication
             }
         }
 
+
+        /// <summary>
+        /// The query to read all orders in the database.  Reads the database one by one rather than
+        /// performing one single large join query in the database
+        /// </summary>
+        public void ReadAllFoods()
+        {
+            // Clear the JoinedOrderInfoList
+            FullFoodInfoList.Clear();
+
+            // Our context for the database
+            using (var context = new Pharm2UEntities())
+            {
+                // join our order data with our customer data
+                var AllOrders = (from food in context.P2U_Food
+
+                                 select new
+                                 {  
+                                     FoodIDNumber = food.ItemID,
+                                     FoodItemCreatedWhen = food.ItemCreatedWhen,
+                                     FoodItemCreatedBy = food.ItemCreatedBy,
+                                     FoodItemModifiedWhen = food.ItemModifiedWhen,
+                                     FoodItemModifiedBy = food.ItemModifiedBy,
+                                     FoodName = food.Name,
+                                     FoodDescription = food.Description,
+                                     FoodType = food.Type,
+                                     FoodIsTaxable = food.Taxable,
+                                     FoodPrice = food.Price
+                                 }).ToList();
+
+                foreach (var p in AllOrders)
+                {
+                    // Record our database record from the order information search
+                    FoodListItemViewModel temp = new FoodListItemViewModel();
+
+                    temp.FoodIDNumber = p.FoodIDNumber;
+                    temp.FoodCreatedWhen = p.FoodItemCreatedWhen;
+                    temp.FoodCreatedBy = p.FoodItemCreatedBy;
+                    temp.FoodModifiedWhen = p.FoodItemModifiedWhen;
+                    temp.FoodModifiedBy = p.FoodItemModifiedBy;
+                    temp.FoodName = p.FoodName;
+                    temp.FoodDescription = p.FoodDescription;
+                    temp.FoodType = p.FoodType;
+                    temp.FoodIsTaxable = p.FoodIsTaxable;
+                    temp.FoodPrice = p.FoodPrice;
+
+                    
+
+                    // Add our entry to our list
+                    FullFoodInfoList.Add(temp);
+
+                }
+            }
+        }
+
+
+
         /// <summary>
         /// Displays all the order records in the data base
         /// </summary>
@@ -204,6 +253,14 @@ namespace Pharmacy2UApplication
             return FullOrderInfoList;
         }
 
+        /// <summary>
+        /// Returns the FullFoodInfoList from the query
+        /// </summary>
+        /// <returns></returns>
+        public ObservableCollection<FoodListItemViewModel> GetFullFoodList()
+        {
+            return FullFoodInfoList;
+        }
 
         /// <summary>
         /// A routine to determine the status of an order by looking at which time fields are currently null.

@@ -24,7 +24,7 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!-- Address expanded data headers -->
@@ -42,11 +42,14 @@
                 <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="3" Grid.Column="1" Text="{Binding Country, FallbackValue='Error'}" />
 
                 <!-- Address expanded data headers -->
-                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="1" Grid.Column="4" Text="ContactMethod" />
-                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="2" Grid.Column="4" Text="Email" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="2" Grid.Column="4" Text="ContactMethod" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="3" Grid.Column="4" Text="Email" />
 
-                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="1" Grid.Column="5" Text="{Binding Path=ContactMethod, FallbackValue='Error'}" />
-                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="5" Text="{Binding Email, FallbackValue='Error'}" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="1" Grid.Column="4" Text="Status" />
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpandedHeader}" Grid.Row="1" Grid.Column="5" Text="{Binding StatusType, FallbackValue='Error'}" HorizontalAlignment="Right"/>
+
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="2" Grid.Column="5" Text="{Binding Path=ContactMethod, FallbackValue='Error'}" HorizontalAlignment="Right"/>
+                <TextBlock Style="{StaticResource OrderItemTextBlockExpanded}" Grid.Row="3" Grid.Column="5" Text="{Binding Email, FallbackValue='Error'}" HorizontalAlignment="Right"/>
 
             </Grid>
         </DataTemplate>
@@ -91,7 +94,7 @@
                         <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="3" Text="{Binding LastName, FallbackValue='Error'}" />
                         <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="4" Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" />
                         <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="5" Text="{Binding Phone, FallbackValue='Error'}"  />
-                        <TextBlock Style="{StaticResource OrderItemTextBlockMain}" Grid.Row="1" Grid.Column="9" Text="{Binding StatusType, FallbackValue='Error'}" HorizontalAlignment="Right"/>
+
 
 
                         <!-- Status Visual Control -->
