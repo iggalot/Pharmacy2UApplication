@@ -189,7 +189,6 @@
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
-    <Compile Include="VisualTree\VisualTreeHelperExtensions.cs" />
     <Compile Include="Window\WindowResizer.cs" />
     <Page Include="Controls\Administration\AdminDeliveryEditControl.xaml">
       <Generator>MSBuild:Compile</Generator>

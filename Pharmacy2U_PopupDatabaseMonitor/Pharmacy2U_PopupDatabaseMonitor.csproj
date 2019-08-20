@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\WindowViewModel.cs" />
     <Page Include="Controls\DatabaseChangedControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,6 +105,14 @@
     <ProjectReference Include="..\EntityFrameworkDatabase\EntityFrameworkDatabase.csproj">
       <Project>{9cceb7a4-40d8-461f-94ba-b16589cb0ae2}</Project>
       <Name>EntityFrameworkDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharm2UAnimations\Pharm2UAnimations.csproj">
+      <Project>{458a010a-7bc4-49e3-b19e-b180683d9058}</Project>
+      <Name>Pharm2UAnimations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharm2UStyles\Pharm2UStyles.csproj">
+      <Project>{4f3859c6-6166-413f-9fc5-409646203d59}</Project>
+      <Name>Pharm2UStyles</Name>
     </ProjectReference>
     <ProjectReference Include="..\Pharmacy2UApplication.Core\Pharmacy2UApplication.Core.csproj">
       <Project>{7082d516-1a73-443d-b2f1-07253b8f9d46}</Project>

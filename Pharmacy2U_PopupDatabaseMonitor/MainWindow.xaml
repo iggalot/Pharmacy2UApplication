@@ -6,22 +6,41 @@
         xmlns:local="clr-namespace:Pharmacy2U_PopupDatabaseMonitor"
         xmlns:core="clr-namespace:Pharmacy2UApplication.Core;assembly=Pharmacy2UApplication.Core"
         mc:Ignorable="d"
-        WindowStartupLocation="Manual"
-        SizeToContent="WidthAndHeight"
-        Left="950"
-        Top="675"
-        Height="200" 
-        Width="250"
+
+        
         Title="Popup Database Application" 
         Loaded="Window_Loaded"
+        WindowStartupLocation="Manual"
+        Height="{Binding WindowMinimumHeight}"
+        Width="{Binding WindowMinimumWidth}"
+        Left="{Binding UpperCornerLeftPosition}"
+        Top="{Binding UpperCornerTopPosition}"
+        
         Background="Transparent"
         WindowStyle="None"
+        AllowsTransparency="True"
         >
-   
-    <Border VerticalAlignment="Center"
-            Background="Transparent">
 
-        <!-- Our popup for activity changed -->
+    <Window.Resources>
+        <Storyboard x:Key="ShowPopup" Completed="ShowPopupStoryboard_Completed">
+            <!--<DoubleAnimation
+                                    Storyboard.TargetName="theTransform"
+                                    Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                    From="0" To="360" Duration="0:0:5" AutoReverse="True"/>-->
+            <DoubleAnimation
+                Storyboard.TargetName="theTransform"
+                Storyboard.TargetProperty="Y"
+                From="{Binding WindowMinimumHeight}" To="1" Duration="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="HidePopup" Completed="HidePopupStoryboard_Completed"  >
+            <DoubleAnimation
+                Storyboard.TargetName="theTransform"
+                Storyboard.TargetProperty="Y"
+                From="1" To="{Binding WindowMinimumHeight}" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <!-- Our popup for activity changed --><!--
         <local:DatabaseChangedControl 
             Grid.Row="1" 
             Grid.Column="1"
@@ -29,12 +48,80 @@
             HorizontalAlignment="Center"
             Panel.ZIndex="10"
             
-            />
-        <!--
-                    DataContext="{Binding ApplicationViewModel,
-                                Source={x:Static core:ViewModelLocator.Instance}}"
-        local:AnimateSlideInFromBottomProperty.Value ="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
-                                Source={x:Static local:ViewModelLocator.Instance}}"
             />-->
+
+    <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="15"
+            Background="Red"
+            >
+
+
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0"  Width="200" Height="25" Click="Show_Click"
+                    HorizontalAlignment="Center">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard Storyboard="{StaticResource ShowPopup}"/>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
+                Click to see the Popup animate
+            </Button>
+
+            <Popup Grid.Row="0" Name="MyPopup"
+               Placement="Center"               
+               AllowsTransparency="True"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               >
+                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas Width="{Binding WindowMinimumWidth}" Height="{Binding WindowMinimumHeight}"
+                        Background="{StaticResource DeaconessDarkGreenBrush}">
+
+                        <Canvas.RenderTransform>
+                            <TranslateTransform x:Name="theTransform"/>
+                        </Canvas.RenderTransform>
+                        <Grid Canvas.Left="100" Canvas.Top="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" TextWrapping="Wrap" Foreground="White"
+                                   FontWeight="Bold"
+                                   FontStyle="Italic"
+                                   VerticalAlignment="Top"
+                                   Text="Pharmacy2U Database Monitor"
+                                   >
+                            </TextBlock>
+                            <Image Margin="10" Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Height="80"
+                                Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_VERT.png"
+                                />
+
+                            <Button Grid.Row="2" Content="Acknowledge" Click="Hide_Click">
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard Storyboard="{StaticResource HidePopup}"/>
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </Grid>
+                    </Canvas>
+                </Border>
+            </Popup>
+
+            <TextBlock Grid.Row="1" Background="White" FontSize="20" Text="{Binding UpperCornerLeftPosition, FallbackValue='Error'}"/>
+            <TextBlock Grid.Row="2" Background="White" FontSize="20" Text="{Binding UpperCornerTopPosition, FallbackValue='Error'}"/>
+
+        </Grid>
     </Border>
 </Window>

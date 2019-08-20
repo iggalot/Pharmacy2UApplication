@@ -7,8 +7,18 @@
              >
     <!-- Overridden by "Startup" above to allow for single instance checking of the program.  Replace this line if needed-->
     <!--StartupUri="MainWindow.xaml"-->
-             
+
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Order is important here -->
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Buttons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Texts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Pharm2UStyles;component/Styles/Window.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

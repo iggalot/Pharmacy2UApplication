@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace Pharmacy2UApplication
+namespace Pharmacy2UApplication.Core
 {
     /// <summary>
     /// Used to find ancestors of items in the visual tree
