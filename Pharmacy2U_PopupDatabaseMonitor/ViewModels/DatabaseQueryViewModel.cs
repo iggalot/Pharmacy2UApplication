@@ -40,8 +40,6 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // Initialize our counter variables
             PreviousRecordCount = 0;
             CurrentRecordCount = CountOrders();
-
-            MessageBox.Show("Current Count: " + CurrentRecordCount.ToString());
         }
 
         #endregion

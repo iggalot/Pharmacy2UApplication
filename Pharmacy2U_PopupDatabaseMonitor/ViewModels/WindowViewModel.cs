@@ -331,6 +331,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // TODO: Implement Acknowledgement actions
 
             // 1. Open other main application if necessary
+
             // 2. Verify communication with the other application
 
             // 3. Signal main application that it should show new records if its not already busy (Editing or creating)
@@ -339,8 +340,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
 
             // 5. Signal the popup is closed
 
-            // 6. Update the counts
-            
+            // 6. Update the counts          
             IoC.Get<DatabaseQueryViewModel>().SetPreviousRecordCount(CurrentRecordCount);
         }
 

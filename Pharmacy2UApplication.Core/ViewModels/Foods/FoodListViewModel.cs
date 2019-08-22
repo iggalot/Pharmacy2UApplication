@@ -257,14 +257,13 @@ namespace Pharmacy2UApplication.Core
                 // Update values
                 mSearchIsOpen = value;
 
-                // If dialog closes...
-                if (!mSearchIsOpen)
-                    // Clear search text
-                    ClearAllSearch();
+                //// If dialog closes...
+                //if (!mSearchIsOpen)
+                //    // Clear search text
+                //    ClearAllSearch();
 
-                // Update the fnlag idicating that search or add food is currently active
+                // Update the flag indicating that search or add food is currently active
                 AddFoodOrSearchIsOpen = UpdateAddFoodOrSearchIsOpen();
-
 
                 ////// Notify that the property has changed -- needed to fire the animation
                 OnPropertyChanged(nameof(SearchIsOpen));
@@ -524,6 +523,12 @@ namespace Pharmacy2UApplication.Core
                     searchResults.Where(item => item.FoodType.ToLower().Contains(FoodTypeSearchText.ToLower())));
             }
 
+            // Apply the order status type filters
+
+
+
+
+
             // Save the search results to the filtered list
             FilteredItems = new ObservableCollection<FoodListItemViewModel>(searchResults);
 
@@ -579,6 +584,8 @@ namespace Pharmacy2UApplication.Core
             ClearFoodIDSearch();
             ClearFoodNameSearch();
             ClearFoodTypeSearch();
+
+
         }
 
         /// <summary>
@@ -641,7 +648,7 @@ namespace Pharmacy2UApplication.Core
             Items.Add(newItem);
 
             // Clear the filter and search again to set the filtered list
-            ClearAllSearch();
+//            ClearAllSearch();
             Search();
 
             // Close the add food item dialog
@@ -651,6 +658,12 @@ namespace Pharmacy2UApplication.Core
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Updates the current food list item view model (flivm) with changes made to the edit fields
+        /// </summary>
+        /// <param name="flivm"></param>
+        /// <param name="newItem"></param>
         public void UpdateFLIVM(FoodListItemViewModel flivm, FoodListItemViewModel newItem)
         {
             // Update the existing record with the new data
@@ -662,6 +675,11 @@ namespace Pharmacy2UApplication.Core
             flivm.FoodPrice = newItem.FoodPrice;
         }
 
+        /// <summary>
+        /// Find the food list item view model (flivm) based on the food ID number of the clicked record
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public FoodListItemViewModel findFLIVM(int num)
         {
             bool matchFound = false;

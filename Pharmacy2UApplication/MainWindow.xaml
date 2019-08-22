@@ -280,19 +280,6 @@
 
         </StackPanel>
 
-        <!-- Our popup for activity changed --><!--
-        <local:DatabaseChangedControl 
-            DataContext="{Binding ApplicationViewModel,
-                                Source={x:Static local:ViewModelLocator.Instance}}"
-            Grid.Row="1" 
-            Grid.Column="1"
-            VerticalAlignment="Bottom" 
-            HorizontalAlignment="Center"
-            Panel.ZIndex="10"
-            local:AnimateSlideInFromBottomProperty.Value ="{Binding ApplicationViewModel.PopupAlertWindow.PopupWindowVisible,
-                                Source={x:Static local:ViewModelLocator.Instance}}"
-            />-->
-            
 
     </Grid>
 </Window>

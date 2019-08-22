@@ -314,6 +314,9 @@ namespace Pharmacy2UApplication.Core
                 // Update value
                 mOrderNewIsChecked = value;
 
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
+
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderNewIsChecked));
             }
@@ -333,6 +336,9 @@ namespace Pharmacy2UApplication.Core
 
                 // Update value
                 mOrderReadyForPaymentIsChecked = value;
+
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
 
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderReadyForPaymentIsChecked));
@@ -354,6 +360,9 @@ namespace Pharmacy2UApplication.Core
                 // Update value
                 mOrderReadyForPackagingIsChecked = value;
 
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
+
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderReadyForPackagingIsChecked));
             }
@@ -373,6 +382,9 @@ namespace Pharmacy2UApplication.Core
 
                 // Update value
                 mOrderReadyForPickupIsChecked = value;
+
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
 
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderReadyForPickupIsChecked));
@@ -394,6 +406,9 @@ namespace Pharmacy2UApplication.Core
                 // Update value
                 mOrderOutForDeliveryIsChecked = value;
 
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
+
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderOutForDeliveryIsChecked));
             }
@@ -413,6 +428,9 @@ namespace Pharmacy2UApplication.Core
 
                 // Update value
                 mOrderCanceledIsChecked = value;
+
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
 
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderCanceledIsChecked));
@@ -434,6 +452,9 @@ namespace Pharmacy2UApplication.Core
                 // Update value
                 mOrderReturnedIsChecked = value;
 
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
+
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderReturnedIsChecked));
             }
@@ -453,6 +474,9 @@ namespace Pharmacy2UApplication.Core
 
                 // Update value
                 mOrderCompletedIsChecked = value;
+
+                // Apply the status filters when an item is checked or unchecked
+                ApplyStatusFilters();
 
                 // Notify that the property has changed 
                 OnPropertyChanged(nameof(OrderCompletedIsChecked));
@@ -702,10 +726,7 @@ namespace Pharmacy2UApplication.Core
             // Save the search results to the filtered list
             FilteredItems = new ObservableCollection<OrderListItemViewModel>(searchResults);
 
-            // Update the status list
-            UpdateStatusFilterList();
-
-            // Apply the status filter list
+            // Apply the status filters to reduce the size of the list we are working with
             ApplyStatusFilters();
 
             OnPropertyChanged(nameof(FilteredItems));
@@ -833,7 +854,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderCompletedFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -842,7 +863,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderReturnedFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -851,7 +872,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderCanceledFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -860,7 +881,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderOutForDeliveryFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -869,7 +890,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderReadyForPickupFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -878,7 +899,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderReadyForPaymentFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -887,7 +908,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void OrderReadyForPackagingFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -896,7 +917,7 @@ namespace Pharmacy2UApplication.Core
         /// </summary>
         private void NewOrderFilter()
         {
-            // Apply the filter
+            // toggle the checkbox
             UpdateStatusFilterList();
         }
 
@@ -928,12 +949,14 @@ namespace Pharmacy2UApplication.Core
             if (OrderCompletedIsChecked)
                 StatusFilterList.Add(OrderStatusTypes.STATUS_COMPLETED);
 
+            // Search again to update the status filters
             ApplyStatusFilters();
         }
 
         // Applies the date filters from the checkboxes to the FilteredItems list
         private void ApplyStatusFilters()
         {
+
             // If none of the filters are checked, make no changes...
             if (StatusFilterList.Count == 0)
                 return;
@@ -952,13 +975,12 @@ namespace Pharmacy2UApplication.Core
                 }
             }
 
-            // Recreated the Filtered Items list. If there were any changes, 
-            // signal that the collection was changed
+            // Recreate the Filtered Items list based on the status check boxes
             FilteredItems = new ObservableCollection<OrderListItemViewModel>(temp);
         }
 
         #endregion
 
-
+        // TODO:  Repair automatic update when a order status filter is unchecked.  Currently it doesnt change the list.
     }
 }
