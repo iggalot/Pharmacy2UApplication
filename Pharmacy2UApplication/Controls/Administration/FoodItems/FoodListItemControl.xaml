@@ -69,7 +69,8 @@
                                 <CheckBox 
                                 Grid.Column="4" 
                                 VerticalAlignment="Center"
-                                IsChecked="{Binding FoodIsTaxable, FallbackValue='Error'}" />
+                                IsChecked="{Binding FoodIsTaxable, FallbackValue='Error'}" 
+                                    IsEnabled="False"/>
 
                                 <!-- Edit button -->
                                 <Button 
