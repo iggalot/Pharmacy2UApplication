@@ -13,8 +13,10 @@ namespace Pharmacy2U_PopupDatabaseMonitor
     {
         #region Public Properties
 
+        /// <summary>
+        /// Theview model that controls this window
+        /// </summary>
         public WindowViewModel ViewModel { get; set; }
-
 
         /// <summary>
         /// A collection of NamedPipeData objects.  Used for storing the OrderID and Order Guid of a new record
@@ -57,16 +59,14 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         // TODO: Bind window startup locations in XAML to screen size
         public MainWindow()
         {
+
             // Create our ViewModel
             ViewModel = new WindowViewModel(this);
 
             // Set our data context
             DataContext = ViewModel;
 
-
             InitializeComponent();
-
-
 
             #region Named pipe serialization test
 
@@ -105,23 +105,23 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         //    Console.WriteLine("Data received....returning to main application...");
         //}
 
-        // After loading, send our message to the pipe
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            double screenHt = SystemParameters.PrimaryScreenHeight;
-            double screenWidth = SystemParameters.PrimaryScreenWidth;
+        //// After loading, send our message to the pipe
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    double screenHt = SystemParameters.PrimaryScreenHeight;
+        //    double screenWidth = SystemParameters.PrimaryScreenWidth;
 
-            double fullscreenHt = SystemParameters.FullPrimaryScreenHeight;
-            double fullscreenWidth = SystemParameters.FullPrimaryScreenWidth;
+        //    double fullscreenHt = SystemParameters.FullPrimaryScreenHeight;
+        //    double fullscreenWidth = SystemParameters.FullPrimaryScreenWidth;
 
-            double maximizedscreenHt = SystemParameters.MaximizedPrimaryScreenHeight;
-            double maximizedscreenWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+        //    double maximizedscreenHt = SystemParameters.MaximizedPrimaryScreenHeight;
+        //    double maximizedscreenWidth = SystemParameters.MaximizedPrimaryScreenWidth;
 
-            MessageBox.Show("Primary: " + screenHt + " x " + screenWidth + "\n" +
-                "Full: " + fullscreenHt + " x " + fullscreenWidth + "\n" +
-                "Maximized: " + maximizedscreenHt + " x " + maximizedscreenWidth + "\n"
-                );
-        }
+        //    //MessageBox.Show("Primary: " + screenHt + " x " + screenWidth + "\n" +
+        //    //    "Full: " + fullscreenHt + " x " + fullscreenWidth + "\n" +
+        //    //    "Maximized: " + maximizedscreenHt + " x " + maximizedscreenWidth + "\n"
+        //    //    );
+        //}
 
         /// <summary>
         /// The function to signal that the popup is now open and show animate in.
@@ -130,20 +130,26 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         /// <param name="e"></param>
         private void Show_Click(object sender, RoutedEventArgs e)
         {
+            // Retrieve the current database count from the IoC
+            int currentcount = IoC.Get<DatabaseQueryViewModel>().GetPreviousRecordCount();
+            MessageBox.Show(currentcount.ToString());
+
             // Show the popup
             MyPopup.IsOpen = true;
         }
 
-        /// <summary>
-        /// The function for when the acknowledge button is clicked.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Hide_Click(object sender, RoutedEventArgs e)
-        {
-            // Show the popup
-            MyPopup.IsOpen = true;
-        }
+        ///// <summary>
+        ///// The function for when the acknowledge button is clicked.
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void Hide_Click(object sender, RoutedEventArgs e)
+        //{
+        //    // Show the popup
+        //    MyPopup.IsOpen = true;
+        //}
+
+        #region Animation Completed functions
 
         /// <summary>
         /// The task to run when the popup is done animating in.
@@ -169,5 +175,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // Then close the popup
             MyPopup.IsOpen = false;
         }
+
+        #endregion
     }
 }

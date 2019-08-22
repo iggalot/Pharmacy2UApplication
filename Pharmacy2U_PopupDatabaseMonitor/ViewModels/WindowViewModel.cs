@@ -2,6 +2,8 @@
 using Pharmacy2UApplication.Core;
 using System;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Pharmacy2U_PopupDatabaseMonitor
 {
@@ -36,6 +38,21 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         /// The upper left corner's top position of our popup window location
         /// </summary>
         private double mUpperCornerTopPosition;
+
+        /// <summary>
+        /// The current count
+        /// </summary>
+        private int mCurrentRecordCount;
+
+        /// <summary>
+        /// The previous count
+        /// </summary>
+        private int mPreviousRecordCount;
+
+        /// <summary>
+        /// The number of new records
+        /// </summary>
+        private int mNewRecordCount;
 
         #endregion
 
@@ -165,8 +182,86 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         /// </summary>
         public GridLength TitleHeightGridLength { get => new GridLength(TitleHeight + ResizeBorder); }
 
-        #endregion
+        /// <summary>
+        /// The current count of records in the database
+        /// </summary>
+        public int CurrentRecordCount
+        {
+            get => mCurrentRecordCount;
+            set
+            {
+                // If the value didn't change
+                if (mCurrentRecordCount == value)
+                    return;
 
+                // Otherwise set the value
+                mCurrentRecordCount = value;
+
+                // Notify that the value has changed
+                OnPropertyChanged(nameof(CurrentRecordCount));
+            }
+        }
+
+        /// <summary>
+        /// The count of records from the last time the popup was acknowledged
+        /// </summary>
+        public int PreviousRecordCount
+        {
+            get => mPreviousRecordCount;
+            set
+            {
+                // If the value didn't change
+                if (mPreviousRecordCount == value)
+                    return;
+
+                // Otherwise set the value
+                mPreviousRecordCount = value;
+
+                // Notify that the value has changed
+                OnPropertyChanged(nameof(PreviousRecordCount));
+            }
+        }
+
+        /// <summary>
+        /// The number of non-acknowledge (or new) records
+        /// </summary>
+        public int NewRecordCount
+        {
+            get => mNewRecordCount;
+            set
+            {
+                // If the value didn't change
+                if (mNewRecordCount == value)
+                    return;
+
+                // Otherwise set the value
+                mNewRecordCount = value;
+
+                // Notify that the value has changed
+                OnPropertyChanged(nameof(NewRecordCount));
+
+                // Notify that the related text string should also be changed
+                OnPropertyChanged(nameof(NewRecordCountString));
+            }
+        }
+
+        /// <summary>
+        /// The display string for the number of new records currently available for viewing
+        /// </summary>
+        public string NewRecordCountString { get => NewRecordCount.ToString() + " new records available."; }
+
+        /// <summary>
+        /// The command that is fired when the Acknowledge Button is clicked
+        /// </summary>
+        public ICommand AcknowledgeCommand { get; set; }
+
+        /// <summary>
+        /// The command that is fired when a change alert has been signaled
+        /// </summary>
+        public ICommand AlertChangeCommand { get; set; }
+
+
+        #endregion
 
         #region Constructor
         /// <summary>
@@ -176,6 +271,10 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         public WindowViewModel(Window window)
         {
             mWindow = window;
+
+            // Create commands for our controls
+            AcknowledgeCommand = new RelayCommand(Acknowledge);
+            AlertChangeCommand = new RelayCommand(AlertChange);
 
             // Listen out for the window resizing
             mWindow.StateChanged += (sender, e) =>
@@ -197,25 +296,55 @@ namespace Pharmacy2U_PopupDatabaseMonitor
             // WidowMinimumHeight to the actual window height
             mUpperCornerTopPosition = SystemParameters.PrimaryScreenHeight - WindowMinimumHeight - OuterMarginSize*5;
             UpperCornerTopPosition = mUpperCornerTopPosition;
+
+            // Artificially set our previous records count
+            // TODO:  Only do this on the initial firing.  Maybe make the popup fire immediately upon load?
+            //IoC.Get<DatabaseQueryViewModel>().SetPreviousRecordCount(0);
+            //PreviousRecordCount = 0;
         }
 
         #endregion
 
-        //#region Private Helpers
+        #region Commands
+        /// <summary>
+        /// Signal that the alert has been detected
+        /// </summary>
+        private void AlertChange()
+        {
+            // Find the popup control on the window by name
+            Popup mypop = (Popup)mWindow.FindName("MyPopup");
 
-        ///// <summary>
-        ///// Gets the current mouse position on the screen
-        ///// </summary>
-        ///// <returns></returns>
-        //private Point GetMousePosition()
-        //{
-        //    // Position of the mouse relative to the window
-        //    var position = Mouse.GetPosition(mWindow);
+            // And signal that it should open
+            mypop.IsOpen = true;
 
-        //    // Add the window position so it's a "ToScreen"
-        //    return new Point(position.X + mWindow.Left, position.Y + mWindow.Top);
-        //}
+            // Retrieve the records coints from the database query view model
+            CurrentRecordCount = IoC.Get<DatabaseQueryViewModel>().GetCurrentRecordCount();
+            PreviousRecordCount = IoC.Get<DatabaseQueryViewModel>().GetPreviousRecordCount();
+            NewRecordCount = CurrentRecordCount - PreviousRecordCount;
+        }
 
-        //#endregion
+        /// <summary>
+        /// Acknowledge that the popup has been activated and noticed by the user
+        /// </summary>
+        private void Acknowledge()
+        {
+            // TODO: Implement Acknowledgement actions
+
+            // 1. Open other main application if necessary
+            // 2. Verify communication with the other application
+
+            // 3. Signal main application that it should show new records if its not already busy (Editing or creating)
+
+            // 4. Play the storyboard for closing the popup
+
+            // 5. Signal the popup is closed
+
+            // 6. Update the counts
+            
+            IoC.Get<DatabaseQueryViewModel>().SetPreviousRecordCount(CurrentRecordCount);
+        }
+
+        #endregion
+
     }
 }

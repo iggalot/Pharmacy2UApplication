@@ -186,7 +186,7 @@
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\OrderStatusTypesToFillValueConverter.cs" />
-    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\DatabaseQueryViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\WindowViewModel.cs" />
     <Compile Include="Window\WindowResizer.cs" />

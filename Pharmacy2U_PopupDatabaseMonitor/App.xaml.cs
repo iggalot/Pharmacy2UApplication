@@ -10,21 +10,23 @@ namespace Pharmacy2U_PopupDatabaseMonitor
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
-            using(SingleProgramInstance spi = new SingleProgramInstance("x5k6yz"))
-            {
-                if (spi.IsSingleInstance)
-                {
-                    // Set the startup URI as normal
-                    StartupUri = new Uri("/Pharmacy2U_PopupDatabaseMonitor;component/MainWindow.xaml", UriKind.Relative);
-                } else
-                {
-                    MessageBox.Show("Duplicate application " + Assembly.GetExecutingAssembly().GetName().Name + "shown -- raising the other one instead of launching a new one");
-                    spi.RaiseOtherProcess();
-                }
-            }
+                //// Set the startup URI as normal
+                //StartupUri = new Uri("/Pharmacy2U_PopupDatabaseMonitor;component/MainWindow.xaml", UriKind.Relative);
 
+                // let the base application do what it needs for startup
+                base.OnStartup(e);
+
+                // Setup IoC right away
+                IoC.Setup();
+
+                // Bind to a single instance of Order view model
+                IoC.Kernel.Bind<DatabaseQueryViewModel>().ToConstant(new DatabaseQueryViewModel());
+
+                // Show the main window
+                Current.MainWindow = new MainWindow();
+                Current.MainWindow.Show();              
         }
     }
 }

@@ -9,7 +9,7 @@
 
         
         Title="Popup Database Application" 
-        Loaded="Window_Loaded"
+
         WindowStartupLocation="Manual"
         Height="{Binding WindowMinimumHeight}"
         Width="{Binding WindowMinimumWidth}"
@@ -31,6 +31,13 @@
                 Storyboard.TargetName="theTransform"
                 Storyboard.TargetProperty="Y"
                 From="{Binding WindowMinimumHeight}" To="1" Duration="0:0:0.5"/>
+
+        </Storyboard>
+        <Storyboard x:Key="PopupFade" RepeatBehavior="Forever" AutoReverse="True">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From=".5" To="1" Duration="0:0:4"/>
+
         </Storyboard>
         <Storyboard x:Key="HidePopup" Completed="HidePopupStoryboard_Completed"  >
             <DoubleAnimation
@@ -54,14 +61,14 @@
             Background="Red"
             >
 
-
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0"  Width="200" Height="25" Click="Show_Click"
+            <Button Grid.Row="0"  Width="200" Height="25"
+                    Command="{Binding AlertChangeCommand}"
                     HorizontalAlignment="Center">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
@@ -73,50 +80,73 @@
                 Click to see the Popup animate
             </Button>
 
-            <Popup Grid.Row="0" Name="MyPopup"
+            <Popup Grid.Row="0"
+               x:Name="MyPopup"
                Placement="Center"               
                AllowsTransparency="True"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                >
-                <Border HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Canvas Width="{Binding WindowMinimumWidth}" Height="{Binding WindowMinimumHeight}"
-                        Background="{StaticResource DeaconessDarkGreenBrush}">
+                <Border x:Name="PopupWarningBorder" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Background="Red"
+                        >
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard Storyboard="{StaticResource PopupFade}"/>
+                        </EventTrigger>
+                    </Border.Triggers>
 
-                        <Canvas.RenderTransform>
-                            <TranslateTransform x:Name="theTransform"/>
-                        </Canvas.RenderTransform>
-                        <Grid Canvas.Left="100" Canvas.Top="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" TextWrapping="Wrap" Foreground="White"
+                    <Border Margin="5">
+                        <Canvas Width="{Binding WindowMinimumWidth}" Height="{Binding WindowMinimumHeight}"
+                        Background="{StaticResource DeaconessDarkGreenBrush}"                    
+                            >
+
+                            <Canvas.RenderTransform>
+                                <TranslateTransform x:Name="theTransform"/>
+                            </Canvas.RenderTransform>
+                            <Grid Canvas.Left="100" Canvas.Top="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" TextWrapping="Wrap" Foreground="White"
                                    FontWeight="Bold"
                                    FontStyle="Italic"
                                    VerticalAlignment="Top"
                                    Text="Pharmacy2U Database Monitor"
                                    >
-                            </TextBlock>
-                            <Image Margin="10" Grid.Row="1"
+                                </TextBlock>
+                                <Image Margin="10" Grid.Row="1"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Height="80"
                                 Source="/Pharm2UStyles;component/Images/Logo/Pharmacy2U_VERT.png"
                                 />
 
-                            <Button Grid.Row="2" Content="Acknowledge" Click="Hide_Click">
-                                <Button.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <EventTrigger.Actions>
-                                            <BeginStoryboard Storyboard="{StaticResource HidePopup}"/>
-                                        </EventTrigger.Actions>
-                                    </EventTrigger>
-                                </Button.Triggers>
-                            </Button>
-                        </Grid>
-                    </Canvas>
+                                <TextBlock Grid.Row="2"
+                                    Text="{Binding NewRecordCountString, FallbackValue='Error in binding'}"
+                                        FontWeight="Bold"
+                                        FontStyle="Italic"
+                                           Foreground="{StaticResource ForegroundLightBrush}"
+                                           />
+
+
+                                <Button Grid.Row="3" Content="Acknowledge"
+                                        Command="{Binding AcknowledgeCommand}">
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <EventTrigger.Actions>
+                                                <BeginStoryboard Storyboard="{StaticResource HidePopup}"/>
+                                            </EventTrigger.Actions>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </Grid>
+                        </Canvas>
+                    </Border>
                 </Border>
+
             </Popup>
 
             <TextBlock Grid.Row="1" Background="White" FontSize="20" Text="{Binding UpperCornerLeftPosition, FallbackValue='Error'}"/>
