@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharm2UStyles", "Pharm2USty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharm2UAnimations", "Pharm2UAnimations\Pharm2UAnimations.csproj", "{458A010A-7BC4-49E3-B19E-B180683D9058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dna.Framework", "Dna.Framework\Dna.Framework.csproj", "{CC0E4412-75E6-4947-8E3E-42B6B3A17E4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{458A010A-7BC4-49E3-B19E-B180683D9058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{458A010A-7BC4-49E3-B19E-B180683D9058}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{458A010A-7BC4-49E3-B19E-B180683D9058}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CC0E4412-75E6-4947-8E3E-42B6B3A17E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0E4412-75E6-4947-8E3E-42B6B3A17E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0E4412-75E6-4947-8E3E-42B6B3A17E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0E4412-75E6-4947-8E3E-42B6B3A17E4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

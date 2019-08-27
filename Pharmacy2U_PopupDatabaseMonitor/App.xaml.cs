@@ -1,4 +1,5 @@
-﻿using Pharmacy2UApplication.Core;
+﻿using Dna;
+using Pharmacy2UApplication.Core;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -24,9 +25,21 @@ namespace Pharmacy2U_PopupDatabaseMonitor
                 // Bind to a single instance of Order view model
                 IoC.Kernel.Bind<DatabaseQueryViewModel>().ToConstant(new DatabaseQueryViewModel());
 
+                // Setup the application
+                ApplicationSetup();
+
                 // Show the main window
                 Current.MainWindow = new MainWindow();
                 Current.MainWindow.Show();              
+        }
+
+        /// <summary>
+        ///  Configures our application ready for use
+        /// </summary>
+        private void ApplicationSetup()
+        {
+            // Setup the Dna framework.
+            Framework.Startup();
         }
     }
 }

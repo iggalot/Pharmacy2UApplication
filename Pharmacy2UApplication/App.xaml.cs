@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Dna;
+using Ninject;
 using Pharmacy2UApplication.Core;
 using System;
 using System.Diagnostics;
@@ -36,7 +37,8 @@ namespace Pharmacy2UApplication
                     IoC.Kernel.Bind<DatabaseQueryViewModel>().ToConstant(new DatabaseQueryViewModel());
 
 
-
+                    // Set up the main application
+                    ApplicationSetup();
 
                     // Show the main window
                     Current.MainWindow = new MainWindow();
@@ -68,6 +70,15 @@ namespace Pharmacy2UApplication
             //// Show the main window
             //Current.MainWindow = new MainWindow();
             //Current.MainWindow.Show();
+        }
+
+        /// <summary>
+        ///  Configures our application ready for use
+        /// </summary>
+        private void ApplicationSetup()
+        {
+            // Setup the Dna framework.
+            Framework.Startup();
         }
     }
 }
