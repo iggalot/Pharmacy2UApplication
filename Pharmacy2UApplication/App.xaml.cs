@@ -78,7 +78,9 @@ namespace Pharmacy2UApplication
         private void ApplicationSetup()
         {
             // Setup the Dna framework.
-            Framework.Startup();
+            new DefaultFrameworkConstruction()
+                .UseFileLogger()
+                .Build();
         }
     }
 }

@@ -112,7 +112,6 @@ namespace Dna
             var output = $"{timeLogString}{message}{Environment.NewLine}";
 
             // Normalize path
-            // TODO: Make sure of the configuration base path
             var normalizedPath = mFilePath.ToUpper();
 
             // Get the file lock based on the absolute path

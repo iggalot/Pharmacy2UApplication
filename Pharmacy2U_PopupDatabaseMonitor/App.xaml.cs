@@ -39,7 +39,9 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         private void ApplicationSetup()
         {
             // Setup the Dna framework.
-            Framework.Startup();
+            new DefaultFrameworkConstruction()
+                .UseFileLogger()
+                .Build();
         }
     }
 }
