@@ -82,7 +82,7 @@ namespace Pharmacy2UApplication
 
             // Now retrieve the viewmodel for this item -- which should be the FoodListItemViewModel
             // in the DataContext of the ancestor control.
-            var flic = VisualTreeHelperExtensions.FindAncestor<FoodListItemControl>(this);
+            var flic = TreeHelperExtensions.FindAncestor<FoodListItemControl>(this);
             FoodListItemViewModel flivm = (FoodListItemViewModel) flic.DataContext;
 
             // Otherwise we have valid data presumably, so save it back to the view model
@@ -105,7 +105,7 @@ namespace Pharmacy2UApplication
                 );
 
             // Find the food list view model from the food list control ancestor
-            var flc = VisualTreeHelperExtensions.FindAncestor<FoodListControl>(this);
+            var flc = TreeHelperExtensions.FindAncestor<FoodListControl>(this);
             FoodListViewModel flvc = (FoodListViewModel)flc.DataContext;
 
             // Apply the update to the view model
