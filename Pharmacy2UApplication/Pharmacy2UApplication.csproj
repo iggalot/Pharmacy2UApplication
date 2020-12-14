@@ -101,9 +101,6 @@
       <DependentUpon>FoodSearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BaseControl.cs" />
-    <Compile Include="Controls\Debug\DebugColorSchemeVisualControl.xaml.cs">
-      <DependentUpon>DebugColorSchemeVisualControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Orders\FullOrderInformationControl.xaml.cs">
       <DependentUpon>FullOrderInformationControl.xaml</DependentUpon>
     </Compile>
@@ -183,9 +180,6 @@
     <Compile Include="Controls\DatabaseActivityControl.xaml.cs">
       <DependentUpon>DatabaseActivityControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Debug\DebugTestControls.xaml.cs">
-      <DependentUpon>DebugTestControls.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\OrderStatusControl.xaml.cs">
       <DependentUpon>OrderStatusControl.xaml</DependentUpon>
     </Compile>
@@ -225,10 +219,6 @@
     <Page Include="Controls\Administration\FoodItems\FoodSearchControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Debug\DebugColorSchemeVisualControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Orders\FullOrderInformationControl.xaml">
       <SubType>Designer</SubType>
@@ -338,10 +328,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Debug\DebugTestControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\OrderStatusControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -384,6 +370,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\Debug\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>

@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>EntityFrameworkDatabase</RootNamespace>
     <AssemblyName>EntityFrameworkDatabase</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SqlClient, Version=4.5.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.6.1\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
@@ -82,61 +84,61 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="P2U_CancellationReason.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Customer.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_DeliveryArea.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_DeliveryCompany.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Food.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Order.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_OrderFood.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_OrderOTCMeds.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_OTCMedication.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Pharmacy.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Provider.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_ReturnedReason.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_Statuses.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
     <Compile Include="P2U_ZipCodes.cs">
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pharmacy2U_EntityDataModel.Context.cs">
+    <Compile Include="Pharm2UApplicationDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pharmacy2U_EntityDataModel.Context.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pharmacy2U_EntityDataModel.cs">
+    <Compile Include="Pharm2UApplicationDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pharmacy2U_EntityDataModel.tt</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pharmacy2U_EntityDataModel.Designer.cs">
+    <Compile Include="Pharm2UApplicationDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Pharmacy2U_EntityDataModel.edmx</DependentUpon>
+      <DependentUpon>Pharm2UApplicationDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -156,12 +158,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <EntityDeploy Include="Pharmacy2U_EntityDataModel.edmx">
+    <EntityDeploy Include="Pharm2UApplicationDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Pharmacy2U_EntityDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Pharm2UApplicationDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Pharmacy2U_EntityDataModel.edmx.diagram">
-      <DependentUpon>Pharmacy2U_EntityDataModel.edmx</DependentUpon>
+    <None Include="Pharm2UApplicationDB.edmx.diagram">
+      <DependentUpon>Pharm2UApplicationDB.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -175,15 +177,20 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pharmacy2U_EntityDataModel.Context.tt">
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pharm2UApplicationDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Pharmacy2U_EntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>Pharmacy2U_EntityDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>Pharm2UApplicationDB.edmx</DependentUpon>
+      <LastGenOutput>Pharm2UApplicationDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Pharmacy2U_EntityDataModel.tt">
+    <Content Include="Pharm2UApplicationDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Pharmacy2U_EntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>Pharmacy2U_EntityDataModel.cs</LastGenOutput>
+      <DependentUpon>Pharm2UApplicationDB.edmx</DependentUpon>
+      <LastGenOutput>Pharm2UApplicationDB.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

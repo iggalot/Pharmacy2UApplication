@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\CS495\Pharmacy2UApplication\EntityFrameworkDatabase\Pharmacy2U_EntityDataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Classes\Classes\cs495\Pharmacy 2U Application\Pharmacy2UApplication\EntityFrameworkDatabase\Pharm2UApplicationDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

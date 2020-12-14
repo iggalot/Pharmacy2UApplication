@@ -34,7 +34,7 @@
         <Button Style="{StaticResource AdminControlButton}" Grid.Row="0" Grid.Column="6" Content="Cancel" />
         
         <!-- Display the color pallet (DEBUGGING) -->
-        <local:DebugColorSchemeVisualControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <!--<local:DebugColorSchemeVisualControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>-->
 
     </Grid>
 </local:BaseControl>

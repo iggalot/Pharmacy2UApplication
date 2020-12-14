@@ -238,9 +238,9 @@
                 Visibility="{Binding ApplicationViewModel.ShouldHideDebugTools, Source={x:Static local:ViewModelLocator.Instance},
                             Converter={local:BooleanToVisibilityConverter}}"
                 >
-                <local:DebugTestControls                         
+                <!--<local:DebugTestControls                         
                 DataContext="{Binding ApplicationViewModel,
-                                Source={x:Static local:ViewModelLocator.Instance}}"/>
+                                Source={x:Static local:ViewModelLocator.Instance}}"/>-->
             </Border>
         </StackPanel>
 

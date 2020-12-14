@@ -55,7 +55,7 @@ namespace Pharmacy2UApplication
             FullOrderInfoList.Clear();
 
             // Our context for the database
-            using (var context = new Pharm2UEntities())
+            using (var context = new Pharm2UEntities3())
             {
                 // join our order data with our customer data
                 var AllOrders = (from order in context.P2U_Order
@@ -187,7 +187,7 @@ namespace Pharmacy2UApplication
             FullFoodInfoList.Clear();
 
             // Our context for the database
-            using (var context = new Pharm2UEntities())
+            using (var context = new Pharm2UEntities3())
             {
                 // join our order data with our customer data
                 var AllOrders = (from food in context.P2U_Food

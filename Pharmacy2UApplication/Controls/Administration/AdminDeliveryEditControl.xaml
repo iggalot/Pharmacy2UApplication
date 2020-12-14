@@ -26,6 +26,6 @@
         <TextBlock Style="{StaticResource AdminTextBlock}" Grid.Row="0" Grid.Column="0" Text="DELIVERY EDIT IS NOT ENABLED AT THIS TIME" IsEnabled="False"/>
 
         <!-- Display the color pallet (DEBUGGING) -->
-        <local:DebugColorSchemeVisualControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <!--<local:DebugColorSchemeVisualControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>-->
     </Grid>
 </local:BaseControl>

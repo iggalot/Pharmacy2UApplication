@@ -11,7 +11,7 @@ namespace EntityFrameworkDatabase
     public partial class EDM_MainWindow : Window
     {
         // Save the changes for a given EDM context
-        public void SaveChanges(Pharm2UEntities context)
+        public void SaveChanges(Pharm2UEntities3 context)
         {
             // Save the data changes
             try
@@ -36,7 +36,7 @@ namespace EntityFrameworkDatabase
         #region Cancellation Reason
         public void CreateCancellationReasons()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 // Build the cancellation table
                 for(int i=0; i<300; i++)
@@ -65,7 +65,7 @@ namespace EntityFrameworkDatabase
         #region Customer
         public void CreateCustomer()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 // Build the zipcode table
 
@@ -99,7 +99,7 @@ namespace EntityFrameworkDatabase
         #region Delivery Area Data
         public void CreateDeliveryArea()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 // Build the Delivery area table
                 for (int i = 0; i < 300; i++)
@@ -130,7 +130,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateDeliveryCompany()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -163,7 +163,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateFood()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -196,7 +196,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateOrder()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 33; i++)
                 {
@@ -602,7 +602,7 @@ namespace EntityFrameworkDatabase
         #region OrderFood
         public void CreateOrderFood()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -637,7 +637,7 @@ namespace EntityFrameworkDatabase
         #region Order OTC Meds
         public void CreateOrderOTCMeds()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -671,7 +671,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateOTCMedication()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -703,7 +703,7 @@ namespace EntityFrameworkDatabase
 
         public void CreatePharmacy()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -748,7 +748,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateProvider()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -779,7 +779,7 @@ namespace EntityFrameworkDatabase
         #region Returned Reason
         public void CreateReturnedReasons()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -808,7 +808,7 @@ namespace EntityFrameworkDatabase
 
         public void CreateStatuses()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 for (int i = 0; i < 300; i++)
                 {
@@ -837,7 +837,7 @@ namespace EntityFrameworkDatabase
         #region Zip Codes
         public void CreateZipCodes()
         {
-            using (Pharm2UEntities context = new Pharm2UEntities())
+            using (Pharm2UEntities3 context = new Pharm2UEntities3())
             {
                 // create a new random instance for faking zipcode data
                 Random ziprand = new Random();
@@ -895,7 +895,7 @@ namespace EntityFrameworkDatabase
             InitializeComponent();
 
             // // Now initialize all of the database tables
-//            CreateDatabaseDatas();
+ //           CreateDatabaseDatas();
     
         }
     }

@@ -63,7 +63,7 @@ namespace Pharmacy2U_PopupDatabaseMonitor
         private int CountOrders()
         {
             // Count the current number of records in the orders database
-            using (var context = new Pharm2UEntities())
+            using (var context = new Pharm2UEntities3())
             {
                 // Query the P2U_Order database
                 return context.P2U_Order.Count();

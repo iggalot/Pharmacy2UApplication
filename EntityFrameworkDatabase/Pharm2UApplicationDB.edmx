@@ -548,7 +548,7 @@
           <Property Name="Latitude" Type="Double" />
           <Property Name="Longitude" Type="Double" />
         </EntityType>
-        <EntityContainer Name="Pharm2UEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Pharm2UEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="P2U_CancellationReason" EntityType="Self.P2U_CancellationReason" />
           <EntitySet Name="P2U_Customer" EntityType="Self.P2U_Customer" />
           <EntitySet Name="P2U_DeliveryArea" EntityType="Self.P2U_DeliveryArea" />
@@ -569,7 +569,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Pharm2UModelStoreContainer" CdmEntityContainer="Pharm2UEntities">
+        <EntityContainerMapping StorageEntityContainer="Pharm2UModelStoreContainer" CdmEntityContainer="Pharm2UEntities3">
           <EntitySetMapping Name="P2U_CancellationReason">
             <EntityTypeMapping TypeName="Pharm2UModel.P2U_CancellationReason">
               <MappingFragment StoreEntitySet="P2U_CancellationReason">
